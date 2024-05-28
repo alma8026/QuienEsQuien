@@ -9,7 +9,7 @@
  * Animacion de ganar o perder.
  * Mejorar estilos.
  */
-
+//asjdhakdhkjahskjdhkjashdk
 // scripts.js
 const characters = [
     { name: 'Alice', img: 'https://randomuser.me/api/portraits/women/1.jpg', rubio: true, moreno: false, pelirrojo: false, barba: false, sombrero: false, piercings: false, tatuajes: false, pelolargo: true, gafas: false, bigote: false },
