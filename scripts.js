@@ -28,12 +28,12 @@ const characters = [
     { name: 'Yara', img: 'https://i.imgur.com/abc123.jpg', rubio: true, moreno: false, pelirrojo: false, barba: false, sombrero: true, piercings: false, tatuajes: false, pelolargo: true, gafas: false, bigote: false },
     { name: 'Zane', img: 'https://i.imgur.com/abc123.jpg', rubio: false, moreno: true, pelirrojo: false, barba: true, sombrero: false, piercings: true, tatuajes: false, pelolargo: false, gafas: false, bigote: true },
 ];
-
+// prueba
 function generateBoard() {
     const board = document.getElementById('board');
-    characters.forEach((character, index) => {
+    characters.forEach((character, index) => {     
         const card = document.createElement('div');
-        card.classList.add('card');
+        card.classList.add('card');    
         card.setAttribute('data-index', index);
         card.innerHTML = `<img src="${character.img}" alt="${character.name}"><p>${character.name}</p>`;
         board.appendChild(card);
