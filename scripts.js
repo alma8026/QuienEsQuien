@@ -7,8 +7,8 @@
  * Botones con las preguntas.
  * Temporizador de 3 min: con cada pregunta se resta 20 seg.
  * Animacion de ganar o perder.
+ * Seleccion de persona random.
  * Mejorar estilos.
- * xdnsadnsidsakaskdkaskdakdkasdka
  */
 
 // scripts.js
