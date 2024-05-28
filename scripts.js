@@ -8,7 +8,7 @@
  * Temporizador de 3 min: con cada pregunta se resta 20 seg.
  * Animacion de ganar o perder.
  * Mejorar estilos.
- * xdnsadnsidsa
+ * xdnsadna
  */
 //asjdhakdhkjahskjdhkjashdk
 // scripts.js
