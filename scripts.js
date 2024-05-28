@@ -9,6 +9,7 @@
  * Animacion de ganar o perder.
  * Seleccion de persona random.
  * Mejorar estilos.
+ * adhjasdj
  */
 
 // scripts.js
