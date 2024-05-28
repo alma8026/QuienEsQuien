@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Quién es Quién</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="game-container">
+        <div class="question-area">
+            <h2>¿Quién es quién?</h2>
+            <div class="questions">
+                <button onclick="askQuestion('rubio')">¿Es rubio?</button>
+                <button onclick="askQuestion('moreno')">¿Es moreno?</button>
+                <button onclick="askQuestion('pelirrojo')">¿Es pelirrojo?</button>
+                <button onclick="askQuestion('barba')">¿Tiene barba?</button>
+                <button onclick="askQuestion('sombrero')">¿Tiene sombrero?</button>
+                <button onclick="askQuestion('piercings')">¿Tiene piercings?</button>
+                <button onclick="askQuestion('tatuajes')">¿Tiene tatuajes?</button>
+                <button onclick="askQuestion('pelolargo')">¿Tiene el pelo largo?</button>
+                <button onclick="askQuestion('gafas')">¿Tiene gafas?</button>
+                <button onclick="askQuestion('bigote')">¿Tiene bigote?</button>
+            </div>
+        </div>
+        <div class="board" id="board">
+            <!-- Las cartas de los personajes se generarán aquí -->
+        </div>
+    </div>
+    <script src="scripts.js"></script>
+</body>
+</html>
