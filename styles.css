@@ -102,3 +102,12 @@ button:hover {
 .card.show-x .card-x {
     opacity: 1; /* Muestra la imagen de X */
 }
+
+#restaTiempo {
+    color: red;
+}
+
+#timer-container {
+    position: absolute;
+    
+}

@@ -7,9 +7,18 @@
     <link rel="stylesheet" href="styles.css">
 </head>
 <body>
+    <div id="timer-container" style="display: none;">
+        <p>Temporizador: <span id="timer"></span></p>
+        <span id="restaTiempo" style="display: none;">-10 seg</span>
+    </div>
+    <h1>¿Quién es Quién?</h1>
+    <div class="home-menu">
+        <button onclick="showDifficulties()">JUGAR</button>
+        <a href="https://www.infojobs.net/" target="_blank"><button>O no</button></a>
+    </div>
 
-    <div class="menu-container">
-        <h1>¿Quién es Quién?</h1>
+    <div class="menu-container" style="display: none;">
+        <h2>Dificultad</h2>
         <button onclick="selectDifficulty('easy')">Fácil</button>
         <button onclick="selectDifficulty('normal')">Normal</button>
         <button onclick="selectDifficulty('hard')">Difícil</button>
@@ -17,7 +26,6 @@
 
     <div class="game-container" style="display: none;">
         <div class="question-area">
-            <h2>¿Quién es quién?</h2>
             <div class="questions">
                 <button class="btn_moreno" onclick="askQuestion('moreno')">¿Tiene tez morena?</button>
                 <button class="btn_barba" onclick="askQuestion('barba')">¿Tiene barba?</button>
@@ -32,11 +40,20 @@
                 <button class="btn_camiseta_clara" onclick="askQuestion('camiseta_clara')">¿Lleva una camiseta clara?</button>
                 <button class="btn_ojos_claros" onclick="askQuestion('ojos_claros')">¿Tiene ojos claros?</button>
             </div>
-            <p>Temporizador: <span id="timer"></span> segundos</p>
+        </div>
+        <div>
+
         </div>
         <div class="board" id="board">
             <!-- Las cartas de los personajes se generarán aquí -->
         </div>
+    </div>
+
+    <div id="win-screen" style="display: none;">
+        <p>has ganado</p>
+    </div>
+    <div id="lose-screen" style="display: none;">
+        <p>has perdido</p>
     </div>
     <script src="scripts.js"></script>
 </body>

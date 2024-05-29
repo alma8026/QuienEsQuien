@@ -9,7 +9,7 @@
  * 
  * En cada persona saldrian dos botones de respuesta o descartar. ✓
  * 
- * Cuando se decarte un persona una X encima. 
+ * Cuando se decarte un persona una X encima. ✓
  * 
  * Temporizador de 3 min: con cada pregunta se resta 20 seg. ✓
  * 
@@ -18,6 +18,7 @@
  * 
  * Mejorar estilos.
  * Curiosidad al acertar la persona.
+ * poner menu de inicio con jugar o no.
  * 
  */
 
@@ -47,9 +48,16 @@ const characters = [
 let difficulty;
 let selectedPerson;
 let secondsLeft;
+let randomNumber;
+
+function showDifficulties() {
+    document.querySelector('.home-menu').style.display = 'none';
+    document.querySelector('.menu-container').style.display = 'block';
+}
 
 // Selección de dificultad (se guarda en la variable --> difficulty)
 function selectDifficulty(selectedDifficulty) {
+    document.querySelector('#timer-container').style.display = 'block';
     difficulty = selectedDifficulty;
     generateBoard();
     startGame();
@@ -77,6 +85,16 @@ function generateBoard() {
 
 function handleCheck(index) {
     // Para cuando haces check a alguien
+    const userConfirmed = confirm("¿Estás seguro de que esta es la persona?");
+    if (userConfirmed) {
+        if(index==randomNumber) {
+            console.log('acertado');
+            winScreen();
+        } else {
+            console.log('erroneo');
+            loseScreen();
+        }
+    }
 }
 
 function handleReject(index) {
@@ -106,10 +124,21 @@ function resetTimer() {
 
         if (secondsLeft === 0) {
             clearInterval(timer);
-            // Animacion de perder.
-            alert('¡Se acabó el tiempo!');
+            loseScreen();
         }
     }, 1000);
+}
+
+function loseScreen() {
+    document.querySelector('#lose-screen').style.display = 'block';
+    document.querySelector('.game-container').style.display = 'none';
+    document.querySelector('#timer-container').style.display = 'none';
+}
+
+function winScreen() {
+    document.querySelector('#win-screen').style.display = 'block';
+    document.querySelector('.game-container').style.display = 'none';
+    document.querySelector('#timer-container').style.display = 'none';
 }
 
 function updateTimerDisplay(seconds) {
@@ -129,11 +158,20 @@ function getTimeLimit() {
     }
 }
 
+function minusTemp() {
+        const restaTiempo = document.getElementById('restaTiempo');
+        restaTiempo.style.display = 'block';
+        setTimeout(() => {
+            restaTiempo.style.display = 'none';
+        }, 1000); // Oculta el texto después de 2 segundos
+}
+
 function askQuestion(attribute) {
     if(difficulty!='easy'){
         secondsLeft -= 10;
+        minusTemp();
     }
-    console.log(selectedPerson);
+
     if(selectedPerson[attribute]){
         document.querySelector('.btn_' + attribute).style.backgroundColor = 'green';
     } else {
@@ -144,7 +182,7 @@ function askQuestion(attribute) {
 
 function randomPerson() {
     console.log('Inspeccioname esta.')
-    const randomNumber = Math.floor(Math.random() * 19);
+    randomNumber = Math.floor(Math.random() * 19);
     selectedPerson = characters[randomNumber];
 }
 
