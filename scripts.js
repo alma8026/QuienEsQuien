@@ -71,8 +71,8 @@ function generateBoard() {
         card.classList.add('card');
         card.setAttribute('data-index', index);
         card.innerHTML = `
-                    <img src="${character.img}" alt="${character.name}">
                     <p>${character.name}</p>
+                    <img src="${character.img}" alt="${character.name}">
                     <div class="card-buttons">
                         <button onclick="handleCheck(${index})" style="background-color: green;">&check;</button>
                         <button onclick="handleReject(${index})" style="background-color: red;">&times;</button>
