@@ -1,16 +1,21 @@
 /**
  * Funcionalidades:
  * 
- * Facil: 3 minutos sin restar tiempo.
- * Normal: 3 minutos restando 20 seg por pregunta.
- * Dificil: 2 minutos restando 20 seg tmb.
+ * Facil: 3 minutos sin restar tiempo. ✓
+ * Normal: 3 minutos restando 20 seg por pregunta. ✓
+ * Dificil: 2 minutos restando 20 seg tmb. ✓
  * 
- * Botones con las preguntas, al hacer clic se queda en rojo o en verde dependiendo de si es true o false.
- * En cada persona saldrian dos botones de respuesta o descartar.
- * Cuando se decarte un persona una X encima.
- * Temporizador de 3 min: con cada pregunta se resta 20 seg.
+ * Botones con las preguntas, al hacer clic se queda en rojo o en verde dependiendo de si es true o false. ✓
+ * 
+ * En cada persona saldrian dos botones de respuesta o descartar. ✓
+ * 
+ * Cuando se decarte un persona una X encima. 
+ * 
+ * Temporizador de 3 min: con cada pregunta se resta 20 seg. ✓
+ * 
  * Animacion de ganar o perder.
- * Seleccion de persona random.
+ * Seleccion de persona random. ✓
+ * 
  * Mejorar estilos.
  * Curiosidad al acertar la persona.
  * 
@@ -41,14 +46,45 @@ const characters = [
 
 let difficulty;
 let selectedPerson;
-const timeLimit = getTimeLimit();
-let secondsLeft = timeLimit;
+let secondsLeft;
 
+// Selección de dificultad (se guarda en la variable --> difficulty)
 function selectDifficulty(selectedDifficulty) {
     difficulty = selectedDifficulty;
+    generateBoard();
     startGame();
 }
 
+// Para generar la tabla con cada persona
+function generateBoard() {
+    const board = document.getElementById('board');
+    characters.forEach((character, index) => {
+        const card = document.createElement('div');
+        card.classList.add('card');
+        card.setAttribute('data-index', index);
+        card.innerHTML = `
+                    <img src="${character.img}" alt="${character.name}">
+                    <p>${character.name}</p>
+                    <div class="card-buttons">
+                        <button onclick="handleCheck(${index})" style="background-color: green;">&check;</button>
+                        <button onclick="handleReject(${index})" style="background-color: red;">&times;</button>
+                    </div>
+                    <div id="${character.name}" class="card-x" style="display: none;"></div> <!-- Agrega el contenedor para la imagen de X -->
+                `;
+        board.appendChild(card);
+    });
+}
+
+function handleCheck(index) {
+    // Para cuando haces check a alguien
+}
+
+function handleReject(index) {
+    // Para cuando descartas a alguien
+    document.querySelector('#'+characters[index].name).style.display = 'block';
+}
+
+// Se muestra la tabla y empieza el contador
 function startGame() {
     // Mostrar la sección de juego
     document.querySelector('.game-container').style.display = 'block';
@@ -59,33 +95,50 @@ function startGame() {
 }
 
 function resetTimer() {
+    const timeLimit = getTimeLimit();
+    secondsLeft = timeLimit;
+
+    updateTimerDisplay(secondsLeft);
+
     let timer = setInterval(() => {
         secondsLeft--;
-        document.getElementById('timer').textContent = secondsLeft;
+        updateTimerDisplay(secondsLeft);
 
         if (secondsLeft === 0) {
             clearInterval(timer);
-            // Aquí puedes agregar la lógica para cuando se acabe el tiempo
+            // Animacion de perder.
             alert('¡Se acabó el tiempo!');
         }
     }, 1000);
 }
 
+function updateTimerDisplay(seconds) {
+    const minutes = Math.floor(seconds / 60);
+    const remainingSeconds = seconds % 60;
+    document.getElementById('timer').textContent = `${minutes}:${remainingSeconds < 10 ? '0' : ''}${remainingSeconds}`;
+}
+
 function getTimeLimit() {
     switch (difficulty) {
         case 'easy':
-            return 61; // 60 segundos para la dificultad fácil
+            return 180; 
         case 'normal':
-            return 46; // 45 segundos para la dificultad normal
+            return 180; 
         case 'hard':
-            return 31; // 30 segundos para la dificultad difícil
-        default:
-            return 61; // Por defecto, la dificultad fácil
+            return 120;
     }
 }
 
 function askQuestion(attribute) {
-    secondsLeft -= 10;
+    if(difficulty!='easy'){
+        secondsLeft -= 10;
+    }
+    console.log(selectedPerson);
+    if(selectedPerson[attribute]){
+        document.querySelector('.btn_' + attribute).style.backgroundColor = 'green';
+    } else {
+        document.querySelector('.btn_' + attribute).style.backgroundColor = 'red';
+    }
     
 }
 

@@ -75,8 +75,30 @@ button:hover {
     margin: 0;
 }
 
-.card.inactive {
-    opacity: 0.5;
-    transform: scale(0.95);
-    pointer-events: none;
+.card-buttons {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 10px;
+}
+.card-buttons button {
+    padding: 5px 10px;
+    cursor: pointer;
+}
+
+.card-x {
+    position: absolute; /* Posicionamiento absoluto */
+    margin-top: -8%;
+    margin-left: -2%;
+    width: 10%; /* Ocupa todo el ancho de la tarjeta */
+    height: 10%; /* Ocupa toda la altura de la tarjeta */
+    background-image: url('QEQ_imgs/X_img.png'); /* Ruta de la imagen de X */
+    background-size: contain; /* Escala la imagen para que quepa dentro de la tarjeta */
+    background-repeat: no-repeat; /* Evita que la imagen de X se repita */
+    background-position: center; /* Centra la imagen de X dentro de la tarjeta */
+    opacity: 1; /* Inicialmente oculta la imagen de X */
+    pointer-events: none; /* Ignora los eventos del ratón */
+}
+/* Estilos para mostrar la imagen de X */
+.card.show-x .card-x {
+    opacity: 1; /* Muestra la imagen de X */
 }
