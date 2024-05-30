@@ -51,13 +51,12 @@ let secondsLeft;
 let randomNumber;
 
 function showDifficulties() {
-    document.querySelector('.home-menu').style.display = 'none';
-    document.querySelector('.menu-container').style.display = 'block';
+    document.querySelector('#inicio').style.display = 'none';
+    document.querySelector('#dificultades').style.display = 'flex';
 }
 
 // Selección de dificultad (se guarda en la variable --> difficulty)
 function selectDifficulty(selectedDifficulty) {
-    document.querySelector('#timer-container').style.display = 'block';
     difficulty = selectedDifficulty;
     generateBoard();
     startGame();
@@ -105,9 +104,8 @@ function handleReject(index) {
 // Se muestra la tabla y empieza el contador
 function startGame() {
     // Mostrar la sección de juego
-    document.querySelector('.game-container').style.display = 'block';
-    document.querySelector('.menu-container').style.display = 'none';
-
+    document.querySelector('#dificultades').style.display = 'none';
+    document.querySelector('#game-container').style.display = 'flex';
     // Reiniciar el temporizador
     resetTimer();
 }
@@ -115,13 +113,10 @@ function startGame() {
 function resetTimer() {
     const timeLimit = getTimeLimit();
     secondsLeft = timeLimit;
-
     updateTimerDisplay(secondsLeft);
-
     let timer = setInterval(() => {
         secondsLeft--;
         updateTimerDisplay(secondsLeft);
-
         if (secondsLeft === 0) {
             clearInterval(timer);
             loseScreen();

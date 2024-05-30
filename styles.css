@@ -1,78 +1,113 @@
 /* styles.css */
+
+@font-face {
+    font-family: 'MinecraftRegular';
+    src: url('minecraft-font/Minecraft.otf') format('truetype');
+    font-weight: normal;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'MinecraftTitle';
+    src: url('minecraft-font/Minecraft-Bold.otf') format('truetype');
+    font-weight: normal;
+    font-style: normal;
+}
+
 body {
     font-family: Arial, sans-serif;
     background-image: url('QEQ_imgs/minecraft_background.jpg');
+    background-repeat: repeat;
+    background-attachment:fixed;
+    background-size: cover;
+    background-position: 50%;
     margin: 0;
     padding: 0;
-    overflow-y: auto; /* Agregamos barras de desplazamiento vertical si es necesario */
-    background-repeat: no-repeat;
-    background-size: cover;
-    min-height: 97vh;
 }
 
 body::after {
     content: "";
     position: absolute;
+    background-attachment: fixed;
     top: 0;
     left: 0;
     width: 100%;
     height: 100%;
-    background-color: rgba(0, 0, 0, 0.4); /* Capa oscura superpuesta */
+    background-color: rgba(0, 0, 0, 0.3); /* Capa oscura superpuesta */
     z-index: -1; /* Asegura que la capa oscura esté detrás del contenido */
 }
-
-.game-container {
-    text-align: center;
-    border-radius: 10px;
-    padding: 20px;
-    width: 90%;
-    max-width: 1200px;
-    margin: 20px auto; /* Centramos el contenedor y añadimos margen superior e inferior */
-    overflow-y: auto;
-}
-
-
-.question-area {
-    margin-bottom: 20px;
-}
-
-.questions {
+.menu {
     display: flex;
-    flex-wrap: wrap;
+    height: 100vh;
+    flex-direction: column;
+    align-items: center;
     justify-content: center;
-    gap: 10px;
+}
+
+
+.button-minecraft{
+    border: 3px solid black;
+    margin-bottom: 10px;
+    width: 500px;
+    
 }
 
 button {
-    background-color: #6366f1;
-    border: none;
-    color: white;
-    padding: 10px 20px;
-    border-radius: 5px;
-    cursor: pointer;
-    font-size: 14px;
-    transition: background-color 0.3s;
+    width: 100%;
+    font-family: 'MinecraftRegular'; /* Fuente estilo Minecraft */
+    text-shadow: 2px 2px #000000;
+    background-color: rgb(133,133,133); /* Color de fondo del botón */
+    border-bottom: 4px solid rgb(89,89,89);
+    border-right: 2px solid rgb(89,89,89);
+    border-left: 2px solid rgb(161,161,161);
+    border-top: 2px solid rgb(161,161,161);
+    color: white; /* Color del texto */
+    padding: 10px; /* Espaciado interno del botón */
+    text-align: center; /* Alineación del texto */
+    font-size: 18px; /* Tamaño de la fuente */
+    cursor: pointer; /* Cambia el cursor al pasar sobre el botón */
 }
 
-button:hover {
-    background-color: #0056b3;
+.button-minecraft:hover {
+    border-color: white;
 }
 
-.board {
+h1,h2{
+    font-family: 'MinecraftTitle';
+    text-transform: uppercase;
+    color: grey;
+    -webkit-text-stroke: 2px black;
+    margin:5px;
+}
+
+#game-container{
     display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
-    gap: 10px;
+    flex-direction: row;
+    justify-content: space-between;
+}
+
+#board {
+    padding: 0;
+    margin: 0;
+    width: 200px;
+}
+
+#lateral{
+    margin: 0;
+    width: 400px;
+}
+
+#questions .button-minecraft{
+    width: 100%;
 }
 
 .card {
     border: 1px solid #ccc;
-    border-radius: 5px;
     width: 120px;
     padding: 10px;
     text-align: center;
     background: rgb(254,249,195);
-background: radial-gradient(circle, rgba(254,249,195,1) 10%, rgba(231,198,77,1) 100%);
+    background: radial-gradient(circle, rgba(254,249,195,1) 10%, rgba(231,198,77,1) 100%);
     box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
     transition: transform 0.2s, opacity 0.2s;
 }
@@ -99,11 +134,10 @@ background: radial-gradient(circle, rgba(254,249,195,1) 10%, rgba(231,198,77,1) 
 }
 
 .card-x {
-    position: absolute; /* Posicionamiento absoluto */
-    margin-top: -8%;
-    margin-left: -2%;
-    width: 10%; /* Ocupa todo el ancho de la tarjeta */
-    height: 10%; /* Ocupa toda la altura de la tarjeta */
+    position: sticky; /* Posicionamiento absoluto */
+    width: 100%; /* Ocupa todo el ancho de la tarjeta */
+    height: 100%; /* Ocupa toda la altura de la tarjeta */
+    translate: 0 -115%;
     background-image: url('QEQ_imgs/X_img.png'); /* Ruta de la imagen de X */
     background-size: contain; /* Escala la imagen para que quepa dentro de la tarjeta */
     background-repeat: no-repeat; /* Evita que la imagen de X se repita */
@@ -118,9 +152,4 @@ background: radial-gradient(circle, rgba(254,249,195,1) 10%, rgba(231,198,77,1) 
 
 #restaTiempo {
     color: red;
-}
-
-#timer-container {
-    position: absolute;
-
 }
