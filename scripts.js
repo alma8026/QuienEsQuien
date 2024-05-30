@@ -73,8 +73,8 @@ function generateBoard() {
                     <p>${character.name}</p>
                     <img src="${character.img}" alt="${character.name}">
                     <div class="card-buttons">
-                        <button onclick="handleCheck(${index})" style="background-color: green;">&check;</button>
-                        <button onclick="handleReject(${index})" style="background-color: red;">&times;</button>
+                        <button onclick="handleCheck(${index})" class="checkBtn" style="background-color: green; margin: 5px;">&check;</button>
+                        <button onclick="handleReject(${index})" class="rejectBtn" style="background-color: red; margin: 5px;">&times;</button>
                     </div>
                     <div id="${character.name}" class="card-x" style="display: none;"></div> <!-- Agrega el contenedor para la imagen de X -->
                 `;
