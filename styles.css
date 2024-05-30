@@ -83,6 +83,8 @@ h1,h2{
 #game-container{
     display: flex;
     flex-direction: row;
+    height: 100vh;
+    align-items: flex-start;
 }
 
 #board {
@@ -91,6 +93,7 @@ h1,h2{
     padding: 0;
     margin: 0;
     width: 100%;
+    place-content: center;
 }
 
 #lateral{
@@ -99,10 +102,12 @@ h1,h2{
     height: 100%;
     margin: 0;
     min-width: 400px;
+    place-content: center;
+    background-image: url(minecraft-images/plank.png);
 }
 
 #questions .button-minecraft{
-    width: 100%;
+    width: 90%;
 }
 
 .card {
@@ -114,6 +119,7 @@ h1,h2{
     background: radial-gradient(circle, rgba(254,249,195,1) 10%, rgba(231,198,77,1) 100%);
     box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
     transition: transform 0.2s, opacity 0.2s;
+    margin: 10px;
 }
 
 .card img {
