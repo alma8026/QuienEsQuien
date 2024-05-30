@@ -126,13 +126,13 @@ function resetTimer() {
 
 function loseScreen() {
     document.querySelector('#lose-screen').style.display = 'block';
-    document.querySelector('.game-container').style.display = 'none';
+    document.querySelector('#game-container').style.display = 'none';
     document.querySelector('#timer-container').style.display = 'none';
 }
 
 function winScreen() {
     document.querySelector('#win-screen').style.display = 'block';
-    document.querySelector('.game-container').style.display = 'none';
+    document.querySelector('#game-container').style.display = 'none';
     document.querySelector('#timer-container').style.display = 'none';
 }
 
