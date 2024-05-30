@@ -159,27 +159,3 @@ h1,h2{
 #restaTiempo {
     color: red;
 }
-
-.rejectBtn, .checkBtn {
-    transition: transform 0.5s ease;
-}
-
-.rejectBtn:hover, .checkBtn:hover {
-    transform: scale(1.25);
-}
-
-#timer {
-    width: 100%;
-    font-family: 'MinecraftRegular'; /* Fuente estilo Minecraft */
-    font-size: 100px;
-    text-shadow: 2px 2px #000000;
-    background-color: black;
-    border-bottom: 4px solid rgb(89,89,89);
-    border-right: 2px solid rgb(89,89,89);
-    border-left: 2px solid rgb(161,161,161);
-    border-top: 2px solid rgb(161,161,161);
-    color: #26ff00; /* Color del texto */
-    padding: 10px; /* Espaciado interno del botón */
-    text-align: center; /* Alineación del texto */
-    cursor: pointer; /* Cambia el cursor al pasar sobre el botón */
-}
