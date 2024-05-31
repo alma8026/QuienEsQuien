@@ -160,6 +160,7 @@ button {
     box-shadow: 0 2px 5px rgba(0, 0, 0, 0.6);
     margin: 8px;
     overflow: hidden;
+    min-width: 120px;
 }
 
 .card img {

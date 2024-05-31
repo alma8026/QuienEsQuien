@@ -49,14 +49,38 @@ let difficulty;
 let selectedPerson;
 let secondsLeft;
 let randomNumber;
+const musiquita = document.getElementById("musiquita");
+musiquita.play()
+
+
+function mBoton(){
+    const mboton = document.getElementById("m-boton");
+    mboton.play();
+}
+
+function mLava(){
+    const mlava = document.getElementById("m-lava");
+    mlava.currentTime = 2;
+    mlava.play();
+    setTimeout(() =>{
+        mlava.pause();
+    }, 2000)
+}
+
+function mEvaporaçao() {
+    const mevaporaçao = document.getElementById("m-evaporaçao");
+    mevaporaçao.cloneNode().play();
+}
 
 function showDifficulties() {
+    mBoton();
     document.querySelector('#inicio').style.display = 'none';
     document.querySelector('#dificultades').style.display = 'flex';
 }
 
 // Selección de dificultad (se guarda en la variable --> difficulty)
 function selectDifficulty(selectedDifficulty) {
+    mBoton();
     difficulty = selectedDifficulty;
     generateBoard();
     startGame();
@@ -98,11 +122,13 @@ function handleCheck(index) {
 }
 
 function handleReject(index) {
+    mBoton();
     // Para cuando descartas a alguien
     document.querySelector('#'+characters[index].name+"-lava").style.display = 'block';
+    mLava();
     setTimeout(() => {
         document.querySelector('#'+characters[index].name+"-roca").style.display = 'block';
-        
+        mEvaporaçao();
       }, 1600);
 }
 
@@ -167,6 +193,7 @@ function minusTemp() {
 }
 
 function askQuestion(attribute) {
+    mBoton();
     if(difficulty!='easy'){
         secondsLeft -= 10;
         minusTemp();
