@@ -26,7 +26,7 @@
 const characters = [
     { name: 'Adan', img: 'QEQ_imgs/Adan-QuienEsQuien.jpeg', moreno: false, barba: false, gafas: false, mayor25: false, pelo_largo: false, hombre: true , pelo_ondulado: false, pelo_suelto: true, pelo_rubio: false, camiseta_clara: false, ojos_claros: false},
     { name: 'Alejandro', img: 'QEQ_imgs/Alejandro-QuienEsQuien.jpeg', moreno: false, barba: false, gafas: false, mayor25: false, pelo_largo: false, hombre: true , pelo_ondulado: false, pelo_suelto: true, pelo_rubio: false, camiseta_clara: true, ojos_claros: true},
-    { name: 'Cesar', img: 'QEQ_imgs/Cesar-QuienEsQuien.jpg', moreno: true, barba: true, gafas: false, mayor25: true, pelo_largo: false, hombre: true , pelo_ondulado: false, pelo_suelto: true, pelo_rubio: false, camiseta_clara: false, ojos_claros: false},
+    { name: 'Cesar', img: 'QEQ_imgs/Cesar-QuienEsQuien.JPG', moreno: true, barba: true, gafas: false, mayor25: true, pelo_largo: false, hombre: true , pelo_ondulado: false, pelo_suelto: true, pelo_rubio: false, camiseta_clara: false, ojos_claros: false},
     { name: 'Cristian', img: 'QEQ_imgs/Cristian-QuienEsQuien.jpeg', moreno: true, barba: false, gafas: false, mayor25: true, pelo_largo: false, hombre: true , pelo_ondulado: false, pelo_suelto: true, pelo_rubio: false, camiseta_clara: false, ojos_claros: false},
     { name: 'Desiree', img: 'QEQ_imgs/Desiree-QuienEsQuien.jpeg', moreno: false, barba: false, gafas: true, mayor25: true, pelo_largo: true, hombre: false , pelo_ondulado: false, pelo_suelto: true, pelo_rubio: true, camiseta_clara: true, ojos_claros: true},
     { name: 'Erik', img: 'QEQ_imgs/Erik-QuienEsQuien.jpeg', moreno: false, barba: true, gafas: false, mayor25: true, pelo_largo: false, hombre: true , pelo_ondulado: false, pelo_suelto: true, pelo_rubio: false, camiseta_clara: true, ojos_claros: false},
@@ -156,12 +156,22 @@ function resetTimer() {
 }
 
 function loseScreen() {
+    const loseScreen = document.getElementById('lose-span');
+
+    loseScreen.innerHTML = `<img style="height: 200px; border-radius: 50%; box-shadow: 2px 2px 4px black;" 
+    src="QEQ_imgs/${selectedPerson.name}-QuienEsQuien.jpeg"><h1>Has perdido!</h1>`;
+
     document.querySelector('#lose-screen').style.display = 'block';
     document.querySelector('#game-container').style.display = 'none';
     document.querySelector('#timer-container').style.display = 'none';
 }
 
 function winScreen() {
+    const winScreen = document.getElementById('win-span');
+
+    winScreen.innerHTML = `<img style="height: 200px; border-radius: 50%; box-shadow: 2px 2px 4px black;" 
+    src="QEQ_imgs/${selectedPerson.name}-QuienEsQuien.jpeg"><h1>Has ganado!</h1>`;
+
     document.querySelector('#win-screen').style.display = 'block';
     document.querySelector('#game-container').style.display = 'none';
     document.querySelector('#timer-container').style.display = 'none';
@@ -215,15 +225,15 @@ function goToCuriosity() {
     document.querySelector('#curiosity-screen').style.display = 'block';
     document.querySelector('#win-screen').style.display = 'none';
     document.querySelector('#lose-screen').style.display = 'none';
+    generateCuriosity();
 }
 
 // Para generar la curiosidad de la persona elegida
 function generateCuriosity() {
     const curiosity = document.getElementById('curiosity-screen');
-    
-        card.innerHTML = `<h1>Curiosidad de ${selectedPerson.name}</h1>
-        <div><img src="" alt="imagen de curiosidad"></div>`;
-        curiosity.appendChild(card);
+
+    curiosity.innerHTML = `<h1>Curiosidad de ${selectedPerson.name}</h1>
+    <div><img src="" alt="imagen de curiosidad"></div>`;
 }
 
 document.addEventListener('DOMContentLoaded', randomPerson);

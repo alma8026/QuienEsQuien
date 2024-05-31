@@ -8,6 +8,87 @@
 </head>
 <body>
 
+    <div class="menu" id="inicio" >
+        <div class="titulo"><span class="palabra-titulo">QUIÉN</span> <span class="palabra-titulo">ES</span> <span class="palabra-titulo">QUIÉN</span></div>
+        <div class="button-minecraft"><button onclick="showDifficulties()">Jugar</button></div>
+        <div class="button-minecraft"><a href="https://www.infojobs.net/" target="_blank"><button>O no</button></a></div>
+    </div>
+
+    <div class="menu" id="dificultades" style="display: none;">
+        <div class="titulo"><span class="palabra-titulo">DIFICULTAD</span></div>
+        <div class="button-minecraft"><button onclick="selectDifficulty('easy')">Fácil</button></div>
+        <div class="button-minecraft"><button onclick="selectDifficulty('normal')">Normal</button></div>
+        <div class="button-minecraft"><button onclick="selectDifficulty('hard')">Difícil</button></div>
+    </div>
+
+    <div id="game-container" style="display: none;">
+        <div id="board">
+            <!-- Las cartas de los personajes se generarán aquí -->
+        </div>
+        <div id="lateral">
+            <div id="timer-container">
+                <span id="timer"></span>
+                <span id="restaTiempo" style="display: none;">-10 seg</span>
+            </div>
+            <div class="menu" id="questions">
+                <div class="button-minecraft"><button class="btn_moreno" onclick="askQuestion('moreno')">¿Tiene tez morena?</button></div>
+                <div class="button-minecraft"><button class="btn_barba" onclick="askQuestion('barba')">¿Tiene barba?</button></div>
+                <div class="button-minecraft"><button class="btn_pelo_largo" onclick="askQuestion('pelo_largo')">¿Tiene el pelo largo?</button></div>
+                <div class="button-minecraft"><button class="btn_gafas" onclick="askQuestion('gafas')">¿Lleva gafas?</button></div>
+                <div class="button-minecraft"><button class="btn_mayor25" onclick="askQuestion('mayor25')">¿Es mayor de 25 años?</button></div>
+                <div class="button-minecraft"><button class="btn_hombre" onclick="askQuestion('hombre')">¿Es hombre?</button></div>
+                <div class="button-minecraft"><button class="btn_pelo_ondulado" onclick="askQuestion('pelo_ondulado')">¿Tiene el pelo ondulado?</button></div>
+                <div class="button-minecraft"><button class="btn_pelo_suelto" onclick="askQuestion('pelo_suelto')">¿Tiene el pelo suelto?</button></div>
+                <div class="button-minecraft"><button class="btn_pelo_rubio" onclick="askQuestion('pelo_rubio')">¿Es rubio?</button></div>
+                <div class="button-minecraft"><button class="btn_camiseta_clara" onclick="askQuestion('camiseta_clara')">¿Lleva una camiseta clara?</button></div>
+                <div class="button-minecraft"><button class="btn_ojos_claros" onclick="askQuestion('ojos_claros')">¿Tiene ojos claros?</button></div>
+            </div>
+        </div>
+        
+    </div>
+
+    <div id="win-screen" style="display: none;">
+        <div class="menu" id="defeat-screen">
+            <span id="win-span">
+                
+            </span>
+            
+            <div id="buttons-container">
+                <div class="button-minecraft"><button onclick="goToCuriosity()">Volver a jugar</button></div>
+                <div class="button-minecraft"><button onclick="goToCuriosity()">Curiosidad</button></div>
+            </div>
+        </div>
+    </div>
+    <div id="lose-screen" style="display: none;">
+        <div class="menu" id="defeat-screen">
+            <span id="lose-span">
+                
+            </span>
+
+            <div id="buttons-container">
+                <div class="button-minecraft"><button onclick="goToCuriosity()">Volver a jugar</button></div>
+                <div class="button-minecraft"><button onclick="goToCuriosity()">Curiosidad</button></div>
+            </div>
+        </div>
+    </div>
+
+    <div id="curiosity-screen">
+        
+    </div>
+    <script src="scripts.js"></script>
+</body>
+</html>
+
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Quién es Quién</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
     <div id="audios" style="display: none;">
         <audio src="audios/boton.mp3" id="m-boton"></audio>
         <audio src="audios/evaporaçao.mp3" id="m-evaporaçao"></audio>
