@@ -8,7 +8,7 @@
 </head>
 <body>
 
-    <div class="menu" id="inicio">
+    <div class="menu" id="inicio" >
         <div class="titulo"><span class="palabra-titulo">QUIÉN</span> <span class="palabra-titulo">ES</span> <span class="palabra-titulo">QUIÉN</span></div>
         <div class="button-minecraft"><button onclick="showDifficulties()">Jugar</button></div>
         <div class="button-minecraft"><a href="https://www.infojobs.net/" target="_blank"><button>O no</button></a></div>
@@ -49,7 +49,10 @@
 
     <div id="win-screen" style="display: none;">
         <div class="menu" id="defeat-screen">
-            <h1>Has ganado!</h1>
+            <span id="win-span">
+                
+            </span>
+            
             <div id="buttons-container">
                 <div class="button-minecraft"><button onclick="goToCuriosity()">Volver a jugar</button></div>
                 <div class="button-minecraft"><button onclick="goToCuriosity()">Curiosidad</button></div>
@@ -58,7 +61,10 @@
     </div>
     <div id="lose-screen" style="display: none;">
         <div class="menu" id="defeat-screen">
-            <h1>Has perdido!</h1>
+            <span id="lose-span">
+                
+            </span>
+
             <div id="buttons-container">
                 <div class="button-minecraft"><button onclick="goToCuriosity()">Volver a jugar</button></div>
                 <div class="button-minecraft"><button onclick="goToCuriosity()">Curiosidad</button></div>

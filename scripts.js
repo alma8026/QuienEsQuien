@@ -130,12 +130,22 @@ function resetTimer() {
 }
 
 function loseScreen() {
+    const loseScreen = document.getElementById('lose-span');
+
+    loseScreen.innerHTML = `<img style="height: 200px; border-radius: 50%; box-shadow: 2px 2px 4px black;" 
+    src="QEQ_imgs/${selectedPerson.name}-QuienEsQuien.jpeg"><h1>Has perdido!</h1>`;
+
     document.querySelector('#lose-screen').style.display = 'block';
     document.querySelector('#game-container').style.display = 'none';
     document.querySelector('#timer-container').style.display = 'none';
 }
 
 function winScreen() {
+    const winScreen = document.getElementById('win-span');
+
+    winScreen.innerHTML = `<img style="height: 200px; border-radius: 50%; box-shadow: 2px 2px 4px black;" 
+    src="QEQ_imgs/${selectedPerson.name}-QuienEsQuien.jpeg"><h1>Has ganado!</h1>`;
+
     document.querySelector('#win-screen').style.display = 'block';
     document.querySelector('#game-container').style.display = 'none';
     document.querySelector('#timer-container').style.display = 'none';
@@ -188,15 +198,16 @@ function goToCuriosity() {
     document.querySelector('#curiosity-screen').style.display = 'block';
     document.querySelector('#win-screen').style.display = 'none';
     document.querySelector('#lose-screen').style.display = 'none';
+    generateCuriosity();
 }
 
 // Para generar la curiosidad de la persona elegida
 function generateCuriosity() {
     const curiosity = document.getElementById('curiosity-screen');
-    
-        card.innerHTML = `<h1>Curiosidad de ${selectedPerson.name}</h1>
-        <div><img src="" alt="imagen de curiosidad"></div>`;
-        curiosity.appendChild(card);
+
+    curiosity.innerHTML = `<h1>Curiosidad de ${selectedPerson.name}</h1>
+    <div><img src="" alt="imagen de curiosidad"></div>`;
 }
+
 
 document.addEventListener('DOMContentLoaded', randomPerson);
