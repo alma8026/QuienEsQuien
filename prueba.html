@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Imagen con Efecto de Deslizamiento</title>
+    <style>
+        body, html {
+            margin: 0;
+            padding: 0;
+            height: 100%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background-color: #f0f0f0;
+        }
+
+        .slider {
+            overflow: hidden;
+            width: 300px; /* Ancho del contenedor */
+            height: 200px; /* Altura del contenedor */
+            position: relative;
+        }
+
+        .slider img {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            top: 0;
+            left: 100%; /* Empieza fuera del contenedor a la derecha */
+            animation: slideIn 3s ease forwards; /* Duración y tipo de animación */
+        }
+
+        @keyframes slideIn {
+            0% {
+                left: 100%; /* Empieza fuera del contenedor a la derecha */
+            }
+            100% {
+                left: 0; /* Termina dentro del contenedor */
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="slider">
+        <img src="https://via.placeholder.com/300x200" alt="Imagen Deslizante">
+    </div>
+</body>
+</html>

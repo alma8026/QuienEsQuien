@@ -76,7 +76,8 @@ function generateBoard() {
                         <button onclick="handleCheck(${index})" class="checkBtn" style="background-color: green; margin: 5px;">&check;</button>
                         <button onclick="handleReject(${index})" class="rejectBtn" style="background-color: red; margin: 5px;">&times;</button>
                     </div>
-                    <div id="${character.name}" class="card-x" style="display: none;"></div> <!-- Agrega el contenedor para la imagen de X -->
+                    <div id="${character.name}-lava" class="card-lava" style="display: none;"></div> <!-- Agrega el contenedor para la lava -->
+                    <div id="${character.name}-roca" class="card-roca" style="display: none;"></div> <!-- Agrega el contenedor para la roca -->
                 `;
         board.appendChild(card);
     });
@@ -98,7 +99,11 @@ function handleCheck(index) {
 
 function handleReject(index) {
     // Para cuando descartas a alguien
-    document.querySelector('#'+characters[index].name).style.display = 'block';
+    document.querySelector('#'+characters[index].name+"-lava").style.display = 'block';
+    setTimeout(() => {
+        document.querySelector('#'+characters[index].name+"-roca").style.display = 'block';
+        
+      }, 1600);
 }
 
 // Se muestra la tabla y empieza el contador
@@ -117,7 +122,7 @@ function resetTimer() {
     let timer = setInterval(() => {
         secondsLeft--;
         updateTimerDisplay(secondsLeft);
-        if (secondsLeft === 0) {
+        if (secondsLeft <= 0) {
             clearInterval(timer);
             loseScreen();
         }
@@ -166,7 +171,6 @@ function askQuestion(attribute) {
         secondsLeft -= 10;
         minusTemp();
     }
-
     if(selectedPerson[attribute]){
         document.querySelector('.btn_' + attribute).style.backgroundColor = 'green';
     } else {

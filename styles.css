@@ -49,10 +49,12 @@ body::after {
     border: 3px solid black;
     margin-bottom: 10px;
     width: 500px;
+    height: 45px;
 }
 
 button {
     width: 100%;
+    height: 100%;
     font-family: 'MinecraftRegular'; /* Fuente estilo Minecraft */
     text-shadow: 2px 2px #000000;
     background-color: rgb(133,133,133); /* Color de fondo del botón */
@@ -61,7 +63,6 @@ button {
     border-left: 2px solid rgb(161,161,161);
     border-top: 2px solid rgb(161,161,161);
     color: white; /* Color del texto */
-    padding: 6px; /* Espaciado interno del botón */
     text-align: center; /* Alineación del texto */
     font-size: 18px; /* Tamaño de la fuente */
     cursor: pointer; /* Cambia el cursor al pasar sobre el botón */
@@ -83,16 +84,17 @@ h1,h2{
     display: flex;
     flex-direction: row;
     height: 100vh;
-    align-items: flex-start;
 }
 
 #board {
     display:flex;
+    justify-content: space-around;
     flex-wrap: wrap;
     padding: 0;
     margin: 0;
     width: 100%;
-    place-content: center;
+    height: 100%;
+    overflow-y: scroll;
 }
 
 #lateral{
@@ -103,62 +105,86 @@ h1,h2{
     min-width: 400px;
     place-content: center;
     background-image: url('minecraft-images/plank.png');
+    margin-bottom: 12px;
+}
+
+#questions{
+    display:flex;
+    justify-content: space-between;
+    height: 100%;
+    margin: 0;
 }
 
 #questions .button-minecraft{
     width: 90%;
+    margin:0;
+    height: 7%;
+}
+
+#questions .button-minecraft:last-child{
+    margin-bottom: 12px;
 }
 
 .card {
     border: 1px solid #ccc;
     width: 120px;
     height: 170px;
-    margin: 6px;
-    padding: 10px;
     text-align: center;
-    background: rgb(254,249,195);
-    background: radial-gradient(circle, rgba(254,249,195,1) 10%, rgba(231,198,77,1) 100%);
+    background-image: url(minecraft-images/water.gif);
+    background-size: contain;
+    background-repeat: repeat-y;
     box-shadow: 0 2px 5px rgba(0, 0, 0, 0.6);
-    transition: transform 0.2s, opacity 0.2s;
-    margin: 10px;
+    margin: 8px;
+    overflow: hidden;
 }
 
 .card img {
     width: 80px;
     height: 80px;
     border-radius: 50%;
-    margin-top: 10px;
+    position:relative;
 }
 
 .card p {
-    margin: 0;
+    font-family: 'MinecraftRegular'; /* Fuente estilo Minecraft */
+    text-shadow: 2px 2px #000000;
+    color:white;
+    margin-top: 8px;
+    margin-bottom: 10px;
 }
 
 .card-buttons {
     display: flex;
-    justify-content: space-between;
-    margin-top: 10px;
-}
-.card-buttons button {
-    padding: 5px 10px;
-    cursor: pointer;
+    justify-content: space-around;
+    margin-top: 0;
 }
 
-.card-x {
-    position: sticky; /* Posicionamiento absoluto */
-    width: 100%; /* Ocupa todo el ancho de la tarjeta */
-    height: 100%; /* Ocupa toda la altura de la tarjeta */
-    translate: 0 -115%;
-    background-image: url('QEQ_imgs/X_img.png'); /* Ruta de la imagen de X */
-    background-size: contain; /* Escala la imagen para que quepa dentro de la tarjeta */
-    background-repeat: no-repeat; /* Evita que la imagen de X se repita */
-    background-position: center; /* Centra la imagen de X dentro de la tarjeta */
-    opacity: 1; /* Inicialmente oculta la imagen de X */
-    pointer-events: none; /* Ignora los eventos del ratón */
+.card-buttons button {
+    cursor: pointer;
+    height: 40px;
 }
-/* Estilos para mostrar la imagen de X */
-.card.show-x .card-x {
-    opacity: 1; /* Muestra la imagen de X */
+
+.card-lava {
+    position: relative; /* Posicionamiento absoluto */
+    top:-200%;
+    height: 101%;
+    background-image: url('minecraft-images/GifLava.gif'); /* Ruta de la imagen de X */
+    background-size:cover;
+    animation: slide-lava 1.5s forwards;
+}
+
+.card-roca {
+    position: relative; /* Posicionamiento absoluto */
+    height: 102%;
+    top: -201%;
+    background-image: url('minecraft-images/Roca.jpg'); /* Ruta de la imagen de X */
+    background-size:cover;
+}
+
+@keyframes slide-lava {
+    100% {
+        top: -100.5%;
+    }
 }
 
 @keyframes pulse {
@@ -179,7 +205,7 @@ h1,h2{
         opacity: 0.8;
     }
     100% {
-        transform: scale(1);
+        transform: scale(1.3);
         opacity: 0.4;
     }
 }
@@ -197,18 +223,17 @@ h1,h2{
 }
 
 .rejectBtn, .checkBtn {
-    transition: transform 0.5s ease;
+    transition: transform 0.1s ease;
 }
 
 .rejectBtn:hover, .checkBtn:hover {
-    transform: scale(1.25);
+    transform: scale(1.05);
 }
 
 #timer {
     width: 100%;
     font-family: 'MinecraftRegular'; /* Fuente estilo Minecraft */
-    text-shadow: 2px 2px #ccc;
-    text-shadow: 2px 2px #000000;
+    text-shadow: 3px 3px #000000;
     background-color: rgb(133,133,133); /* Color de fondo del botón */
     border-bottom: 4px solid rgb(89,89,89);
     border-right: 2px solid rgb(89,89,89);
@@ -227,4 +252,5 @@ h1,h2{
     align-content: center;
     text-align: center;
     margin: 12px;
+    width: 90%;
 }
