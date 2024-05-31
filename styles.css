@@ -151,6 +151,13 @@ h1,h2{
     height: 80px;
     border-radius: 50%;
     position:relative;
+    transition: transform 0.7s, border-radius 0.7s;
+    box-shadow: 2px 2px 4px black;
+}
+
+.card img:hover {
+    transform: scale(1.15);
+    border-radius: 25%;
 }
 
 .card p {
@@ -231,11 +238,11 @@ h1,h2{
 }
 
 .rejectBtn, .checkBtn {
-    transition: transform 0.1s ease;
+    transition: transform 0.3s ease;
 }
 
 .rejectBtn:hover, .checkBtn:hover {
-    transform: scale(1.05);
+    transform: scale(1.08);
 }
 
 #timer {
