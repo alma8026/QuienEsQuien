@@ -184,4 +184,19 @@ function randomPerson() {
     selectedPerson = characters[randomNumber];
 }
 
+function goToCuriosity() {
+    document.querySelector('#curiosity-screen').style.display = 'block';
+    document.querySelector('#win-screen').style.display = 'none';
+    document.querySelector('#lose-screen').style.display = 'none';
+}
+
+// Para generar la curiosidad de la persona elegida
+function generateCuriosity() {
+    const curiosity = document.getElementById('curiosity-screen');
+    
+        card.innerHTML = `<h1>Curiosidad de ${selectedPerson.name}</h1>
+        <div><img src="" alt="imagen de curiosidad"></div>`;
+        curiosity.appendChild(card);
+}
+
 document.addEventListener('DOMContentLoaded', randomPerson);

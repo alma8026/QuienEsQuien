@@ -8,7 +8,7 @@
 </head>
 <body>
 
-    <div class="menu" id="inicio">
+    <div class="menu" id="inicio" style="display: none;">
         <img id="title" src="QEQ_imgs/QEQ_title.png" alt="¿Quién es quién?">
         <div class="button-minecraft"><button onclick="showDifficulties()">Jugar</button></div>
         <div class="button-minecraft"><a href="https://www.infojobs.net/" target="_blank"><button>O no</button></a></div>
@@ -49,10 +49,26 @@
     </div>
 
     <div id="win-screen" style="display: none;">
-        <p>has ganado</p>
+        <div class="menu" id="defeat-screen">
+            <h1>Has ganado!</h1>
+            <div id="buttons-container">
+                <div class="button-minecraft"><button onclick="goToCuriosity()">Volver a jugar</button></div>
+                <div class="button-minecraft"><button onclick="goToCuriosity()">Curiosidad</button></div>
+            </div>
+        </div>
     </div>
     <div id="lose-screen" style="display: none;">
-        <p>has perdido</p>
+        <div class="menu" id="defeat-screen">
+            <h1>Has perdido!</h1>
+            <div id="buttons-container">
+                <div class="button-minecraft"><button onclick="goToCuriosity()">Volver a jugar</button></div>
+                <div class="button-minecraft"><button onclick="goToCuriosity()">Curiosidad</button></div>
+            </div>
+        </div>
+    </div>
+
+    <div id="curiosity-screen">
+        
     </div>
     <script src="scripts.js"></script>
 </body>

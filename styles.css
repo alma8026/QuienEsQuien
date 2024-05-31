@@ -269,3 +269,33 @@ h1,h2{
     margin: 12px;
     width: 90%;
 }
+
+#defeat-screen {
+    text-align: center;
+    align-items: center;
+    justify-content: center;
+    background-color: rgba(255, 35, 35, 0.3); 
+}
+
+#defeat-content {
+    display: inline-block;
+    width: 800px;
+    background: rgba(0, 0, 0, 0.75); /* Fondo semitransparente oscuro */
+    padding: 50px;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+    text-align: center; /* Centra el texto horizontalmente */
+}
+
+#defeat-content h1 {
+    font-size: 64px;
+    margin: 0;
+    margin-bottom: 40px;
+    text-shadow: 2px 2px 0 #000; /* Sombra negra para el texto */
+}
+
+#buttons-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
