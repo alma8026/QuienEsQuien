@@ -9,7 +9,7 @@
 
 @font-face {
     font-family: 'MinecraftTitle';
-    src: url('minecraft-font/Minecraft-Bold.otf') format('truetype');
+    src: url('minecraft-font/Minercraftory.ttf') format('truetype');
     font-weight: normal;
     font-style: normal;
 }
@@ -34,12 +34,6 @@ body::after {
     height: 100%;
     background-color: rgba(0, 0, 0, 0.3); 
     z-index: -1; 
-}
-
-#title {
-    margin-top: -150px;
-    transform: scale(1.2);
-    margin-bottom: 80px;
 }
 
 .menu {
@@ -78,14 +72,35 @@ button {
     border-color: white;
 }
 
-h1,h2{
+.titulo {
     font-family: 'MinecraftTitle';
     text-transform: uppercase;
-    padding-bottom: 40px;
-    margin-top: -70px;
-    color: white;
+    font-size: 50px;
+    margin-bottom: 10px;
     -webkit-text-stroke: 2px black;
-    margin: 5px;
+}
+
+.palabra-titulo {
+    position: relative;
+    z-index: 1;
+    background: linear-gradient(90deg, #aaaaaa 0%, #ccc 50%, #aaaaaa 100%);
+    background-clip: text;
+    color: transparent;
+    padding: 0;
+}
+
+.palabra-titulo::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: #000000; /* Fondo negro detrás del texto */
+    z-index: -1;
+    border-radius: 5px; /* Bordes redondeados */
+    height: 70%;
+    translate: 0 22%;
 }
 
 #game-container{
@@ -97,6 +112,7 @@ h1,h2{
 #board {
     display:flex;
     justify-content: space-around;
+    align-items: center;
     flex-wrap: wrap;
     padding: 0;
     margin: 0;
@@ -151,13 +167,6 @@ h1,h2{
     height: 80px;
     border-radius: 50%;
     position:relative;
-    transition: transform 0.7s, border-radius 0.7s;
-    box-shadow: 2px 2px 4px black;
-}
-
-.card img:hover {
-    transform: scale(1.15);
-    border-radius: 25%;
 }
 
 .card p {
@@ -238,11 +247,11 @@ h1,h2{
 }
 
 .rejectBtn, .checkBtn {
-    transition: transform 0.3s ease;
+    transition: transform 0.1s ease;
 }
 
 .rejectBtn:hover, .checkBtn:hover {
-    transform: scale(1.08);
+    transform: scale(1.05);
 }
 
 #timer {
