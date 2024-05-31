@@ -176,7 +176,6 @@ function askQuestion(attribute) {
     } else {
         document.querySelector('.btn_' + attribute).style.backgroundColor = 'red';
     }
-    
 }
 
 function randomPerson() {
