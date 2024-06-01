@@ -15,13 +15,13 @@
     </div>
 
     <div class="menu" id="inicio" >
-        <div class="titulo"><span class="palabra-titulo">QUIÉN</span> <span class="palabra-titulo">ES</span> <span class="palabra-titulo">QUIÉN</span></div>
+        <div class="titulo" id="principal">Quién es quién</div>
         <div class="button-minecraft"><button onclick="showDifficulties()">Jugar</button></div>
         <div class="button-minecraft"><a href="https://www.infojobs.net/" target="_blank"><button>O no</button></a></div>
     </div>
 
     <div class="menu" id="dificultades" style="display: none;">
-        <div class="titulo"><span class="palabra-titulo">DIFICULTAD</span></div>
+        <div class="titulo" id="dificultad">DIFICULTAD</div>
         <div class="button-minecraft"><button onclick="selectDifficulty('easy')">Fácil</button></div>
         <div class="button-minecraft"><button onclick="selectDifficulty('normal')">Normal</button></div>
         <div class="button-minecraft"><button onclick="selectDifficulty('hard')">Difícil</button></div>
@@ -80,6 +80,7 @@
     <div id="curiosity-screen">
         
     </div>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
     <script src="scripts.js"></script>
 </body>
 </html>

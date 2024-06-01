@@ -50,6 +50,42 @@ let selectedPerson;
 let secondsLeft;
 let randomNumber;
 
+function extractRGB(color) {
+    const rgb = color.match(/\d+/g);
+    return {
+        r: parseInt(rgb[0]),
+        g: parseInt(rgb[1]),
+        b: parseInt(rgb[2])
+    };
+}
+
+function Title3D(ID, profundidad, oscuro){
+    const titulo = document.getElementById(ID);
+    const style = getComputedStyle(titulo);
+    const colorTitulo = style.color
+    const rgb = extractRGB(colorTitulo);
+    const text = titulo.innerText;
+    titulo.innerHTML = '';
+    for (let i = 0; i < text.length; i++){
+        let index = i
+        if (i > (text.length-1)/2){
+            index = text.length-1-i;
+        }
+        if (text[i]===' '){
+            titulo.innerHTML += ' ';
+        }
+        else{
+            let shadow = 'text-shadow: '
+            for (let j=1; j <= profundidad; j++)
+                shadow += `${Math.floor(j-(j*2/(text.length-1))*(i))}px ${j}px 0 rgb(${Math.round(rgb.r-(rgb.r/profundidad*(j+1))*oscuro)}, ${Math.round(rgb.r-(rgb.g/profundidad*(j+1))*oscuro)}, ${Math.round(rgb.r-(rgb.b/profundidad*(j+1))*oscuro)}), `;
+            shadow = shadow.slice(0, -2);
+            titulo.innerHTML += `<span style="position: relative; ${shadow}; z-index: ${index}">${text[i]}</span>`;
+        }
+    }
+}
+
+Title3D('principal', 25, 0.6);
+
 const musiquita = document.getElementById("musiquita");
 musiquita.play()
 
