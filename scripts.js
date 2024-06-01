@@ -77,7 +77,7 @@ function Title3D(ID, profundidad, oscuro){
         else{
             let shadow = 'text-shadow: '
             for (let j=1; j <= profundidad; j++)
-                shadow += `${Math.floor(j-(j*2/(text.length-1))*(i))}px ${j}px 0 rgb(${Math.round(rgb.r-(rgb.r/profundidad*(j+1))*oscuro)}, ${Math.round(rgb.r-(rgb.g/profundidad*(j+1))*oscuro)}, ${Math.round(rgb.r-(rgb.b/profundidad*(j+1))*oscuro)}), `;
+                shadow += `${Math.floor(j-(j*2/(text.length-1))*(i))}px ${j}px 0 rgb(${Math.round((rgb.r*0.8)-(rgb.r*0.8/profundidad*(j+1))*oscuro)}, ${Math.round((rgb.g*0.8)-(rgb.g*0.8/profundidad*(j+1))*oscuro)}, ${Math.round((rgb.b*0.8)-(rgb.b*0.8/profundidad*(j+1))*oscuro)}), `;
             shadow = shadow.slice(0, -2);
             titulo.innerHTML += `<span style="position: relative; ${shadow}; z-index: ${index}">${text[i]}</span>`;
         }
@@ -85,6 +85,7 @@ function Title3D(ID, profundidad, oscuro){
 }
 
 Title3D('principal', 25, 0.6);
+Title3D('dificultad', 25, 0.6);
 
 const musiquita = document.getElementById("musiquita");
 musiquita.play()
