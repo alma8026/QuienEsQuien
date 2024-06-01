@@ -26,7 +26,7 @@
 const characters = [
     { name: 'Adan', img: 'QEQ_imgs/Adan-QuienEsQuien.jpeg', moreno: false, barba: false, gafas: false, mayor25: false, pelo_largo: false, hombre: true , pelo_ondulado: false, pelo_suelto: true, pelo_rubio: false, camiseta_clara: false, ojos_claros: false},
     { name: 'Alejandro', img: 'QEQ_imgs/Alejandro-QuienEsQuien.jpeg', moreno: false, barba: false, gafas: false, mayor25: false, pelo_largo: false, hombre: true , pelo_ondulado: false, pelo_suelto: true, pelo_rubio: false, camiseta_clara: true, ojos_claros: true},
-    { name: 'Cesar', img: 'QEQ_imgs/Cesar-QuienEsQuien.JPG', moreno: true, barba: true, gafas: false, mayor25: true, pelo_largo: false, hombre: true , pelo_ondulado: false, pelo_suelto: true, pelo_rubio: false, camiseta_clara: false, ojos_claros: false},
+    { name: 'Cesar', img: 'QEQ_imgs/Cesar-QuienEsQuien.jpeg', moreno: true, barba: true, gafas: false, mayor25: true, pelo_largo: false, hombre: true , pelo_ondulado: false, pelo_suelto: true, pelo_rubio: false, camiseta_clara: false, ojos_claros: false},
     { name: 'Cristian', img: 'QEQ_imgs/Cristian-QuienEsQuien.jpeg', moreno: true, barba: false, gafas: false, mayor25: true, pelo_largo: false, hombre: true , pelo_ondulado: false, pelo_suelto: true, pelo_rubio: false, camiseta_clara: false, ojos_claros: false},
     { name: 'Desiree', img: 'QEQ_imgs/Desiree-QuienEsQuien.jpeg', moreno: false, barba: false, gafas: true, mayor25: true, pelo_largo: true, hombre: false , pelo_ondulado: false, pelo_suelto: true, pelo_rubio: true, camiseta_clara: true, ojos_claros: true},
     { name: 'Erik', img: 'QEQ_imgs/Erik-QuienEsQuien.jpeg', moreno: false, barba: true, gafas: false, mayor25: true, pelo_largo: false, hombre: true , pelo_ondulado: false, pelo_suelto: true, pelo_rubio: false, camiseta_clara: true, ojos_claros: false},
@@ -49,9 +49,9 @@ let difficulty;
 let selectedPerson;
 let secondsLeft;
 let randomNumber;
+
 const musiquita = document.getElementById("musiquita");
 musiquita.play()
-
 
 function mBoton(){
     const mboton = document.getElementById("m-boton");
@@ -121,7 +121,11 @@ function handleCheck(index) {
     }
 }
 
+let rejects = 0
+console.log(characters.length)
 function handleReject(index) {
+    rejects++;
+    console.log(rejects);
     mBoton();
     // Para cuando descartas a alguien
     document.querySelector('#'+characters[index].name+"-lava").style.display = 'block';
@@ -129,6 +133,9 @@ function handleReject(index) {
     setTimeout(() => {
         document.querySelector('#'+characters[index].name+"-roca").style.display = 'block';
         mEvaporaçao();
+        if (rejects===characters.length){
+            loseScreen();
+        }
       }, 1600);
 }
 
