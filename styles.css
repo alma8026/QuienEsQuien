@@ -85,9 +85,8 @@ h1 {
     margin-bottom: 10px;
     text-wrap: nowrap;
     transform: perspective( 800px) rotateX(40deg);
-    color: rgb(212, 212, 212);
-    -webkit-text-stroke: 3px rgb(24, 24, 24);
-    letter-spacing: 5px;
+    color: rgb(201, 201, 201);
+    transform-style: preserve-3d;
 }
 
 #game-container{
