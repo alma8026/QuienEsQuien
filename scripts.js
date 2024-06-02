@@ -83,30 +83,75 @@ function Title3D(ID, profundidad, oscuro){
         }
     }
 }
-
 Title3D('principal', 25, 0.6);
 Title3D('dificultad', 25, 0.6);
 
+let VolumenGeneral = 1
+let VolumenMusica = 1
+let VolumenEfectosSonido = 1
 const musiquita = document.getElementById("musiquita");
 musiquita.play()
 
+const EfectosVolumen=document.getElementById('Efectos-Sonido-Volumen');
+const EfectosText=document.getElementById('Efectos-Sonido-Texto');
+EfectosVolumen.addEventListener('input', function() {
+    if (this.value < '0'){
+        EfectosText.innerText = 'Efectos de sonido: NO';
+        VolumenEfectosSonido = 0;
+    }
+    else{
+        EfectosText.innerText = 'Efectos de sonido: '+this.value+'%';
+        VolumenEfectosSonido = this.value/100;
+    }
+});
+
+const MusicaVolumen=document.getElementById('Musica-Volumen');
+const MusicaText=document.getElementById('Musica-Texto');
+MusicaVolumen.addEventListener('input', function() {
+    if (this.value < '0'){
+        MusicaText.innerText = 'Música: NO';
+        VolumenMusica = 0;
+    }
+    else{
+        MusicaText.innerText = 'Música: '+this.value+'%';
+        VolumenMusica = this.value/100;
+        musiquita.volume = VolumenGeneral*VolumenMusica;
+    }
+});
+
+const GeneralVolumen=document.getElementById('General-Volumen');
+const GeneralText=document.getElementById('General-Texto');
+GeneralVolumen.addEventListener('input', function() {
+    if (this.value < 0){
+        GeneralText.innerText = 'Volumen general: NO';
+        VolumenGeneral = 0;
+    }
+    else{
+        GeneralText.innerText = 'Volumen general: '+this.value+'%';
+        VolumenGeneral = this.value/100;
+        musiquita.volume = VolumenGeneral*VolumenMusica;
+    }
+});
+
 function mBoton(){
     const mboton = document.getElementById("m-boton");
+    mboton.volume = VolumenGeneral*VolumenEfectosSonido
     mboton.play();
 }
 
-function mLava(){
-    const mlava = document.getElementById("m-lava");
+function mReject(){
+    const Mlava = document.getElementById("m-lava");
+    const mlava = Mlava.cloneNode(true);
+    const Mevaporaçao = document.getElementById("m-evaporaçao");
+    const mevaporaçao = Mevaporaçao.cloneNode(true);
     mlava.currentTime = 2;
+    mevaporaçao.volume = VolumenGeneral*VolumenEfectosSonido;
+    mlava.volume = VolumenGeneral*VolumenEfectosSonido;
     mlava.play();
     setTimeout(() =>{
         mlava.pause();
-    }, 2000)
-}
-
-function mEvaporaçao() {
-    const mevaporaçao = document.getElementById("m-evaporaçao");
-    mevaporaçao.cloneNode().play();
+        mevaporaçao.play();
+    }, 1600)
 }
 
 function showDifficulties() {
@@ -166,14 +211,15 @@ function handleReject(index) {
     mBoton();
     // Para cuando descartas a alguien
     document.querySelector('#'+characters[index].name+"-lava").style.display = 'block';
-    mLava();
+    mReject();
     setTimeout(() => {
         document.querySelector('#'+characters[index].name+"-roca").style.display = 'block';
-        mEvaporaçao();
-        if (rejects===characters.length){
+    }, 1600);
+    if (rejects===characters.length){
+        setTimeout(() =>{
             loseScreen();
-        }
-      }, 1600);
+        }, 3000)
+    }
 }
 
 // Se muestra la tabla y empieza el contador

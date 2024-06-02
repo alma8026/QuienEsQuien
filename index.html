@@ -14,6 +14,21 @@
         <audio src="audios/musiquita.mp3" id="musiquita" loop></audio>
     </div>
 
+    <div id="Volume-Control">
+        <div id="General-Volumen-Container" class="Volumen-Container">
+            <input id="General-Volumen" class = "Volumen-Slider" type="range" min="-1" max="100" value="100">
+            <span id="General-Texto" class="Volumen-Texto">Volumen general: 100%</span>
+        </div>
+        <div id="Musica-Volumen-Container" class="Volumen-Container">
+            <input id="Musica-Volumen" class = "Volumen-Slider" type="range" min="-1" max="100" value="100">
+            <span id="Musica-Texto" class="Volumen-Texto">Música: 100%</span>
+        </div>
+        <div id="Efectos-Sonido-Container" class="Volumen-Container">
+            <input id="Efectos-Sonido-Volumen" class = "Volumen-Slider" type="range" min="-1" max="100" value="100">
+            <span id="Efectos-Sonido-Texto" class="Volumen-Texto">Efectos de sonido: 100%</span>
+        </div>
+    </div>
+
     <div class="menu" id="inicio" >
         <div class="titulo" id="principal">Quién es quién</div>
         <div class="button-minecraft"><button onclick="showDifficulties()">Jugar</button></div>

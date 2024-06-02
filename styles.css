@@ -56,7 +56,7 @@ button {
     width: 100%;
     height: 100%;
     font-family: 'MinecraftRegular'; /* Fuente estilo Minecraft */
-    text-shadow: 2px 2px #000000;
+    text-shadow: 2px 2px rgb(63,63,63);
     background-color: rgb(133,133,133); /* Color de fondo del botón */
     border-bottom: 4px solid rgb(89,89,89);
     border-right: 2px solid rgb(89,89,89);
@@ -87,6 +87,45 @@ h1 {
     transform: perspective( 800px) rotateX(40deg);
     color: rgb(201, 201, 201);
     transform-style: preserve-3d;
+}
+
+.Volumen-Slider {
+    margin: 10;
+    appearance: none; /* Oculta el estilo predeterminado de WebKit */
+    width: 90vw; /* Ancho del control deslizante */
+    height: 48px; /* Altura del control deslizante */
+    background: rgb(44,44,44); /* Color del riel */
+    outline: none; /* Oculta el contorno */
+    border: 3px solid black
+}
+/* Estilo del control deslizante en Chrome */
+.Volumen-Slider::-webkit-slider-thumb {
+    -webkit-appearance: none; /* Oculta el estilo predeterminado del control deslizante en Chrome */
+    width: 18px; /* Ancho del control deslizante en Chrome */
+    height: 54px; /* Altura del control deslizante en Chrome */
+    background: rgb(133,133,133); /* Color del control deslizante en Chrome */
+    cursor: pointer; /* Cursor de apuntador */
+    border: 3px solid black
+}
+
+.Volumen-Slider::-webkit-slider-thumb:hover{
+    border-color: white;
+}
+.Volumen-Container {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    margin: 0;
+    padding: 0;
+}
+.Volumen-Texto{
+    position:absolute;
+    font-family: 'MinecraftRegular';
+    text-shadow: 2px 2px 0 rgb(63,63,63);
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    color: white;
 }
 
 #game-container{
