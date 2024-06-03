@@ -406,12 +406,23 @@ async function handleCheck(index) {
     }
 }
 
-document.getElementById('Home-Icon').addEventListener('click', function() {
+// Función para pausar el video al volver al menú
+function pausarVideoSiNecesario() {
     if(selectedPerson.name == 'Alejandro' || selectedPerson.name == 'Erik' || selectedPerson.name == 'Sergio') {
         const video = document.getElementById(selectedPerson.name + '-curiosity');
         video.pause();
         console.log('paused ' + selectedPerson.name + '-curiosity');
     }
+}
+
+// Event listener para el icono de inicio
+document.getElementById('Home-Icon').addEventListener('click', function() {
+    pausarVideoSiNecesario();
+});
+
+// Event listener para el botón de curiosidad
+document.getElementById('boton-curiosidad').addEventListener('click', function() {
+    pausarVideoSiNecesario();
 });
 
 // Para cuando descartas a alguien
