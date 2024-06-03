@@ -44,7 +44,7 @@
         <div class="titulo" id="principal">Quién es quién</div>
         <button onclick="MostrarPantalla('dificultades')">Jugar</button>
         <button onclick="window.open('https://www.infojobs.net/', '_blank');mBoton()">O no</button>
-        <butoon class="icon Volumen-Icon" onclick="MostrarPantalla('Volumen-Control')"></button>
+        <button class="icon Volumen-Icon" onclick="MostrarPantalla('Volumen-Control')"></button>
     </div>
 
     <div class="menu" id="dificultades" style="display: none;">
@@ -52,8 +52,8 @@
         <button onclick="selectDifficulty('easy')">Fácil</button>
         <button onclick="selectDifficulty('normal')">Normal</button>
         <button onclick="selectDifficulty('hard')">Difícil</button>
-        <div><butoon class="icon Volumen-Icon" onclick="MostrarPantalla('Volumen-Control')"></button></div>
-        <div><butoon class="icon Back-Icon" onclick="MostrarPantalla('inicio')"></button></div>
+        <button class="icon Volumen-Icon" onclick="MostrarPantalla('Volumen-Control')"></button>
+        <button class="icon Back-Icon" onclick="MostrarPantalla('inicio')"></button>
     </div>
 
     <div id="game-container" style="display: none;">
@@ -61,8 +61,12 @@
             <!-- Las cartas de los personajes se generarán aquí -->
         </div>
         <div id="lateral">
-            <div id="timer-container">
-                <div id="timer"></div>
+            <div id="timer-buttons">
+                <div id="timer">00:00</div>
+                <div id="buttons-game">
+                    <button class="icon Volumen-Icon-game" onclick="MostrarPantalla('Volumen-Control')"></button>
+                    <button class="icon Restart" onclick="MostrarPantalla('dificultades');StopTime()"></button>
+                </div>
                 <span id="restaTiempo" style="display: none;">-10 seg</span>
             </div>
             <div class="menu" id="questions">
@@ -82,17 +86,11 @@
     </div>
 
     <div class="menu" id="win-lose-screen" style="display: none;">
-        <div class="menu" id="defeat-screen">
-            <span id="win-lose-span">
-                
-            </span>
-            
-            <div id="buttons-container">
-                <button onclick="MostrarPantalla('curiosity-screen');volverAJugarCuriosity()">Volver a jugar</button>
-                <button onclick="MostrarPantalla('curiosity-screen');botonCuriosity()">Curiosidad</button>
-            </div>
-        </div>
-        <butoon class="icon Volumen-Icon" onclick="MostrarPantalla('Volumen-Control')"></button>
+        <div id="imagen-persona"></div>
+        <div id="Ganado-Perdido"></div>
+        <button onclick="MostrarPantalla('curiosity-screen');volverAJugarCuriosity()">Volver a jugar</button>
+        <button onclick="MostrarPantalla('curiosity-screen');botonCuriosity()">Curiosidad</button>
+        <button class="icon Volumen-Icon" onclick="MostrarPantalla('Volumen-Control')"></button>
     </div>
     <div class="menu" id="curiosity-screen" style="display: none;">
         

@@ -73,7 +73,8 @@ let secondsLeft;
 let rejects = 0;
 let UltimaPantalla = 'inicio';
 let stopTime = false;
-const musiquita = document.getElementById("musiquita")
+const musiquita = document.getElementById("musiquita");
+console.log('Inspeccioname esta.');
 
 /* ****** FUNCION AUXILIAR PARA MOVERSE ENTRE PANTALLAS ****** */
 function MostrarPantalla(Pantalla){
@@ -81,32 +82,33 @@ function MostrarPantalla(Pantalla){
         'inicio': 'flex',
         'dificultades': 'flex',
         'game-container': 'flex',
-        'win-lose-screen': 'block',
-        'curiosity-screen': 'block',
+        'win-lose-screen': 'flex',
+        'curiosity-screen': 'flex',
         'Volumen-Control': 'flex'
     }
     Object.keys(pantallaModo).forEach(pantalla => {
         document.getElementById(pantalla).style.display = 'none';
       });
     document.getElementById(Pantalla).style.display = pantallaModo[Pantalla];
+    if (Pantalla != 'win-lose-screen' || UltimaPantalla == 'win-lose-screen') { document
+        mBoton();
+    }
     if (Pantalla != 'Volumen-Control'){
         UltimaPantalla = Pantalla;
-    }
-    if (Pantalla != 'win-lose-screen'){
-        mBoton();
     }
     if (Pantalla == 'win-lose-screen'){
         StopTime();
     }
 }
+
 /* ****** SELECCIONAR PERSONA RANDOM ****** */
 function randomPerson() {
-    console.log('Inspeccioname esta.')
     let randomNumber = Math.floor(Math.random() * 19);
     selectedPerson = characters[randomNumber];
+    console.log(selectedPerson.name)
+    document.getElementById('imagen-persona').innerHTML = `<img src="QEQ_imgs/${selectedPerson.name}-QuienEsQuien.jpeg">`
     generateCuriosity();
 }
-document.addEventListener('DOMContentLoaded', randomPerson);
 
 /* ****** EPEZAR MUSICA ****** */
 document.addEventListener('DOMContentLoaded', musiquita.play());
@@ -237,15 +239,18 @@ function mWin(){
 // Selección de dificultad (se guarda en la variable --> difficulty)
 function selectDifficulty(selectedDifficulty) {
     difficulty = selectedDifficulty;
+    randomPerson();
     ResetTime();
     StartTime();
     generateBoard();
+    clearQuestions();
     MostrarPantalla('game-container');
 }
 
 // Para generar la tabla con cada persona
 function generateBoard() {
     const board = document.getElementById('board');
+    board.innerHTML = '';
     characters.forEach((character, index) => {
         const card = document.createElement('div');
         card.classList.add('card');
@@ -279,9 +284,14 @@ function getTimeLimit() {
 
 // Actualizar el tiempo
 function updateTimerDisplay(seconds) {
-    const minutes = Math.floor(seconds / 60);
-    const remainingSeconds = seconds % 60;
-    document.getElementById('timer').textContent = `0${minutes}:${remainingSeconds < 10 ? '0' : ''}${remainingSeconds}`;
+    if (seconds < 0){
+        document.getElementById('timer').textContent = '00:00';
+    }
+    else{
+        const minutes = Math.floor(seconds / 60);
+        const remainingSeconds = seconds % 60;
+        document.getElementById('timer').textContent = `0${minutes}:${remainingSeconds < 10 ? '0' : ''}${remainingSeconds}`;
+    }
 }
 
 // Resetea el contador
@@ -322,14 +332,22 @@ function askQuestion(attribute) {
         updateTimerDisplay(secondsLeft)
         minusTemp();
     }
-    const estilo = document.createElement('style');
+    const pregunta = document.getElementById(`${attribute}`);
     if(selectedPerson[attribute]){
-        estilo.textContent = `#${attribute}::after { Background-color: green; border-top: 2px solid rgb(0, 156, 0); border-left: 2px solid rgb(0, 156, 0); border-right: 2px solid rgb(0, 100, 0); border-bottom: 4px solid rgb(0, 100, 0);}`;
+        pregunta.classList.add('acertadas')
     } else {
-        estilo.textContent = `#${attribute}::after { Background-color: rgb(212, 0, 0); border-top: 2px solid rgb(240, 0, 0); border-left: 2px solid rgb(240, 0, 0); border-right: 2px solid rgb(184, 0, 0); border-bottom: 4px solid rgb(184, 0, 0);}`;
+        pregunta.classList.add('falladas')
     }
-    estilo.textContent += `#${attribute} {pointer-events: none;}`
     document.head.appendChild(estilo);
+}
+
+function clearQuestions(){
+    const ID = [ 'moreno', 'barba', 'pelo_largo', 'gafas', 'mayor25', 'hombre', 'pelo_ondulado', 'pelo_suelto', 'pelo_rubio', 'camiseta_clara', 'ojos_claros']
+    ID.forEach(element => {
+        const pregunta = document.getElementById(`${element}`);
+        pregunta.classList.remove('acertadas');
+        pregunta.classList.remove('falladas');
+    });
 }
 
 // Animacion de -10 seg
@@ -378,17 +396,18 @@ function handleReject(index) {
 
 // Generar los elementos adecuados para la situación de perder
 function lose() {
-    const loseScreen = document.getElementById('win-lose-span');
-    loseScreen.innerHTML = `<img style="height: 200px; border-radius: 50%; box-shadow: 2px 2px 4px black;" 
-    src="QEQ_imgs/${selectedPerson.name}-QuienEsQuien.jpeg"><h1>Has perdido!</h1>`;
+    const WLS = document.getElementById('win-lose-screen');
+    const textGP = document.getElementById('Ganado-Perdido');
+    textGP.innerHTML = '<h1>HAS PERDIDO!</h1>';
+    WLS.style.backgroundColor = 'rgba(100, 0, 0, 0.2)';
 }
 
 // Generar los elementos adecuados para la situación de ganar
 function win() {
-    const winScreen = document.getElementById('win-lose-span');
-    winScreen.innerHTML = `<img style="height: 200px; border-radius: 50%; box-shadow: 2px 2px 4px black;" 
-    src="QEQ_imgs/${selectedPerson.name}-QuienEsQuien.jpeg"><h1>Has ganado!</h1>`;
-    winScreen.style.backgroundColor = 'rgba(255, 255, 255, 0)';
+    const WLS = document.getElementById('win-lose-screen');
+    const textGP = document.getElementById('Ganado-Perdido');
+    textGP.innerHTML = '<h1>Has ganado!</h1>';
+    WLS.style.backgroundColor = 'rgba(255, 255, 255, 0)';
 }
 
 /* ****** CURIOSIDAD ****** */
@@ -396,8 +415,8 @@ function win() {
 // Para generar la curiosidad de la persona elegida
 function generateCuriosity() {
     const curiosity = document.getElementById('curiosity-screen');
-    curiosity.innerHTML = `<h1>Curiosidad de ${selectedPerson.name}</h1>
-    <div><img src="" alt="curiosidad"></div><butoon class="icon Volumen-Icon" onclick="MostrarPantalla('Volumen-Control')"></button>`;
+    curiosity.innerHTML = `<h1>${selectedPerson.name}</h1>
+    <div><img src="" alt="curiosidad"></div><button class="icon Volumen-Icon" onclick="MostrarPantalla('Volumen-Control')"></button>`;
 }
 
 function volverAJugarCuriosity(){
