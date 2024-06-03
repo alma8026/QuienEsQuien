@@ -331,6 +331,7 @@ function ResetTime() {
     const timeLimit = getTimeLimit();
     secondsLeft = timeLimit;
     updateTimerDisplay(secondsLeft);
+    stopTime = false;
 }
 
 function StopTime(){
@@ -340,6 +341,7 @@ function StopTime(){
 // Inicia el contador
 function StartTime(){
     let timer = setInterval(() => {
+        console.log('-1s -> ' + stopTime);
         secondsLeft--;
         updateTimerDisplay(secondsLeft);
         if (secondsLeft < 0) {
@@ -363,7 +365,7 @@ function minusTemp() {
     RestaTiempo.style.display = 'block';
     setTimeout(() => {
         RestaTiempo.style.display = 'none';
-        timer.removeChild(restaTiempo)
+        timer.removeChild(RestaTiempo);
     }, 1000); // Oculta el texto después de 2 segundos
 }
 
@@ -381,7 +383,7 @@ function askQuestion(attribute) {
     } else {
         pregunta.classList.add('falladas')
     }
-    document.head.appendChild(estilo);
+    //document.head.appendChild(estilo);
 }
 
 function clearQuestions(){
