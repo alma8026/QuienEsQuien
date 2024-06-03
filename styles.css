@@ -613,6 +613,10 @@ h1 {
     2px 2px 4px black;
 }
 
+#curiosidad-persona{
+    margin-bottom: 15px;
+}
+
 /* ------------------------------------- */
 #resolve-button {
     padding: 10px 20px;
