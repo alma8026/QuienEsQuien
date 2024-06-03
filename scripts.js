@@ -46,26 +46,28 @@ const characters = [
 ];
 
 const curiosidades = {
-    'Adan': '< src="" alt=Curiosidad de ">',
-    'Alejandro': '< src="" alt=Curiosidad de ">',
-    'Cesar': '< src="" alt=Curiosidad de ">',
-    'Cristian': '< src="" alt=Curiosidad de ">',
-    'Desiree': '< src="" alt=Curiosidad de ">',
-    'Erik': '< src="" alt=Curiosidad de ">',
-    'Fran': '< src="" alt=Curiosidad de ">',
-    'Gerard': '< src="" alt=Curiosidad de ">',
-    'Glenn': '< src="" alt=Curiosidad de ">',
-    'Irene': '< src="" alt=Curiosidad de ">',
-    'Ivan': '< src="" alt=Curiosidad de ">',
-    'Josep': '< src="" alt=Curiosidad de ">',
-    'Josias': '< src="" alt=Curiosidad de ">',
-    'Jota': '< src="" alt=Curiosidad de ">',
-    'Marina': '< src="" alt=Curiosidad de ">',
-    'Nando': '< src="" alt=Curiosidad de ">',
-    'Sergio': '< src="" alt=Curiosidad de ">',
-    'Solomon': '< src="" alt=Curiosidad de ">',
-    'Yago': '< src="" alt=Curiosidad de ">',
-}
+    'Adan': '<img id="Adan-curiosity" class="img-curiosity" src="Curiosidades1/Adan-curiosidad.jpg" alt="Curiosidad de Adan">',
+    'Alejandro': '<video id="Alejandro-curiosity" class="img-curiosity" controls autoplay loop alt="Curiosidad de Alejandro"><source src="Curiosidades1/Alejandro-curiosidad.mp4" type="video/mp4"></video>',
+    'Cesar': '<img id="Cesar-curiosity" class="img-curiosity" src="Curiosidades1/Cesar-curiosidad.jpg" alt="Curiosidad de Cesar">',
+    'Cristian': '<img id="Cristian-curiosity" class="img-curiosity" src="Curiosidades1/Cristian-curiosidad.png" alt="Curiosidad de Cristian">',
+    'Desiree': '<img id="Desiree-curiosity" class="img-curiosity" src="Curiosidades1/Desirée-curiosidad.JPG" alt="Curiosidad de Desirée">',
+    'Erik': '<video id="Erik-curiosity" class="img-curiosity" controls autoplay loop alt="Curiosidad de Erik"><source src="Curiosidades1/Erik-curiosidad.mp4" type="video/mp4"></video>',
+    'Fran': '<img id="Fran-curiosity" class="img-curiosity" src="Curiosidades1/Fran-curiosidad.jpg" alt="Curiosidad de Fran">',
+    'Gerard': '<img id="Gerard-curiosity" class="img-curiosity" src="Curiosidades1/Gerard-curiosidad.jpeg" alt="Curiosidad de Gerard">',
+    'Glenn': '<img id="Glenn-curiosity" class="img-curiosity" src="Curiosidades1/Glenn-curiosidad.jpg" alt="Curiosidad de Glenn">',
+    'Irene': '<img id="Irene-curiosity" class="img-curiosity" src="Curiosidades1/Irene-curiosidad.jpg" alt="Curiosidad de Irene">',
+    'Ivan': '<img id="Ivan-curiosity" class="img-curiosity" src="Curiosidades1/Ivan-curiosidad.gif" alt="Curiosidad de Ivan">',
+    'Josep': '<img id="Josep-curiosity" class="img-curiosity" src="Curiosidades1/Josep-curiosidad.jpg" alt="Curiosidad de Josep">',
+    'Josias': '<img id="Josias-curiosity" class="img-curiosity" src="Curiosidades1/Josias-curiosidad.gif" alt="Curiosidad de Josias">',
+    'Jota': '<img id="Jota-curiosity" class="img-curiosity" src="Curiosidades1/Jota-curiosidad.jpeg" alt="Curiosidad de Jota">',
+    'Marina': '<img id="Marina-curiosity" class="img-curiosity" src="Curiosidades1/Marina-curiosidad.jpg" alt="Curiosidad de Marina">',
+    'Nando': '<img id="Nando-curiosity" class="img-curiosity" src="Curiosidades1/Nando-curiosidad.jpg" alt="Curiosidad de Nando">',
+    'Sergio': '<video id="Sergio-curiosity" class="img-curiosity" controls autoplay loop alt="Curiosidad de Sergio"><source src="Curiosidades1/Sergio-curiosidad.mp4" type="video/mp4"></video>',
+    'Solomon': '<img id="Solomon-curiosity" class="img-curiosity" src="Curiosidades1/Solomon-curiosidad.jpg" alt="Curiosidad de Solomon">',
+    'Yago': '<img id="Yago-curiosity" class="img-curiosity" src="Curiosidades1/Yago-curiosidad.jpg" alt="Curiosidad de Yago">'
+};
+
+
 
 let difficulty;
 let selectedPerson;
@@ -95,12 +97,19 @@ function MostrarPantalla(Pantalla){
         mBoton();
     }
     if (Pantalla != 'Volumen-Control'){
+        musiquita.play();
         UltimaPantalla = Pantalla;
     }
     if (Pantalla == 'win-lose-screen'){
         StopTime();
     }
     if (Pantalla == 'curiosity-screen'){
+        const curiosidad = document.getElementById('curiosidad-persona');
+        characters.forEach((character, index) => {
+        if (character.name === selectedPerson.name) {
+            curiosidad.innerHTML = curiosidades[character.name];
+        }
+    });
         document.getElementById('Home-Icon').style.display = 'block';
         document.getElementById('boton-curiosidad').style.display = 'none';
     }
@@ -114,12 +123,8 @@ function randomPerson() {
     generateCuriosity();
 }
 
-function startMusic() {
-    musiquita.play();
-}
-
 /* ****** EMPEZAR MUSICA ****** */
-document.addEventListener('DOMContentLoaded', startMusic());
+// document.addEventListener('DOMContentLoaded', musiquita.play());
 
 /* ****** TEXTO 3D ****** */
 function extractRGB(color) {
@@ -371,6 +376,14 @@ function clearQuestions(){
 }
 
 // Para cuando haces check a alguien
+document.getElementById('Home-Icon').addEventListener('click', function() {
+    if(selectedPerson.name == 'Alejandro' || selectedPerson.name == 'Erik' || selectedPerson.name == 'Sergio') {
+        const video = document.getElementById(selectedPerson.name + '-curiosity');
+        video.pause();
+        console.log('paused ' + selectedPerson.name + '-curiosity');
+    }
+});
+
 function handleCheck(index) {
     mBoton();
     choosenPerson = characters[index].name
@@ -436,8 +449,6 @@ function generateCuriosity() {
     const nombrePersona = document.getElementById('nombre-persona');
     nombrePersona.innerText = `${selectedPerson.name}`;
     Title3D('nombre-persona', 15, 0.6);
-    const curiosidad = document.getElementById('curiosidad-persona');
-    curiosidad.innerHTML = '<img src="" alt="curiosidad">';
 }
 
 function volverAJugarCuriosity(){

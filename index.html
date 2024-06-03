@@ -5,8 +5,18 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Quién es Quién</title>
     <link rel="stylesheet" href="styles.css">
+    <link rel="shortcut icon" href="minecraft-images/favicon.ico" type="image/x-icon">
 </head>
 <body>
+
+    <div id="custom-alert" class="modal">
+        <div class="modal-content">
+            <p>¿Estás seguro de que es esta persona?</p>
+            <button id="yes-button">Sí</button>
+            <button id="no-button">No</button>
+        </div>
+    </div>
+
     <div id="audios" style="display: none;">
         <audio src="audios/boton.mp3" id="m-boton"></audio>
         <audio src="audios/evaporaçao.mp3" id="m-evaporaçao"></audio>
@@ -41,7 +51,7 @@
     </div>
 
     <div class="menu" id="inicio">
-        <div class="titulo" id="principal">Quién es quién</div>
+        <div class="titulo" id="principal">¿Quién es quién?</div>
         <button onclick="MostrarPantalla('dificultades')">Jugar</button>
         <button onclick="window.open('https://www.infojobs.net/', '_blank');mBoton()">O no</button>
         <button class="icon Volumen-Icon" onclick="MostrarPantalla('Volumen-Control')"></button>

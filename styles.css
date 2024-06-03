@@ -612,3 +612,54 @@ h1 {
     50%; box-shadow:
     2px 2px 4px black;
 }
+
+/* ------------------------------------- */
+#resolve-button {
+    padding: 10px 20px;
+    font-size: 16px;
+    cursor: pointer;
+}
+
+.modal {
+    display: none; /* Oculto por defecto */
+    position: fixed;
+    z-index: 1;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.6);
+    justify-content: center;
+    align-items: center;
+}
+
+.modal-content {
+    background-image: url(minecraft-images/dirt.jpg);
+    padding: 20px;
+    border: 3px solid grey;
+    border-radius: 5px;
+    text-align: center;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+}
+
+.modal-content p {
+    margin: 0 0 20px 0;
+    font-family: 'MinecraftRegular';
+    color: white;
+    text-shadow: 2px 2px 4px black;
+}
+
+#yes-button {
+    background-color: green;
+    color: white;
+}
+
+#no-button {
+    background-color: red;
+    color: white;
+}
+
+.img-curiosity {
+    height: 400px;
+    width: auto;
+}
