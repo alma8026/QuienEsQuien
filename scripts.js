@@ -103,6 +103,12 @@ function MostrarPantalla(Pantalla){
         StopTime();
     }
     if (Pantalla == 'curiosity-screen'){
+        const curiosidad = document.getElementById('curiosidad-persona');
+        characters.forEach((character, index) => {
+        if (character.name === selectedPerson.name) {
+            curiosidad.innerHTML = curiosidades[character.name];
+        }
+    });
         document.getElementById('Home-Icon').style.display = 'block';
         document.getElementById('boton-curiosidad').style.display = 'none';
     }
@@ -441,13 +447,6 @@ function generateCuriosity() {
     const nombrePersona = document.getElementById('nombre-persona');
     nombrePersona.innerText = `${selectedPerson.name}`;
     Title3D('nombre-persona', 15, 0.6);
-    const curiosidad = document.getElementById('curiosidad-persona');
-    characters.forEach((character, index) => {
-        if (character.name === selectedPerson.name) {
-            curiosidad.innerHTML = curiosidades[character.name];
-        }
-    });
-    
 }
 
 function volverAJugarCuriosity(){
