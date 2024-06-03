@@ -345,7 +345,17 @@ function minusTemp() {
     RestaTiempo.style.display = 'block';
     setTimeout(() => {
         RestaTiempo.style.display = 'none';
-        timer.removeChild(restaTiempo)
+        if(restaTiempo) {
+            if(timer.removeChild(restaTiempo)) {
+                timer.removeChild(restaTiempo);
+            } else {
+                console.error('El nodo hijo no es hijo del nodo padre.');
+            }
+        } else {
+            console.error('El nodo hijo no existe.');
+        }
+        
+        
     }, 1000); // Oculta el texto después de 2 segundos
 }
 
@@ -363,7 +373,7 @@ function askQuestion(attribute) {
     } else {
         pregunta.classList.add('falladas')
     }
-    document.head.appendChild(estilo);
+    //document.head.appendChild(estilo);
 }
 
 function clearQuestions(){
