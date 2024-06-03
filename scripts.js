@@ -364,15 +364,38 @@ function clearQuestions(){
 }
 
 // Para cuando haces check a alguien
-function handleCheck(index) {
-    console.log(index)
-    mBoton();
-    if(index==randomNumber) {
-        win();
+function getConfirmation() {
+    return new Promise((resolve, reject) => {
+        document.getElementById('custom-alert').style.display = 'flex';
+
+        document.getElementById('yes-button').addEventListener('click', function onYes() {
+            document.getElementById('custom-alert').style.display = 'none';
+            resolve(true);
+            document.getElementById('yes-button').removeEventListener('click', onYes);
+        });
+
+        document.getElementById('no-button').addEventListener('click', function onNo() {
+            document.getElementById('custom-alert').style.display = 'none';
+            resolve(false);
+            document.getElementById('no-button').removeEventListener('click', onNo);
+        });
+    });
+}
+async function handleCheck(index) {
+    const userConfirmed = await getConfirmation();
+    
+    if (userConfirmed) {
+        console.log(index);
+        mBoton();
+        if(index == randomNumber) {
+            win();
+        } else {
+            lose();
+        }
+        MostrarPantalla('win-lose-screen');
     } else {
-        lose();
+        alert('Cagón');
     }
-    MostrarPantalla('win-lose-screen');
 }
 
 // Para cuando descartas a alguien
@@ -420,8 +443,6 @@ function generateCuriosity() {
     const curiosidad = document.getElementById('curiosidad-persona');
     curiosidad.innerHTML = '<img src="" alt="curiosidad">';
 }
-
-
 
 function volverAJugarCuriosity(){
     document.getElementById('boton-curiosidad').style.display = 'block';
