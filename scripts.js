@@ -376,36 +376,58 @@ function clearQuestions(){
 }
 
 // Para cuando haces check a alguien
-document.getElementById('Home-Icon').addEventListener('click', function() {
+function getConfirmation() {
+    return new Promise((resolve, reject) => {
+        document.getElementById('custom-alert').style.display = 'flex';
+
+        document.getElementById('yes-button').addEventListener('click', function onYes() {
+            document.getElementById('custom-alert').style.display = 'none';
+            resolve(true);
+            document.getElementById('yes-button').removeEventListener('click', onYes);
+        });
+
+        document.getElementById('no-button').addEventListener('click', function onNo() {
+            document.getElementById('custom-alert').style.display = 'none';
+            resolve(false);
+            document.getElementById('no-button').removeEventListener('click', onNo);
+        });
+    });
+}
+async function handleCheck(index) {
+    const userConfirmed = await getConfirmation();
+    
+    if (userConfirmed) {
+        //console.log(index);
+        mBoton();
+        if(index == randomNumber) {
+            win();
+        } else {
+            lose();
+        }
+        MostrarPantalla('win-lose-screen');
+    } else {
+        alert('Cagón');
+    }
+}
+
+// Función para pausar el video al volver al menú
+function pausarVideoSiNecesario() {
     if(selectedPerson.name == 'Alejandro' || selectedPerson.name == 'Erik' || selectedPerson.name == 'Sergio') {
         const video = document.getElementById(selectedPerson.name + '-curiosity');
         video.pause();
         console.log('paused ' + selectedPerson.name + '-curiosity');
     }
+}
+
+// Event listener para el icono de inicio
+document.getElementById('Home-Icon').addEventListener('click', function() {
+    pausarVideoSiNecesario();
 });
 
-function handleCheck(index) {
-    mBoton();
-    choosenPerson = characters[index].name
-    document.getElementById('texto-cartel').innerText = `¿Estás seguro de que es ${choosenPerson}?`;
-    document.getElementById('imagen-persona-seleccionada').innerHTML = `<img src="QEQ_imgs/${choosenPerson}-QuienEsQuien.jpeg">`;
-    document.getElementById('confirmacion').style.display = 'flex';
-}
-
-function accept(){
-    if(choosenPerson == selectedPerson) {
-        win();
-    } else {
-        lose();
-    }
-    MostrarPantalla('win-lose-screen');
-    document.getElementById('confirmacion').style.display = 'none'
-}
-
-function continuePlay(){
-    mBoton();
-    document.getElementById('confirmacion').style.display = 'none';
-}
+// Event listener para el botón de curiosidad
+document.getElementById('boton-curiosidad').addEventListener('click', function() {
+    pausarVideoSiNecesario();
+});
 
 // Para cuando descartas a alguien
 function handleReject(index) {
