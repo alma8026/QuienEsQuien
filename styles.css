@@ -556,8 +556,6 @@ h1 {
     text-shadow: 2px 2px 4px black;
 }
 
-
-
 #yes-button {
     background-color: green;
     color: white;
@@ -566,4 +564,9 @@ h1 {
 #no-button {
     background-color: red;
     color: white;
+}
+
+.img-curiosity {
+    height: 400px;
+    width: auto;
 }
