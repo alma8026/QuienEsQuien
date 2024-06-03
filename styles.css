@@ -318,7 +318,9 @@ h1 {
     margin: 0;
     min-width: 400px;
     place-content: center;
-    background-image: url('minecraft-images/plank.png');
+    background-image: url('minecraft-images/brick.jpg');
+    background-size: 100px;
+    background-repeat: repeat;
     margin-bottom: 12px;
 }
 
@@ -511,6 +513,97 @@ h1 {
     100% {
         top: -100.5%;
     }
+}
+#confirmacion{
+    display: flex;
+    position:absolute;
+    justify-content: center;
+    align-items: center;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    right: 0;
+    z-index: 5;
+    background-color: rgba(0, 0, 0, 0.4); 
+}
+
+
+#cartel{
+    display:flex;
+    flex-direction: column;
+    background: url(minecraft-images/plank.png);
+    background-size: 300px;
+    background-position: 50%;
+    width: 70%;
+    max-width: 800px;
+    min-width: 400px;
+    height: 60%;
+    min-height: 400px;
+    justify-content: space-between;
+    align-items: center;
+    z-index: 7;
+}
+
+#texto-cartel{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 90%;
+    margin-top: 30px;
+    font-family: 'MinecraftRegular'; /* Fuente estilo Minecraft */
+    text-shadow: 2px 2px #000000;
+    color: white; /* Color del texto */
+    font-size: 25px; /* Tamaño de la fuente */
+    text-wrap: wrap;
+    text-align: center;
+}
+
+#imagen-persona-seleccionada{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+#imagen-persona-seleccionada img{
+    height: 300px;
+    border-radius:
+    50%; box-shadow:
+    2px 2px 4px black;
+}
+
+#botones-cartel{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+}
+
+#si::after{
+    Background-color: green;
+    border-top: 2px solid rgb(0, 156, 0);
+    border-left: 2px solid rgb(0, 156, 0);
+    border-right: 2px solid rgb(0, 100, 0);
+    border-bottom: 4px solid rgb(0, 100, 0);
+    
+}
+
+#no::after{
+    Background-color: rgb(212, 0, 0);
+    border-top: 2px solid rgb(240, 0, 0);
+    border-left: 2px solid rgb(240, 0, 0);
+    border-right: 2px solid rgb(184, 0, 0);
+    border-bottom: 4px solid rgb(184, 0, 0);
+}
+
+#tronco{
+    position: fixed;
+    bottom: 0;
+    height: 50%;
+    background: url(minecraft-images/wood.jpg);
+    background-repeat: repeat-y;
+    background-size: 50px;
+    background-position: 50%;
+    z-index: 1;
 }
 
 #imagen-persona img{

@@ -71,6 +71,7 @@ const curiosidades = {
 
 let difficulty;
 let selectedPerson;
+let choosenPerson;
 let secondsLeft;
 let rejects = 0;
 let UltimaPantalla = 'inicio';
@@ -78,7 +79,6 @@ let stopTime = false;
 let randomNumber
 const musiquita = document.getElementById("musiquita");
 console.log('Inspeccioname esta.');
-
 /* ****** FUNCION AUXILIAR PARA MOVERSE ENTRE PANTALLAS ****** */
 function MostrarPantalla(Pantalla){
     const pantallaModo = {
@@ -339,9 +339,13 @@ function StartTime(){
 // Animacion de -10 seg
 function minusTemp() {
     const restaTiempo = document.getElementById('restaTiempo');
-    restaTiempo.style.display = 'block';
+    const RestaTiempo = restaTiempo.cloneNode(true);
+    const timer = document.getElementById('timer-buttons');
+    timer.appendChild(RestaTiempo)
+    RestaTiempo.style.display = 'block';
     setTimeout(() => {
-        restaTiempo.style.display = 'none';
+        RestaTiempo.style.display = 'none';
+        timer.removeChild(restaTiempo)
     }, 1000); // Oculta el texto después de 2 segundos
 }
 
