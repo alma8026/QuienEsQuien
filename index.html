@@ -52,7 +52,8 @@
         <button onclick="selectDifficulty('easy')">Fácil</button>
         <button onclick="selectDifficulty('normal')">Normal</button>
         <button onclick="selectDifficulty('hard')">Difícil</button>
-        <butoon class="icon Volumen-Icon" onclick="MostrarPantalla('Volumen-Control')"></button>
+        <div><butoon class="icon Volumen-Icon" onclick="MostrarPantalla('Volumen-Control')"></button></div>
+        <div><butoon class="icon Back-Icon" onclick="MostrarPantalla('inicio')"></button></div>
     </div>
 
     <div id="game-container" style="display: none;">
@@ -61,7 +62,7 @@
         </div>
         <div id="lateral">
             <div id="timer-container">
-                <span id="timer"></span>
+                <div id="timer"></div>
                 <span id="restaTiempo" style="display: none;">-10 seg</span>
             </div>
             <div class="menu" id="questions">
@@ -87,8 +88,8 @@
             </span>
             
             <div id="buttons-container">
-                <button onclick="MostrarPantalla('curiosity-screen')">Volver a jugar</button>
-                <button onclick="MostrarPantalla('curiosity-screen')">Curiosidad</button>
+                <button onclick="MostrarPantalla('curiosity-screen');volverAJugarCuriosity()">Volver a jugar</button>
+                <button onclick="MostrarPantalla('curiosity-screen');botonCuriosity()">Curiosidad</button>
             </div>
         </div>
         <butoon class="icon Volumen-Icon" onclick="MostrarPantalla('Volumen-Control')"></button>

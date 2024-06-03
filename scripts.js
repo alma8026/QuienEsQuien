@@ -209,7 +209,8 @@ GeneralVolumen.addEventListener('input', function() {
 });
 
 function mBoton(){
-    const mboton = document.getElementById("m-boton");
+    const MBoton = document.getElementById("m-boton");
+    const mboton = MBoton.cloneNode(true);
     mboton.volume = VolumenGeneral*VolumenEfectosSonido
     mboton.play();
 }
@@ -397,4 +398,14 @@ function generateCuriosity() {
     const curiosity = document.getElementById('curiosity-screen');
     curiosity.innerHTML = `<h1>Curiosidad de ${selectedPerson.name}</h1>
     <div><img src="" alt="curiosidad"></div><butoon class="icon Volumen-Icon" onclick="MostrarPantalla('Volumen-Control')"></button>`;
+}
+
+function volverAJugarCuriosity(){
+    const curiosity = document.getElementById('curiosity-screen')
+    curiosity.innerHTML += `<button onclick="MostrarPantalla('dificultades')">Ahora si, volver a jugar</button>`
+}
+
+function botonCuriosity(){
+    const curiosity = document.getElementById('curiosity-screen')
+    curiosity.innerHTML += `<button onclick="MostrarPantalla('dificultades')">Volver a jugar</button>`
 }

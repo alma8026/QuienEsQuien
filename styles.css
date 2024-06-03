@@ -69,8 +69,8 @@ body::after {
 
 .Volumen-Icon {
     position: fixed;
-    left: 5px;
     bottom: 5px;
+    left: 5px;
     background: url(minecraft-images/volume.png) rgb(133,133,133);
     background-repeat: no-repeat;
     background-size: cover;
