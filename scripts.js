@@ -407,23 +407,6 @@ function clearQuestions(){
 }
 
 // Para cuando haces check a alguien
-function getConfirmation() {
-    return new Promise((resolve, reject) => {
-        document.getElementById('custom-alert').style.display = 'flex';
-
-        document.getElementById('yes-button').addEventListener('click', function onYes() {
-            document.getElementById('custom-alert').style.display = 'none';
-            resolve(true);
-            document.getElementById('yes-button').removeEventListener('click', onYes);
-        });
-
-        document.getElementById('no-button').addEventListener('click', function onNo() {
-            document.getElementById('custom-alert').style.display = 'none';
-            resolve(false);
-            document.getElementById('no-button').removeEventListener('click', onNo);
-        });
-    });
-}
 function handleCheck(index) {
     mBoton();
     choosenPerson = characters[index]
@@ -446,7 +429,7 @@ function continuePlay(){
     document.getElementById('confirmacion').style.display = 'none';
     if (cagon){
         mChallenge()
-        document.getElementById('cagon').style.display = 'flex';
+        document.getElementById('logro').style.display = 'flex';
         cagon = false
     }
 }
