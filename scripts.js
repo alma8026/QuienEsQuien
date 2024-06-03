@@ -73,6 +73,7 @@ let secondsLeft;
 let rejects = 0;
 let UltimaPantalla = 'inicio';
 let stopTime = false;
+let randomNumber
 const musiquita = document.getElementById("musiquita");
 console.log('Inspeccioname esta.');
 
@@ -99,11 +100,14 @@ function MostrarPantalla(Pantalla){
     if (Pantalla == 'win-lose-screen'){
         StopTime();
     }
+    if (Pantalla == 'curiosity-screen'){
+        document.getElementById('Home-Icon').style.display = 'block';
+        document.getElementById('boton-curiosidad').style.display = 'none';
+    }
 }
-
 /* ****** SELECCIONAR PERSONA RANDOM ****** */
 function randomPerson() {
-    let randomNumber = Math.floor(Math.random() * 19);
+    randomNumber = Math.floor(Math.random() * 19);
     selectedPerson = characters[randomNumber];
     console.log(selectedPerson.name)
     document.getElementById('imagen-persona').innerHTML = `<img src="QEQ_imgs/${selectedPerson.name}-QuienEsQuien.jpeg">`
@@ -124,26 +128,26 @@ function extractRGB(color) {
 }
 
 function Title3D(ID, profundidad, oscuro){
-    const titulo = document.getElementById(ID);
-    const style = getComputedStyle(titulo);
+    const texto = document.getElementById(ID);
+    const style = getComputedStyle(texto);
     const colorTitulo = style.color
     const rgb = extractRGB(colorTitulo);
-    const text = titulo.innerText;
-    titulo.innerHTML = '';
+    const text = texto.innerText;
+    texto.innerHTML = '';
     for (let i = 0; i < text.length; i++){
         let index = i
         if (i > (text.length-1)/2){
             index = text.length-1-i;
         }
         if (text[i]===' '){
-            titulo.innerHTML += ' ';
+            texto.innerHTML += ' ';
         }
         else{
             let shadow = 'text-shadow: '
             for (let j=1; j <= profundidad; j++)
                 shadow += `${Math.floor(j-(j*2/(text.length-1))*(i))}px ${j}px 0 rgb(${Math.round((rgb.r*0.8)-(rgb.r*0.8/profundidad*(j+1))*oscuro)}, ${Math.round((rgb.g*0.8)-(rgb.g*0.8/profundidad*(j+1))*oscuro)}, ${Math.round((rgb.b*0.8)-(rgb.b*0.8/profundidad*(j+1))*oscuro)}), `;
             shadow = shadow.slice(0, -2);
-            titulo.innerHTML += `<span style="position: relative; ${shadow}; z-index: ${index}">${text[i]}</span>`;
+            texto.innerHTML += `<span style="position: relative; ${shadow}; z-index: ${index}">${text[i]}</span>`;
         }
     }
 }
@@ -239,6 +243,7 @@ function mWin(){
 // Selección de dificultad (se guarda en la variable --> difficulty)
 function selectDifficulty(selectedDifficulty) {
     difficulty = selectedDifficulty;
+    rejects = 0;
     randomPerson();
     ResetTime();
     StartTime();
@@ -322,7 +327,14 @@ function StartTime(){
     }, 1000);
 }
 
-
+// Animacion de -10 seg
+function minusTemp() {
+    const restaTiempo = document.getElementById('restaTiempo');
+    restaTiempo.style.display = 'block';
+    setTimeout(() => {
+        restaTiempo.style.display = 'none';
+    }, 1000); // Oculta el texto después de 2 segundos
+}
 
 // Evalúa la respuesta true o false de la pregunta
 function askQuestion(attribute) {
@@ -350,29 +362,16 @@ function clearQuestions(){
     });
 }
 
-// Animacion de -10 seg
-function minusTemp() {
-    const restaTiempo = document.getElementById('restaTiempo');
-    restaTiempo.style.display = 'block';
-    setTimeout(() => {
-        restaTiempo.style.display = 'none';
-    }, 1000); // Oculta el texto después de 2 segundos
-}
-
 // Para cuando haces check a alguien
 function handleCheck(index) {
+    console.log(index)
     mBoton();
-    const userConfirmed = confirm("¿Estás seguro de que esta es la persona?");
-    if (userConfirmed) {
-        if(index==randomNumber) {
-            console.log('acertado');
-            win();
-        } else {
-            console.log('erroneo');
-            lose();
-        }
-        MostrarPantalla('win-lose-screen');
+    if(index==randomNumber) {
+        win();
+    } else {
+        lose();
     }
+    MostrarPantalla('win-lose-screen');
 }
 
 // Para cuando descartas a alguien
@@ -398,7 +397,7 @@ function handleReject(index) {
 function lose() {
     const WLS = document.getElementById('win-lose-screen');
     const textGP = document.getElementById('Ganado-Perdido');
-    textGP.innerHTML = '<h1>HAS PERDIDO!</h1>';
+    textGP.innerHTML = '<h1>Has perdido!</h1>';
     WLS.style.backgroundColor = 'rgba(100, 0, 0, 0.2)';
 }
 
@@ -414,17 +413,16 @@ function win() {
 
 // Para generar la curiosidad de la persona elegida
 function generateCuriosity() {
-    const curiosity = document.getElementById('curiosity-screen');
-    curiosity.innerHTML = `<h1>${selectedPerson.name}</h1>
-    <div><img src="" alt="curiosidad"></div><button class="icon Volumen-Icon" onclick="MostrarPantalla('Volumen-Control')"></button>`;
+    const nombrePersona = document.getElementById('nombre-persona');
+    nombrePersona.innerText = `${selectedPerson.name}`;
+    Title3D('nombre-persona', 15, 0.6);
+    const curiosidad = document.getElementById('curiosidad-persona');
+    curiosidad.innerHTML = '<img src="" alt="curiosidad">';
 }
+
+
 
 function volverAJugarCuriosity(){
-    const curiosity = document.getElementById('curiosity-screen')
-    curiosity.innerHTML += `<button onclick="MostrarPantalla('dificultades')">Ahora si, volver a jugar</button>`
-}
-
-function botonCuriosity(){
-    const curiosity = document.getElementById('curiosity-screen')
-    curiosity.innerHTML += `<button onclick="MostrarPantalla('dificultades')">Volver a jugar</button>`
+    document.getElementById('boton-curiosidad').style.display = 'block';
+    document.getElementById('Home-Icon').style.display = 'none';
 }
