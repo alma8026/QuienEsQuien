@@ -36,6 +36,18 @@ body::after {
     z-index: -3; 
 }
 
+body::-webkit-scrollbar {
+    width: 15px;
+}
+
+/* Barra de desplazamiento */
+body::-webkit-scrollbar-thumb {
+    background-color: rgb(192,192,192);
+    border-bottom: 4px solid rgb(128,128,128);
+    border-right: 2px solid rgb(128,128,128);
+    box-sizing:content-box
+}
+
 .menu {
     display: flex;
     height: 100vh;
@@ -57,7 +69,7 @@ body::after {
 .Volumen-Icon {
     position: fixed;
     bottom: 5px;
-    left: 5px;
+    right: 5px;
 }
 
 .Volumen-Icon::after, .Volumen-Icon-game::after {
@@ -70,7 +82,7 @@ body::after {
 .Back-Icon {
     position:fixed;
     bottom: 5px;
-    right: 5px;
+    left: 5px;
 }
 
 .Back-Icon::after{
@@ -84,6 +96,18 @@ body::after {
     background: url(minecraft-images/return.png) rgb(133,133,133);
     background-repeat: no-repeat;
     background-size: 24px;
+    background-position: 50%;
+}
+
+#Home-Icon {
+    position:fixed;
+    bottom: 5px;
+}
+
+#Home-Icon::after{
+    background: url(minecraft-images/home.png) rgb(133,133,133);
+    background-repeat: no-repeat;
+    background-size: 70%;
     background-position: 50%;
 }
 
@@ -143,13 +167,14 @@ h1 {
     transform: perspective( 800px) rotateX(40deg);
     color: rgb(201, 201, 201);
     transform-style: preserve-3d;
+    letter-spacing: 5px;
 }
 
 #Volumen-Control{
     display: flex;
     background-image: url(minecraft-images/dirt.jpg);
     background-repeat: repeat;
-    background-size:13%;
+    background-size:300px;
     background-position: 50%;
     flex-direction: column;
     align-items: center;
@@ -236,6 +261,7 @@ h1 {
 }
 
 .Volumen-Texto{
+    font-size: 22px;
     display: flex;
     position:absolute;
     top: 0;
@@ -273,6 +299,18 @@ h1 {
     overflow-y: scroll;
 }
 
+#board::-webkit-scrollbar {
+    width: 15px;
+}
+
+/* Barra de desplazamiento */
+#board::-webkit-scrollbar-thumb {
+    background-color: rgb(192,192,192);
+    border-bottom: 4px solid rgb(128,128,128);
+    border-right: 2px solid rgb(128,128,128);
+    box-sizing:content-box
+}
+
 #lateral{
     display: flex;
     flex-direction: column;
@@ -308,11 +346,11 @@ h1 {
 }
 
 #restaTiempo {
-    position: absolute;
+    position: fixed;
     color: red;
     font-size: 25px;
     margin-top: 60px;
-    margin-right: 150px;
+    margin-left: 80px;
     font-family: 'MinecraftRegular'; /* Fuente estilo Minecraft */
     text-shadow: 2px 2px #000000;
     animation: pulse 1s infinite alternate;
