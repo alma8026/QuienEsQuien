@@ -45,11 +45,73 @@ const characters = [
     { name: 'Yago', img: 'QEQ_imgs/Yago-QuienEsQuien.jpeg', moreno: false, barba: true , gafas: true, mayor25: false, pelo_largo: false, hombre: true , pelo_ondulado: false, pelo_suelto: true, pelo_rubio: false, camiseta_clara: true, ojos_claros: true },
 ];
 
+const curiosidades = {
+    'Adan': '< src="" alt=Curiosidad de ">',
+    'Alejandro': '< src="" alt=Curiosidad de ">',
+    'Cesar': '< src="" alt=Curiosidad de ">',
+    'Cristian': '< src="" alt=Curiosidad de ">',
+    'Desiree': '< src="" alt=Curiosidad de ">',
+    'Erik': '< src="" alt=Curiosidad de ">',
+    'Fran': '< src="" alt=Curiosidad de ">',
+    'Gerard': '< src="" alt=Curiosidad de ">',
+    'Glenn': '< src="" alt=Curiosidad de ">',
+    'Irene': '< src="" alt=Curiosidad de ">',
+    'Ivan': '< src="" alt=Curiosidad de ">',
+    'Josep': '< src="" alt=Curiosidad de ">',
+    'Josias': '< src="" alt=Curiosidad de ">',
+    'Jota': '< src="" alt=Curiosidad de ">',
+    'Marina': '< src="" alt=Curiosidad de ">',
+    'Nando': '< src="" alt=Curiosidad de ">',
+    'Sergio': '< src="" alt=Curiosidad de ">',
+    'Solomon': '< src="" alt=Curiosidad de ">',
+    'Yago': '< src="" alt=Curiosidad de ">',
+}
+
 let difficulty;
 let selectedPerson;
 let secondsLeft;
-let randomNumber;
+let rejects = 0;
+let UltimaPantalla = 'inicio';
+let stopTime = false;
+const musiquita = document.getElementById("musiquita")
 
+/* ****** FUNCION AUXILIAR PARA MOVERSE ENTRE PANTALLAS ****** */
+function MostrarPantalla(Pantalla){
+    const pantallaModo = {
+        'inicio': 'flex',
+        'dificultades': 'flex',
+        'game-container': 'flex',
+        'win-lose-screen': 'block',
+        'curiosity-screen': 'block',
+        'Volumen-Control': 'flex'
+    }
+    Object.keys(pantallaModo).forEach(pantalla => {
+        document.getElementById(pantalla).style.display = 'none';
+      });
+    document.getElementById(Pantalla).style.display = pantallaModo[Pantalla];
+    if (Pantalla != 'Volumen-Control'){
+        UltimaPantalla = Pantalla;
+    }
+    if (Pantalla != 'win-lose-screen'){
+        mBoton();
+    }
+    if (Pantalla == 'win-lose-screen'){
+        StopTime();
+    }
+}
+/* ****** SELECCIONAR PERSONA RANDOM ****** */
+function randomPerson() {
+    console.log('Inspeccioname esta.')
+    let randomNumber = Math.floor(Math.random() * 19);
+    selectedPerson = characters[randomNumber];
+    generateCuriosity();
+}
+document.addEventListener('DOMContentLoaded', randomPerson);
+
+/* ****** EPEZAR MUSICA ****** */
+document.addEventListener('DOMContentLoaded', musiquita.play());
+
+/* ****** TEXTO 3D ****** */
 function extractRGB(color) {
     const rgb = color.match(/\d+/g);
     return {
@@ -86,11 +148,10 @@ function Title3D(ID, profundidad, oscuro){
 Title3D('principal', 25, 0.6);
 Title3D('dificultad', 25, 0.6);
 
+/* **************** SONIDOS **************** */
 let VolumenGeneral = 1
 let VolumenMusica = 1
 let VolumenEfectosSonido = 1
-const musiquita = document.getElementById("musiquita");
-musiquita.play()
 
 const EfectosVolumen=document.getElementById('Efectos-Sonido-Volumen');
 const EfectosText=document.getElementById('Efectos-Sonido-Texto');
@@ -116,6 +177,20 @@ MusicaVolumen.addEventListener('input', function() {
         MusicaText.innerText = 'Música: '+this.value+'%';
         VolumenMusica = this.value/100;
         musiquita.volume = VolumenGeneral*VolumenMusica;
+    }
+});
+
+const CuriosidadVolumen=document.getElementById('Curiosidad-Volumen');
+const CuriosidadText=document.getElementById('Curiosidad-Texto');
+CuriosidadVolumen.addEventListener('input', function() {
+    if (this.value < 0){
+        CuriosidadText.innerText = 'Curiosidades: NO';
+        VolumenGeneral = 0;
+    }
+    else{
+        CuriosidadText.innerText = 'Curiosidades: '+this.value+'%';
+        VolumenCuriosidad = this.value/100;
+        //musiquita.volume = VolumenGeneral*VolumenCuriosidad;
     }
 });
 
@@ -154,18 +229,17 @@ function mReject(){
     }, 1600)
 }
 
-function showDifficulties() {
-    mBoton();
-    document.querySelector('#inicio').style.display = 'none';
-    document.querySelector('#dificultades').style.display = 'flex';
+function mWin(){
+
 }
 
 // Selección de dificultad (se guarda en la variable --> difficulty)
 function selectDifficulty(selectedDifficulty) {
-    mBoton();
     difficulty = selectedDifficulty;
+    ResetTime();
+    StartTime();
     generateBoard();
-    startGame();
+    MostrarPantalla('game-container');
 }
 
 // Para generar la tabla con cada persona
@@ -179,100 +253,18 @@ function generateBoard() {
                     <p>${character.name}</p>
                     <img src="${character.img}" alt="${character.name}">
                     <div class="card-buttons">
-                        <button onclick="handleCheck(${index})" class="checkBtn" style="background-color: green; margin: 5px;">&check;</button>
-                        <button onclick="handleReject(${index})" class="rejectBtn" style="background-color: red; margin: 5px;">&times;</button>
+                        <button onclick="handleCheck(${index})" class="checkBtn">&check;</button>
+                        <button onclick="handleReject(${index})" class="rejectBtn">&times;</button>
                     </div>
-                    <div id="${character.name}-lava" class="card-lava" style="display: none;"></div> <!-- Agrega el contenedor para la lava -->
-                    <div id="${character.name}-roca" class="card-roca" style="display: none;"></div> <!-- Agrega el contenedor para la roca -->
+                    <div id="${character.name}-lava" class="card-lava" style="display: none;"></div>
+                    <div id="${character.name}-roca" class="card-roca" style="display: none;"></div>
                 `;
         board.appendChild(card);
     });
 }
+/* ****** JUEGO ****** */
 
-function handleCheck(index) {
-    // Para cuando haces check a alguien
-    const userConfirmed = confirm("¿Estás seguro de que esta es la persona?");
-    if (userConfirmed) {
-        if(index==randomNumber) {
-            console.log('acertado');
-            winScreen();
-        } else {
-            console.log('erroneo');
-            loseScreen();
-        }
-    }
-}
-
-let rejects = 0
-console.log(characters.length)
-function handleReject(index) {
-    rejects++;
-    console.log(rejects);
-    mBoton();
-    // Para cuando descartas a alguien
-    document.querySelector('#'+characters[index].name+"-lava").style.display = 'block';
-    mReject();
-    setTimeout(() => {
-        document.querySelector('#'+characters[index].name+"-roca").style.display = 'block';
-    }, 1600);
-    if (rejects===characters.length){
-        setTimeout(() =>{
-            loseScreen();
-        }, 3000)
-    }
-}
-
-// Se muestra la tabla y empieza el contador
-function startGame() {
-    // Mostrar la sección de juego
-    document.querySelector('#dificultades').style.display = 'none';
-    document.querySelector('#game-container').style.display = 'flex';
-    // Reiniciar el temporizador
-    resetTimer();
-}
-
-function resetTimer() {
-    const timeLimit = getTimeLimit();
-    secondsLeft = timeLimit;
-    updateTimerDisplay(secondsLeft);
-    let timer = setInterval(() => {
-        secondsLeft--;
-        updateTimerDisplay(secondsLeft);
-        if (secondsLeft <= 0) {
-            clearInterval(timer);
-            loseScreen();
-        }
-    }, 1000);
-}
-
-function loseScreen() {
-    const loseScreen = document.getElementById('lose-span');
-
-    loseScreen.innerHTML = `<img style="height: 200px; border-radius: 50%; box-shadow: 2px 2px 4px black;" 
-    src="QEQ_imgs/${selectedPerson.name}-QuienEsQuien.jpeg"><h1>Has perdido!</h1>`;
-
-    document.querySelector('#lose-screen').style.display = 'block';
-    document.querySelector('#game-container').style.display = 'none';
-    document.querySelector('#timer-container').style.display = 'none';
-}
-
-function winScreen() {
-    const winScreen = document.getElementById('win-span');
-
-    winScreen.innerHTML = `<img style="height: 200px; border-radius: 50%; box-shadow: 2px 2px 4px black;" 
-    src="QEQ_imgs/${selectedPerson.name}-QuienEsQuien.jpeg"><h1>Has ganado!</h1>`;
-
-    document.querySelector('#win-screen').style.display = 'block';
-    document.querySelector('#game-container').style.display = 'none';
-    document.querySelector('#timer-container').style.display = 'none';
-}
-
-function updateTimerDisplay(seconds) {
-    const minutes = Math.floor(seconds / 60);
-    const remainingSeconds = seconds % 60;
-    document.getElementById('timer').textContent = `0${minutes}:${remainingSeconds < 10 ? '0' : ''}${remainingSeconds}`;
-}
-
+// Establecer el tiempo de inicio
 function getTimeLimit() {
     switch (difficulty) {
         case 'easy':
@@ -284,46 +276,125 @@ function getTimeLimit() {
     }
 }
 
-function minusTemp() {
-        const restaTiempo = document.getElementById('restaTiempo');
-        restaTiempo.style.display = 'block';
-        setTimeout(() => {
-            restaTiempo.style.display = 'none';
-        }, 1000); // Oculta el texto después de 2 segundos
+// Actualizar el tiempo
+function updateTimerDisplay(seconds) {
+    const minutes = Math.floor(seconds / 60);
+    const remainingSeconds = seconds % 60;
+    document.getElementById('timer').textContent = `0${minutes}:${remainingSeconds < 10 ? '0' : ''}${remainingSeconds}`;
 }
 
+// Resetea el contador
+function ResetTime() {
+    const timeLimit = getTimeLimit();
+    secondsLeft = timeLimit;
+    updateTimerDisplay(secondsLeft);
+}
+
+function StopTime(){
+    stopTime = true
+}
+
+// Inicia el contador
+function StartTime(){
+    let timer = setInterval(() => {
+        secondsLeft--;
+        updateTimerDisplay(secondsLeft);
+        if (secondsLeft < 0) {
+            clearInterval(timer);
+            lose();
+            MostrarPantalla('win-lose-screen');
+        }
+        else if (stopTime){
+            clearInterval(timer);
+            stopTime = false;
+        }
+    }, 1000);
+}
+
+
+
+// Evalúa la respuesta true o false de la pregunta
 function askQuestion(attribute) {
     mBoton();
     if(difficulty!='easy'){
         secondsLeft -= 10;
+        updateTimerDisplay(secondsLeft)
         minusTemp();
     }
+    const estilo = document.createElement('style');
     if(selectedPerson[attribute]){
-        document.querySelector('.btn_' + attribute).style.backgroundColor = 'green';
+        estilo.textContent = `#${attribute}::after { Background-color: green; border-top: 2px solid rgb(0, 156, 0); border-left: 2px solid rgb(0, 156, 0); border-right: 2px solid rgb(0, 100, 0); border-bottom: 4px solid rgb(0, 100, 0);}`;
     } else {
-        document.querySelector('.btn_' + attribute).style.backgroundColor = 'red';
+        estilo.textContent = `#${attribute}::after { Background-color: rgb(212, 0, 0); border-top: 2px solid rgb(240, 0, 0); border-left: 2px solid rgb(240, 0, 0); border-right: 2px solid rgb(184, 0, 0); border-bottom: 4px solid rgb(184, 0, 0);}`;
+    }
+    estilo.textContent += `#${attribute} {pointer-events: none;}`
+    document.head.appendChild(estilo);
+}
+
+// Animacion de -10 seg
+function minusTemp() {
+    const restaTiempo = document.getElementById('restaTiempo');
+    restaTiempo.style.display = 'block';
+    setTimeout(() => {
+        restaTiempo.style.display = 'none';
+    }, 1000); // Oculta el texto después de 2 segundos
+}
+
+// Para cuando haces check a alguien
+function handleCheck(index) {
+    mBoton();
+    const userConfirmed = confirm("¿Estás seguro de que esta es la persona?");
+    if (userConfirmed) {
+        if(index==randomNumber) {
+            console.log('acertado');
+            win();
+        } else {
+            console.log('erroneo');
+            lose();
+        }
+        MostrarPantalla('win-lose-screen');
     }
 }
 
-function randomPerson() {
-    console.log('Inspeccioname esta.')
-    randomNumber = Math.floor(Math.random() * 19);
-    selectedPerson = characters[randomNumber];
+// Para cuando descartas a alguien
+function handleReject(index) {
+    mBoton();
+    rejects++;
+    document.querySelector('#'+characters[index].name+"-lava").style.display = 'block';
+    mReject();
+    setTimeout(() => {
+        document.querySelector('#'+characters[index].name+"-roca").style.display = 'block';
+    }, 1600);
+    if (rejects===characters.length){
+        setTimeout(() =>{
+            lose();
+            MostrarPantalla('win-lose-screen');
+        }, 3000)
+    }
 }
 
-function goToCuriosity() {
-    document.querySelector('#curiosity-screen').style.display = 'block';
-    document.querySelector('#win-screen').style.display = 'none';
-    document.querySelector('#lose-screen').style.display = 'none';
-    generateCuriosity();
+/* ****** PANTALLAS DE GANAR O PERDER ****** */
+
+// Generar los elementos adecuados para la situación de perder
+function lose() {
+    const loseScreen = document.getElementById('win-lose-span');
+    loseScreen.innerHTML = `<img style="height: 200px; border-radius: 50%; box-shadow: 2px 2px 4px black;" 
+    src="QEQ_imgs/${selectedPerson.name}-QuienEsQuien.jpeg"><h1>Has perdido!</h1>`;
 }
+
+// Generar los elementos adecuados para la situación de ganar
+function win() {
+    const winScreen = document.getElementById('win-lose-span');
+    winScreen.innerHTML = `<img style="height: 200px; border-radius: 50%; box-shadow: 2px 2px 4px black;" 
+    src="QEQ_imgs/${selectedPerson.name}-QuienEsQuien.jpeg"><h1>Has ganado!</h1>`;
+    winScreen.style.backgroundColor = 'rgba(255, 255, 255, 0)';
+}
+
+/* ****** CURIOSIDAD ****** */
 
 // Para generar la curiosidad de la persona elegida
 function generateCuriosity() {
     const curiosity = document.getElementById('curiosity-screen');
-
     curiosity.innerHTML = `<h1>Curiosidad de ${selectedPerson.name}</h1>
-    <div><img src="" alt="imagen de curiosidad"></div>`;
+    <div><img src="" alt="curiosidad"></div><butoon class="icon Volumen-Icon" onclick="MostrarPantalla('Volumen-Control')"></button>`;
 }
-
-document.addEventListener('DOMContentLoaded', randomPerson);

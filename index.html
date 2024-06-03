@@ -14,32 +14,45 @@
         <audio src="audios/musiquita.mp3" id="musiquita" loop></audio>
     </div>
 
-    <div id="Volume-Control">
+    <div id="Volumen-Control" style="display: none">
         <div id="General-Volumen-Container" class="Volumen-Container">
-            <input id="General-Volumen" class = "Volumen-Slider" type="range" min="-1" max="100" value="100">
+            <input id="General-Volumen" class="Volumen-Slider" type="range" min="-1" max="100" value="100">
             <span id="General-Texto" class="Volumen-Texto">Volumen general: 100%</span>
         </div>
-        <div id="Musica-Volumen-Container" class="Volumen-Container">
-            <input id="Musica-Volumen" class = "Volumen-Slider" type="range" min="-1" max="100" value="100">
-            <span id="Musica-Texto" class="Volumen-Texto">Música: 100%</span>
+
+        <div id="Volumenes-Especificos">
+            <div id="Musica-Volumen-Container" class="Volumen-Container">
+                <input id="Musica-Volumen" class="Volumen-Slider" type="range" min="-1" max="100" value="100">
+                <span id="Musica-Texto" class="Volumen-Texto">Música: 100%</span>
+            </div>
+            <div></div>
+            <div id="Efectos-Sonido-Container" class="Volumen-Container">
+                <input id="Efectos-Sonido-Volumen" class = "Volumen-Slider" type="range" min="-1" max="100" value="100">
+                <span id="Efectos-Sonido-Texto" class="Volumen-Texto">Efectos de sonido: 100%</span>
+            </div>
         </div>
-        <div id="Efectos-Sonido-Container" class="Volumen-Container">
-            <input id="Efectos-Sonido-Volumen" class = "Volumen-Slider" type="range" min="-1" max="100" value="100">
-            <span id="Efectos-Sonido-Texto" class="Volumen-Texto">Efectos de sonido: 100%</span>
+
+        <div id="Curiosidad-Volumen-Container" class="Volumen-Container">
+            <input id="Curiosidad-Volumen" class="Volumen-Slider" type="range" min="-1" max="100" value="100">
+            <span id="Curiosidad-Texto" class="Volumen-Texto">Curiosidades: 100%</span>
         </div>
+
+        <button onclick="MostrarPantalla(UltimaPantalla)">Hecho</button>
     </div>
 
-    <div class="menu" id="inicio" >
+    <div class="menu" id="inicio">
         <div class="titulo" id="principal">Quién es quién</div>
-        <div class="button-minecraft"><button onclick="showDifficulties()">Jugar</button></div>
-        <div class="button-minecraft"><a href="https://www.infojobs.net/" target="_blank"><button>O no</button></a></div>
+        <button onclick="MostrarPantalla('dificultades')">Jugar</button>
+        <button onclick="window.open('https://www.infojobs.net/', '_blank');mBoton()">O no</button>
+        <butoon class="icon Volumen-Icon" onclick="MostrarPantalla('Volumen-Control')"></button>
     </div>
 
     <div class="menu" id="dificultades" style="display: none;">
         <div class="titulo" id="dificultad">DIFICULTAD</div>
-        <div class="button-minecraft"><button onclick="selectDifficulty('easy')">Fácil</button></div>
-        <div class="button-minecraft"><button onclick="selectDifficulty('normal')">Normal</button></div>
-        <div class="button-minecraft"><button onclick="selectDifficulty('hard')">Difícil</button></div>
+        <button onclick="selectDifficulty('easy')">Fácil</button>
+        <button onclick="selectDifficulty('normal')">Normal</button>
+        <button onclick="selectDifficulty('hard')">Difícil</button>
+        <butoon class="icon Volumen-Icon" onclick="MostrarPantalla('Volumen-Control')"></button>
     </div>
 
     <div id="game-container" style="display: none;">
@@ -52,50 +65,37 @@
                 <span id="restaTiempo" style="display: none;">-10 seg</span>
             </div>
             <div class="menu" id="questions">
-                <div class="button-minecraft"><button class="btn_moreno" onclick="askQuestion('moreno')">¿Tiene tez morena?</button></div>
-                <div class="button-minecraft"><button class="btn_barba" onclick="askQuestion('barba')">¿Tiene barba?</button></div>
-                <div class="button-minecraft"><button class="btn_pelo_largo" onclick="askQuestion('pelo_largo')">¿Tiene el pelo largo?</button></div>
-                <div class="button-minecraft"><button class="btn_gafas" onclick="askQuestion('gafas')">¿Lleva gafas?</button></div>
-                <div class="button-minecraft"><button class="btn_mayor25" onclick="askQuestion('mayor25')">¿Es mayor de 25 años?</button></div>
-                <div class="button-minecraft"><button class="btn_hombre" onclick="askQuestion('hombre')">¿Es hombre?</button></div>
-                <div class="button-minecraft"><button class="btn_pelo_ondulado" onclick="askQuestion('pelo_ondulado')">¿Tiene el pelo ondulado?</button></div>
-                <div class="button-minecraft"><button class="btn_pelo_suelto" onclick="askQuestion('pelo_suelto')">¿Tiene el pelo suelto?</button></div>
-                <div class="button-minecraft"><button class="btn_pelo_rubio" onclick="askQuestion('pelo_rubio')">¿Es rubio?</button></div>
-                <div class="button-minecraft"><button class="btn_camiseta_clara" onclick="askQuestion('camiseta_clara')">¿Lleva una camiseta clara?</button></div>
-                <div class="button-minecraft"><button class="btn_ojos_claros" onclick="askQuestion('ojos_claros')">¿Tiene ojos claros?</button></div>
+                <button id="moreno" onclick="askQuestion('moreno')">¿Tiene tez morena?</button>
+                <button id="barba" onclick="askQuestion('barba')">¿Tiene barba?</button>
+                <button id="pelo_largo" onclick="askQuestion('pelo_largo')">¿Tiene el pelo largo?</button>
+                <button id="gafas" onclick="askQuestion('gafas')">¿Lleva gafas?</button>
+                <button id="mayor25" onclick="askQuestion('mayor25')">¿Es mayor de 25 años?</button>
+                <button id="hombre" onclick="askQuestion('hombre')">¿Es hombre?</button>
+                <button id="pelo_ondulado" onclick="askQuestion('pelo_ondulado')">¿Tiene el pelo ondulado?</button>
+                <button id="pelo_suelto" onclick="askQuestion('pelo_suelto')">¿Tiene el pelo suelto?</button>
+                <button id="pelo_rubio" onclick="askQuestion('pelo_rubio')">¿Es rubio?</button>
+                <button id="camiseta_clara" onclick="askQuestion('camiseta_clara')">¿Lleva una camiseta clara?</button>
+                <button id="ojos_claros" onclick="askQuestion('ojos_claros')">¿Tiene ojos claros?</button>
             </div>
         </div>
     </div>
 
-    <div id="win-screen" style="display: none;">
+    <div class="menu" id="win-lose-screen" style="display: none;">
         <div class="menu" id="defeat-screen">
-            <span id="win-span">
+            <span id="win-lose-span">
                 
             </span>
             
             <div id="buttons-container">
-                <div class="button-minecraft"><button onclick="goToCuriosity()">Volver a jugar</button></div>
-                <div class="button-minecraft"><button onclick="goToCuriosity()">Curiosidad</button></div>
+                <button onclick="MostrarPantalla('curiosity-screen')">Volver a jugar</button>
+                <button onclick="MostrarPantalla('curiosity-screen')">Curiosidad</button>
             </div>
         </div>
+        <butoon class="icon Volumen-Icon" onclick="MostrarPantalla('Volumen-Control')"></button>
     </div>
-    <div id="lose-screen" style="display: none;">
-        <div class="menu" id="defeat-screen">
-            <span id="lose-span">
-                
-            </span>
-
-            <div id="buttons-container">
-                <div class="button-minecraft"><button onclick="goToCuriosity()">Volver a jugar</button></div>
-                <div class="button-minecraft"><button onclick="goToCuriosity()">Curiosidad</button></div>
-            </div>
-        </div>
-    </div>
-
-    <div id="curiosity-screen">
+    <div class="menu" id="curiosity-screen" style="display: none;">
         
     </div>
-    <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
     <script src="scripts.js"></script>
 </body>
 </html>

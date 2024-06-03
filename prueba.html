@@ -3,70 +3,39 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Custom Range Input</title>
+<title>Botón con Doble Borde Independiente</title>
 <style>
-/* Estilo del control deslizante */
-body{
-    display: flex;
-    margin:0;
-    padding:0;
-    height: 100vh;
-    width: 100%;
-    justify-content: center;
-    align-items: center;
-}
-input[type="range"] {
-    margin: 10;
-    appearance: none; /* Oculta el estilo predeterminado de WebKit */
-    width: 90vw; /* Ancho del control deslizante */
-    height: 48px; /* Altura del control deslizante */
-    background: rgb(44,44,44); /* Color del riel */
-    outline: none; /* Oculta el contorno */
-    border: 3px solid black
+.button {
+    position: relative;
+    display: inline-block;
+    padding: 10px 20px;
+    background-color: lightblue;
+    font-size: 16px;
+    border: none;
+    cursor: pointer;
+    z-index: 0; /* Asegura que el botón está detrás de los bordes */
+    border: 2px solid black;
+    box-sizing: border-box;
 }
 
-/* Estilo del control deslizante en Chrome */
-input[type="range"]::-webkit-slider-thumb {
-    -webkit-appearance: none; /* Oculta el estilo predeterminado del control deslizante en Chrome */
-    width: 18px; /* Ancho del control deslizante en Chrome */
-    height: 54px; /* Altura del control deslizante en Chrome */
-    background: rgb(133,133,133); /* Color del control deslizante en Chrome */
-    cursor: pointer; /* Cursor de apuntador */
-    border: 3px solid black
-}
-
-input[type="range"]::-webkit-slider-thumb:hover{
-    border-color: white;
-}
-.Volume-Text{
+.button::before, .button::after {
+    content: '';
     position: absolute;
-    top: 50%;
-    left: 50%;
-    color: white;
-    transform: translate(-50%, -50%);
+    z-index: -1; /* Poner los bordes detrás del botón */
+}
+
+.button::before {
+    border: 2px solid red; /* Primer borde */
+    top: 0px;
+    right: 0px;
+    bottom: 0px;
+    left: 0px;
 }
 </style>
 </head>
 <body>
 
-<!-- Input de tipo range personalizado -->
-<div id="Master-volume-container">
-    <input id="Master-Volume" type="range" min="-1" max="100" value="50">
-    <span id="Master-Volume-Text" class="Volume-Text">Volumen general: 50%</span>
-</div>
-<script>
-    const MasterVolume=document.getElementById('Master-Volume');
-    const volumeText=document.getElementById('Master-Volume-Text');
-    // Añade un event listener para cambiar el volumen
-    MasterVolume.addEventListener('input', function() {
-        if (this.value < '0'){
-            volumeText.innerText = 'Volumen general: NO';
-        }
-        else{
-            volumeText.innerText = 'Volumen general: '+this.value+'%';
-        }
-    });
-</script>
+<button class="button">Botón</button>
 
 </body>
 </html>
