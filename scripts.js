@@ -46,26 +46,27 @@ const characters = [
 ];
 
 const curiosidades = {
-    'Adan': '<img class="img-curiosity" src="Curiosidades1/Adan-curiosidad.jpg" alt="Curiosidad de Adan">',
-    'Alejandro': '<video controls autoplay loop class="img-curiosity" alt="Curiosidad de Alejandro"><source src="Curiosidades1/Alejandro-curiosidad.mp4" type="video/mp4"></video>',
-    'Cesar': '<img class="img-curiosity" src="Curiosidades1/Cesar-curiosidad.jpg" alt="Curiosidad de Cesar">',
-    'Cristian': '<img class="img-curiosity" src="Curiosidades1/Cristian-curiosidad.png" alt="Curiosidad de Cristian">',
-    'Desiree': '<img class="img-curiosity" src="Curiosidades1/Desirée-curiosidad.JPG" alt="Curiosidad de Desirée">',
-    'Erik': '<video controls autoplay loop class="img-curiosity" alt="Curiosidad de Erik"><source src="Curiosidades1/Erik-curiosidad.mp4" type="video/mp4"></video>',
-    'Fran': '<img class="img-curiosity" src="Curiosidades1/Fran-curiosidad.jpg" alt="Curiosidad de Fran">',
-    'Gerard': '<img class="img-curiosity" src="Curiosidades1/Gerard-curiosidad.jpeg" alt="Curiosidad de Gerard">',
-    'Glenn': '<img class="img-curiosity" src="Curiosidades1/Glenn-curiosidad.jpg" alt="Curiosidad de Glenn">',
-    'Irene': '<img class="img-curiosity" src="Curiosidades1/Irene-curiosidad.jpg" alt="Curiosidad de Irene">',
-    'Ivan': '<img class="img-curiosity" src="Curiosidades1/Ivan-curiosidad.gif" alt="Curiosidad de Ivan">',
-    'Josep': '<img class="img-curiosity" src="Curiosidades1/Josep-curiosidad.jpg" alt="Curiosidad de Josep">',
-    'Josias': '<img class="img-curiosity" src="Curiosidades1/Josias-curiosidad.gif" alt="Curiosidad de Josias">',
-    'Jota': '<img class="img-curiosity" src="Curiosidades1/Jota-curiosidad.jpeg" alt="Curiosidad de Jota">',
-    'Marina': '<img class="img-curiosity" src="Curiosidades1/Marina-curiosidad.jpg" alt="Curiosidad de Marina">',
-    'Nando': '<img class="img-curiosity" src="Curiosidades1/Nando-curiosidad.jpg" alt="Curiosidad de Nando">',
-    'Sergio': '<video controls autoplay loop class="img-curiosity" alt="Curiosidad de Sergio"><source src="Curiosidades1/Sergio-curiosidad.mp4" type="video/mp4"></video>',
-    'Solomon': '<img class="img-curiosity" src="Curiosidades1/Solomon-curiosidad.jpg" alt="Curiosidad de Solomon">',
-    'Yago': '<img class="img-curiosity" src="Curiosidades1/Yago-curiosidad.jpg" alt="Curiosidad de Yago">'
+    'Adan': '<img id="Adan-curiosity" class="img-curiosity" src="Curiosidades1/Adan-curiosidad.jpg" alt="Curiosidad de Adan">',
+    'Alejandro': '<video id="Alejandro-curiosity" class="img-curiosity" controls autoplay loop alt="Curiosidad de Alejandro"><source src="Curiosidades1/Alejandro-curiosidad.mp4" type="video/mp4"></video>',
+    'Cesar': '<img id="Cesar-curiosity" class="img-curiosity" src="Curiosidades1/Cesar-curiosidad.jpg" alt="Curiosidad de Cesar">',
+    'Cristian': '<img id="Cristian-curiosity" class="img-curiosity" src="Curiosidades1/Cristian-curiosidad.png" alt="Curiosidad de Cristian">',
+    'Desiree': '<img id="Desiree-curiosity" class="img-curiosity" src="Curiosidades1/Desirée-curiosidad.JPG" alt="Curiosidad de Desirée">',
+    'Erik': '<video id="Erik-curiosity" class="img-curiosity" controls autoplay loop alt="Curiosidad de Erik"><source src="Curiosidades1/Erik-curiosidad.mp4" type="video/mp4"></video>',
+    'Fran': '<img id="Fran-curiosity" class="img-curiosity" src="Curiosidades1/Fran-curiosidad.jpg" alt="Curiosidad de Fran">',
+    'Gerard': '<img id="Gerard-curiosity" class="img-curiosity" src="Curiosidades1/Gerard-curiosidad.jpeg" alt="Curiosidad de Gerard">',
+    'Glenn': '<img id="Glenn-curiosity" class="img-curiosity" src="Curiosidades1/Glenn-curiosidad.jpg" alt="Curiosidad de Glenn">',
+    'Irene': '<img id="Irene-curiosity" class="img-curiosity" src="Curiosidades1/Irene-curiosidad.jpg" alt="Curiosidad de Irene">',
+    'Ivan': '<img id="Ivan-curiosity" class="img-curiosity" src="Curiosidades1/Ivan-curiosidad.gif" alt="Curiosidad de Ivan">',
+    'Josep': '<img id="Josep-curiosity" class="img-curiosity" src="Curiosidades1/Josep-curiosidad.jpg" alt="Curiosidad de Josep">',
+    'Josias': '<img id="Josias-curiosity" class="img-curiosity" src="Curiosidades1/Josias-curiosidad.gif" alt="Curiosidad de Josias">',
+    'Jota': '<img id="Jota-curiosity" class="img-curiosity" src="Curiosidades1/Jota-curiosidad.jpeg" alt="Curiosidad de Jota">',
+    'Marina': '<img id="Marina-curiosity" class="img-curiosity" src="Curiosidades1/Marina-curiosidad.jpg" alt="Curiosidad de Marina">',
+    'Nando': '<img id="Nando-curiosity" class="img-curiosity" src="Curiosidades1/Nando-curiosidad.jpg" alt="Curiosidad de Nando">',
+    'Sergio': '<video id="Sergio-curiosity" class="img-curiosity" controls autoplay loop alt="Curiosidad de Sergio"><source src="Curiosidades1/Sergio-curiosidad.mp4" type="video/mp4"></video>',
+    'Solomon': '<img id="Solomon-curiosity" class="img-curiosity" src="Curiosidades1/Solomon-curiosidad.jpg" alt="Curiosidad de Solomon">',
+    'Yago': '<img id="Yago-curiosity" class="img-curiosity" src="Curiosidades1/Yago-curiosidad.jpg" alt="Curiosidad de Yago">'
 };
+
 
 
 let difficulty;
@@ -404,6 +405,14 @@ async function handleCheck(index) {
         alert('Cagón');
     }
 }
+
+document.getElementById('Home-Icon').addEventListener('click', function() {
+    if(selectedPerson.name == 'Alejandro' || selectedPerson.name == 'Erik' || selectedPerson.name == 'Sergio') {
+        const video = document.getElementById(selectedPerson.name + '-curiosity');
+        video.pause();
+        console.log('paused ' + selectedPerson.name + '-curiosity');
+    }
+});
 
 // Para cuando descartas a alguien
 function handleReject(index) {
