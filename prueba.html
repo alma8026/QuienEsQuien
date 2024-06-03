@@ -1,41 +1,22 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Botón con Doble Borde Independiente</title>
-<style>
-.button {
-    position: relative;
-    display: inline-block;
-    padding: 10px 20px;
-    background-color: lightblue;
-    font-size: 16px;
-    border: none;
-    cursor: pointer;
-    z-index: 0; /* Asegura que el botón está detrás de los bordes */
-    border: 2px solid black;
-    box-sizing: border-box;
-}
-
-.button::before, .button::after {
-    content: '';
-    position: absolute;
-    z-index: -1; /* Poner los bordes detrás del botón */
-}
-
-.button::before {
-    border: 2px solid red; /* Primer borde */
-    top: 0px;
-    right: 0px;
-    bottom: 0px;
-    left: 0px;
-}
-</style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-
-<button class="button">Botón</button>
-
+    <div id="confirmacion">
+        <div id="cartel">
+            <div id="texto-cartel">¿Estas seguro de que es este?</div>
+            <div id="imagen-persona-seleccionada"></div>
+            <div id="botones-cartel">
+                <button id="si" onclick="accept()">Si</button>
+                <button id="no" onclick="continuePlay()">No</button>
+            </div>
+        </div>
+        <div id="tronco">............</div>
+    </div>
 </body>
 </html>

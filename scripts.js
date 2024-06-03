@@ -69,6 +69,7 @@ const curiosidades = {
 
 let difficulty;
 let selectedPerson;
+let choosenPerson;
 let secondsLeft;
 let rejects = 0;
 let UltimaPantalla = 'inicio';
@@ -76,7 +77,6 @@ let stopTime = false;
 let randomNumber
 const musiquita = document.getElementById("musiquita");
 console.log('Inspeccioname esta.');
-
 /* ****** FUNCION AUXILIAR PARA MOVERSE ENTRE PANTALLAS ****** */
 function MostrarPantalla(Pantalla){
     const pantallaModo = {
@@ -109,7 +109,7 @@ function MostrarPantalla(Pantalla){
 function randomPerson() {
     randomNumber = Math.floor(Math.random() * 19);
     selectedPerson = characters[randomNumber];
-    console.log(selectedPerson.name)
+    console.log(selectedPerson.name);
     document.getElementById('imagen-persona').innerHTML = `<img src="QEQ_imgs/${selectedPerson.name}-QuienEsQuien.jpeg">`
     generateCuriosity();
 }
@@ -334,9 +334,13 @@ function StartTime(){
 // Animacion de -10 seg
 function minusTemp() {
     const restaTiempo = document.getElementById('restaTiempo');
-    restaTiempo.style.display = 'block';
+    const RestaTiempo = restaTiempo.cloneNode(true);
+    const timer = document.getElementById('timer-buttons');
+    timer.appendChild(RestaTiempo)
+    RestaTiempo.style.display = 'block';
     setTimeout(() => {
-        restaTiempo.style.display = 'none';
+        RestaTiempo.style.display = 'none';
+        timer.removeChild(restaTiempo)
     }, 1000); // Oculta el texto después de 2 segundos
 }
 
@@ -368,14 +372,26 @@ function clearQuestions(){
 
 // Para cuando haces check a alguien
 function handleCheck(index) {
-    console.log(index)
     mBoton();
-    if(index==randomNumber) {
+    choosenPerson = characters[index].name
+    document.getElementById('texto-cartel').innerText = `¿Estás seguro de que es ${choosenPerson}?`;
+    document.getElementById('imagen-persona-seleccionada').innerHTML = `<img src="QEQ_imgs/${choosenPerson}-QuienEsQuien.jpeg">`;
+    document.getElementById('confirmacion').style.display = 'flex';
+}
+
+function accept(){
+    if(choosenPerson == selectedPerson) {
         win();
     } else {
         lose();
     }
     MostrarPantalla('win-lose-screen');
+    document.getElementById('confirmacion').style.display = 'none'
+}
+
+function continuePlay(){
+    mBoton();
+    document.getElementById('confirmacion').style.display = 'none';
 }
 
 // Para cuando descartas a alguien
@@ -423,8 +439,6 @@ function generateCuriosity() {
     const curiosidad = document.getElementById('curiosidad-persona');
     curiosidad.innerHTML = '<img src="" alt="curiosidad">';
 }
-
-
 
 function volverAJugarCuriosity(){
     document.getElementById('boton-curiosidad').style.display = 'block';
