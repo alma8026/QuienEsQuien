@@ -671,3 +671,80 @@ h1 {
     height: 400px;
     width: auto;
 }
+
+@keyframes slide-challenge {
+    0% {
+        top: -105px;
+    }
+    12.5% {
+        top: 20px;
+    }
+    87.5% {
+        top: 20px;
+    }
+    100% {
+        top: -105px;
+    }
+}
+
+.logro{
+    position:absolute;
+    top: -105px;
+    left:50%;
+    transform: translateX(-50%);
+    display: flex;
+    align-items: center;
+    background-color: transparent;
+    border-radius: 7px;
+    border: 2px solid black;
+    animation: slide-challenge 6.5s forwards;
+    z-index: 5;
+}
+
+.logro::after {
+    content:'';
+    position: absolute;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    right: 0;
+    background-color: rgb(41, 41, 41);
+    border-radius: 4px;
+    border:6px solid rgb(143, 143, 143);
+    z-index: -2;
+}
+
+.logro img{
+    height: 100%;
+}
+
+.imagen-logro{
+    display: flex;
+    height: 60px;
+    width: auto;
+    justify-content: center;
+    margin: 20px;
+}
+
+.texto-logro{
+    display: flex;
+    justify-content: space-around;
+    flex-direction: column;
+    height: 70px;
+    font-family: 'MinecraftRegular'; /* Fuente estilo Minecraft */
+    text-shadow: 2px 2px #000000;
+    font-size: 25px; /* Tamaño de la fuente */
+    text-align: left;
+    width: auto;
+    margin-right: 20px;
+}
+
+.titulo-logro{
+    text-wrap: nowrap;
+    color: yellow;
+}
+
+.contenido-logro{
+    text-wrap: nowrap;
+    color: white;
+}

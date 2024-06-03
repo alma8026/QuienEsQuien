@@ -67,8 +67,10 @@ const curiosidades = {
     'Yago': '<img id="Yago-curiosity" class="img-curiosity" src="Curiosidades1/Yago-curiosidad.jpg" alt="Curiosidad de Yago">'
 };
 
-let curiosidadesVideo = ['Alejandro', 'Erik', 'Sergio']
+let curiosidadesVideo = ['Alejandro', 'Erik', 'Sergio'];
 let video
+
+let cagon = true;
 
 let difficulty;
 let selectedPerson;
@@ -77,7 +79,7 @@ let secondsLeft;
 let rejects = 0;
 let UltimaPantalla = 'inicio';
 let stopTime = false;
-let randomNumber
+let randomNumber;
 const musiquita = document.getElementById("musiquita");
 console.log('Inspeccioname esta.');
 /* ****** FUNCION AUXILIAR PARA MOVERSE ENTRE PANTALLAS ****** */
@@ -98,7 +100,7 @@ function MostrarPantalla(Pantalla){
         musiquita.play();
         UltimaPantalla = Pantalla;
     }
-    if (Pantalla != 'win-lose-screen' || (UltimaPantalla == 'game-content' && Pantalla == 'win-lose-screen')) {
+    if (Pantalla != 'win-lose-screen' || (UltimaPantalla != 'game-content' && Pantalla == 'win-lose-screen')) {
         mBoton();
     }
     if (Pantalla == 'win-lose-screen'){
@@ -254,15 +256,25 @@ function mReject(){
     }, 1600)
 }
 
+function mChallenge(){
+    const Mchallenge = document.getElementById("m-challenge");
+    const mchallenge = Mchallenge.cloneNode(true);
+    mchallenge.volume = VolumenGeneral*VolumenEfectosSonido;
+    mchallenge.play();
+}
+
 function mWin(){
     const mwin = document.getElementById("m-levelUp");
+    mwin.volume = VolumenGeneral*VolumenEfectosSonido
     mwin.play();
 }
 
 function mLose(){
     const mstrike = document.getElementById("m-strike");
+    mstrike.volume = VolumenGeneral*VolumenEfectosSonido;
     mstrike.play();
     const mdamage = document.getElementById("m-damage");
+    mdamage.volume = VolumenGeneral*VolumenEfectosSonido;
     mdamage.play();
 }
 
@@ -341,7 +353,6 @@ function StopTime(){
 // Inicia el contador
 function StartTime(){
     let timer = setInterval(() => {
-        console.log('-1s -> ' + stopTime);
         secondsLeft--;
         updateTimerDisplay(secondsLeft);
         if (secondsLeft < 0) {
@@ -433,6 +444,11 @@ function accept(){
 function continuePlay(){
     mBoton();
     document.getElementById('confirmacion').style.display = 'none';
+    if (cagon){
+        mChallenge()
+        document.getElementById('cagon').style.display = 'flex';
+        cagon = false
+    }
 }
 
 // Función para pausar el video al volver al menú
