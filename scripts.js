@@ -95,6 +95,7 @@ function MostrarPantalla(Pantalla){
         mBoton();
     }
     if (Pantalla != 'Volumen-Control'){
+        musiquita.play();
         UltimaPantalla = Pantalla;
     }
     if (Pantalla == 'win-lose-screen'){
@@ -110,12 +111,8 @@ function randomPerson() {
     generateCuriosity();
 }
 
-function startMusic() {
-    musiquita.play();
-}
-
 /* ****** EMPEZAR MUSICA ****** */
-document.addEventListener('DOMContentLoaded', startMusic());
+// document.addEventListener('DOMContentLoaded', musiquita.play());
 
 /* ****** TEXTO 3D ****** */
 function extractRGB(color) {
