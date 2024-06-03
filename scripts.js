@@ -46,26 +46,27 @@ const characters = [
 ];
 
 const curiosidades = {
-    'Adan': '< src="Curiosidades1/Adan-curiosidad.jpg" alt=Curiosidad de Adan">',
-    'Alejandro': '< src="Curiosidades1/Alejandro-curiosidad.mp4" alt=Curiosidad de Alejandro">',
-    'Cesar': '< src="Curiosidades1/Cesar-curiosidad.jpg" alt=Curiosidad de Cesar">',
-    'Cristian': '< src="Curiosidades1/Cristian-curiosidad.png" alt=Curiosidad de Cristian">',
-    'Desiree': '< src="Curiosidades1/Desirée-curiosidad.JPG" alt=Curiosidad de Desirée">',
-    'Erik': '< src="Curiosidades1/Erik-curiosidad.mp4" alt=Curiosidad de Erik">',
-    'Fran': '< src="Curiosidades1/Fran-curiosidad.jpg" alt=Curiosidad de Fran">',
-    'Gerard': '< src="Curiosidades1/Gerard-curiosidad.jpeg" alt=Curiosidad de Gerard">',
-    'Glenn': '< src="Curiosidades1/Glenn-curiosidad.jpg" alt=Curiosidad de Glenn">',
-    'Irene': '< src="Curiosidades1/Irene-curiosidad.jpg" alt=Curiosidad de Irene">',
-    'Ivan': '< src="Curiosidades1/Ivan-curiosidad.gif" alt=Curiosidad de Ivan">',
-    'Josep': '< src="Curiosidades1/Josep-curiosidad.jpg" alt=Curiosidad de Josep">',
-    'Josias': '< src="Curiosidades1/Josias-curiosidad.gif" alt=Curiosidad de Josias">',
-    'Jota': '< src="Curiosidades1/Jota-curiosidad.jpeg" alt=Curiosidad de Jota">',
-    'Marina': '< src="Curiosidades1/Marina-curiosidad.jpg" alt=Curiosidad de Marina">',
-    'Nando': '< src="Curiosidades1/Nando-curiosidad.jpg" alt=Curiosidad de Nando">',
-    'Sergio': '< src="Curiosidades1/Sergio-curiosidad.mp4" alt=Curiosidad de Sergio">',
-    'Solomon': '< src="Curiosidades1/Solomon-curiosidad.jpg" alt=Curiosidad de Solomon">',
-    'Yago': '< src="Curiosidades1/Yago-curiosidad.jpg" alt=Curiosidad de Yago">',
-}
+    'Adan': '<img src="Curiosidades1/Adan-curiosidad.jpg" alt="Curiosidad de Adan">',
+    'Alejandro': '<video controls autoplay loop alt="Curiosidad de Alejandro"><source src="Curiosidades1/Alejandro-curiosidad.mp4" type="video/mp4"></video>',
+    'Cesar': '<img src="Curiosidades1/Cesar-curiosidad.jpg" alt="Curiosidad de Cesar">',
+    'Cristian': '<img src="Curiosidades1/Cristian-curiosidad.png" alt="Curiosidad de Cristian">',
+    'Desiree': '<img src="Curiosidades1/Desirée-curiosidad.JPG" alt="Curiosidad de Desirée">',
+    'Erik': '<video controls autoplay loop alt="Curiosidad de Erik"><source src="Curiosidades1/Erik-curiosidad.mp4" type="video/mp4"></video>',
+    'Fran': '<img src="Curiosidades1/Fran-curiosidad.jpg" alt="Curiosidad de Fran">',
+    'Gerard': '<img src="Curiosidades1/Gerard-curiosidad.jpeg" alt="Curiosidad de Gerard">',
+    'Glenn': '<img src="Curiosidades1/Glenn-curiosidad.jpg" alt="Curiosidad de Glenn">',
+    'Irene': '<img src="Curiosidades1/Irene-curiosidad.jpg" alt="Curiosidad de Irene">',
+    'Ivan': '<img src="Curiosidades1/Ivan-curiosidad.gif" alt="Curiosidad de Ivan">',
+    'Josep': '<img src="Curiosidades1/Josep-curiosidad.jpg" alt="Curiosidad de Josep">',
+    'Josias': '<img src="Curiosidades1/Josias-curiosidad.gif" alt="Curiosidad de Josias">',
+    'Jota': '<img src="Curiosidades1/Jota-curiosidad.jpeg" alt="Curiosidad de Jota">',
+    'Marina': '<img src="Curiosidades1/Marina-curiosidad.jpg" alt="Curiosidad de Marina">',
+    'Nando': '<img src="Curiosidades1/Nando-curiosidad.jpg" alt="Curiosidad de Nando">',
+    'Sergio': '<video controls autoplay loop alt="Curiosidad de Sergio"><source src="Curiosidades1/Sergio-curiosidad.mp4" type="video/mp4"></video>',
+    'Solomon': '<img src="Curiosidades1/Solomon-curiosidad.jpg" alt="Curiosidad de Solomon">',
+    'Yago': '<img src="Curiosidades1/Yago-curiosidad.jpg" alt="Curiosidad de Yago">'
+};
+
 
 let difficulty;
 let selectedPerson;
@@ -441,7 +442,12 @@ function generateCuriosity() {
     nombrePersona.innerText = `${selectedPerson.name}`;
     Title3D('nombre-persona', 15, 0.6);
     const curiosidad = document.getElementById('curiosidad-persona');
-    curiosidad.innerHTML = '<img src="" alt="curiosidad">';
+    characters.forEach((character, index) => {
+        if (character.name === selectedPerson.name) {
+            curiosidad.innerHTML = curiosidades[character.name];
+        }
+    });
+    
 }
 
 function volverAJugarCuriosity(){
