@@ -114,8 +114,12 @@ function randomPerson() {
     generateCuriosity();
 }
 
-/* ****** EPEZAR MUSICA ****** */
-document.addEventListener('DOMContentLoaded', musiquita.play());
+function startMusic() {
+    musiquita.play();
+}
+
+/* ****** EMPEZAR MUSICA ****** */
+document.addEventListener('DOMContentLoaded', startMusic());
 
 /* ****** TEXTO 3D ****** */
 function extractRGB(color) {
