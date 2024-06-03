@@ -73,6 +73,7 @@ let secondsLeft;
 let rejects = 0;
 let UltimaPantalla = 'inicio';
 let stopTime = false;
+let randomNumber = Math.floor(Math.random() * 19);
 const musiquita = document.getElementById("musiquita");
 console.log('Inspeccioname esta.');
 
@@ -103,15 +104,18 @@ function MostrarPantalla(Pantalla){
 
 /* ****** SELECCIONAR PERSONA RANDOM ****** */
 function randomPerson() {
-    let randomNumber = Math.floor(Math.random() * 19);
     selectedPerson = characters[randomNumber];
     console.log(selectedPerson.name)
     document.getElementById('imagen-persona').innerHTML = `<img src="QEQ_imgs/${selectedPerson.name}-QuienEsQuien.jpeg">`
     generateCuriosity();
 }
 
-/* ****** EPEZAR MUSICA ****** */
-document.addEventListener('DOMContentLoaded', musiquita.play());
+function startMusic() {
+    musiquita.play();
+}
+
+/* ****** EMPEZAR MUSICA ****** */
+document.addEventListener('DOMContentLoaded', startMusic());
 
 /* ****** TEXTO 3D ****** */
 function extractRGB(color) {
