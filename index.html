@@ -60,6 +60,7 @@
         <button onclick="MostrarPantalla('dificultades')">Jugar</button>
         <button onclick="window.open('https://www.infojobs.net/', '_blank');mBoton()">O no</button>
         <button class="icon Volumen-Icon" onclick="MostrarPantalla('Volumen-Control')"></button>
+        <button class="icon menu-curiosidades" onclick="generateMenuCuriosidades();MostrarPantalla('menu-curiosidades')"></button>
     </div>
 
     <div class="menu" id="dificultades" style="display: none;">
@@ -122,11 +123,14 @@
     <div class="menu" id="curiosity-screen" style="display: none;">
         <div class="titulo" id="nombre-persona"></div>
         <div id="curiosidad-persona"></div>
+        <div id="texto-curiosidad"></div>
         <button id="boton-curiosidad" onclick="MostrarPantalla('dificultades')" style="display:none">Ahora si, volver a jugar</button>
         <button class="icon Volumen-Icon" onclick="MostrarPantalla('Volumen-Control')"></button>
-        <button class="icon Back-Icon" onclick="MostrarPantalla('win-lose-screen')"></button>
+        <button class="icon Back-Icon" onclick="MostrarPantalla(AnteriorPantalla)"></button>
         <button class="icon" id="Home-Icon" onclick="MostrarPantalla('inicio')"></button>
     </div>
+
+    <div class="menu" id="menu-curiosidades" style="display:none"></div>
     <script src="scripts.js"></script>
 </body>
 </html>

@@ -67,7 +67,14 @@ const curiosidades = {
     'Yago': '<img id="Yago-curiosity" class="img-curiosity" src="Curiosidades1/Yago-curiosidad.jpg" alt="Curiosidad de Yago">'
 };
 
+textoCuriosidades = {
+    'Ivan': 'Soy adulto pero no ejerzo',
+    'Josias': 'Sou eu de novo',
+    'Sergio': 'La vida me ha dado muchos palos, y más que me voy a llevar'
+}
+
 let curiosidadesVideo = ['Alejandro', 'Erik', 'Sergio'];
+let personasTextoCuriosidades = ['Ivan', 'Josias', 'Sergio']
 let video
 
 let cagon = true;
@@ -78,6 +85,7 @@ let choosenPerson;
 let secondsLeft;
 let rejects = 0;
 let UltimaPantalla = 'inicio';
+let AnteriorPantalla;
 let stopTime = false;
 let randomNumber;
 const musiquita = document.getElementById("musiquita");
@@ -90,7 +98,8 @@ function MostrarPantalla(Pantalla){
         'game-container': 'flex',
         'win-lose-screen': 'flex',
         'curiosity-screen': 'flex',
-        'Volumen-Control': 'flex'
+        'Volumen-Control': 'flex',
+        'menu-curiosidades': 'flex',
     }
     Object.keys(pantallaModo).forEach(pantalla => {
         document.getElementById(pantalla).style.display = 'none';
@@ -98,6 +107,9 @@ function MostrarPantalla(Pantalla){
     document.getElementById(Pantalla).style.display = pantallaModo[Pantalla];
     if (Pantalla != 'Volumen-Control'){
         musiquita.play();
+        if (Pantalla != UltimaPantalla){
+            AnteriorPantalla = UltimaPantalla;
+        }
         UltimaPantalla = Pantalla;
     }
     if (Pantalla != 'win-lose-screen' || (UltimaPantalla != 'game-content' && Pantalla == 'win-lose-screen')) {
@@ -476,10 +488,14 @@ function win() {
 /* ****** CURIOSIDAD ****** */
 
 // Para generar la curiosidad de la persona elegida
-function generateCuriosity() {
+function generateCuriosity(Persona=selectedPerson.name) {
     const nombrePersona = document.getElementById('nombre-persona');
-    nombrePersona.innerText = `${selectedPerson.name}`;
-    document.getElementById('curiosidad-persona').innerHTML = curiosidades[selectedPerson.name];
+    nombrePersona.innerText = Persona;
+    if (personasTextoCuriosidades.includes(Persona)){
+        const textoCuriosidad = document.getElementById('texto-curiosidad');
+        textoCuriosidad.innerText = textoCuriosidades[Persona];
+    }
+    document.getElementById('curiosidad-persona').innerHTML = curiosidades[Persona];
     Title3D('nombre-persona', 15, 0.6);
 }
 
@@ -490,4 +506,14 @@ function volverAJugarCuriosity(){
 function goCuriosity(){
     document.getElementById('boton-curiosidad').style.display = 'none';
     document.getElementById('Home-Icon').style.display = 'block';
+}
+
+/* ****** MENÚ CURIOSIDADES ****** */
+
+function generateMenuCuriosidades(){
+    const menuCuriosidades = document.getElementById('menu-curiosidades');
+    menuCuriosidades.innerHTML = '';
+    characters.forEach((character) => {
+        menuCuriosidades.innerHTML += `<button onclick="generateCuriosity('${character.name}');MostrarPantalla('curiosity-screen')">${character.name}</button>`
+        });
 }
