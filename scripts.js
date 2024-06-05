@@ -323,7 +323,7 @@ function StopTime(){
 // Inicia el contador
 function StartTime(){
     let timer = setInterval(() => {
-        console.log('-1s -> ' + stopTime);
+        //console.log('-1s -> ' + stopTime);
         secondsLeft--;
         updateTimerDisplay(secondsLeft);
         if (secondsLeft < 0) {
@@ -417,7 +417,7 @@ function pausarVideoSiNecesario() {
     if(selectedPerson.name == 'Alejandro' || selectedPerson.name == 'Erik' || selectedPerson.name == 'Sergio') {
         const video = document.getElementById(selectedPerson.name + '-curiosity');
         video.pause();
-        console.log('paused ' + selectedPerson.name + '-curiosity');
+        //console.log('paused ' + selectedPerson.name + '-curiosity');
     }
 }
 
