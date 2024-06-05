@@ -491,9 +491,12 @@ function win() {
 function generateCuriosity(Persona=selectedPerson.name) {
     const nombrePersona = document.getElementById('nombre-persona');
     nombrePersona.innerText = Persona;
+    const textoCuriosidad = document.getElementById('texto-curiosidad');
     if (personasTextoCuriosidades.includes(Persona)){
-        const textoCuriosidad = document.getElementById('texto-curiosidad');
         textoCuriosidad.innerText = textoCuriosidades[Persona];
+    }
+    else{
+        textoCuriosidad.innerText = '';
     }
     document.getElementById('curiosidad-persona').innerHTML = curiosidades[Persona];
     Title3D('nombre-persona', 15, 0.6);
@@ -512,8 +515,18 @@ function goCuriosity(){
 
 function generateMenuCuriosidades(){
     const menuCuriosidades = document.getElementById('menu-curiosidades');
-    menuCuriosidades.innerHTML = '';
+    menuCuriosidades.innerHTML = `<button class="icon Volumen-Icon" onclick="MostrarPantalla('Volumen-Control')"></button><button class="icon Back-Icon" onclick="MostrarPantalla('inicio')"></button>`;
     characters.forEach((character) => {
-        menuCuriosidades.innerHTML += `<button onclick="generateCuriosity('${character.name}');MostrarPantalla('curiosity-screen')">${character.name}</button>`
+        menuCuriosidades.innerHTML += `<button onclick="generateCuriosity('${character.name}');changeselectedPerson('${character.name}');MostrarPantalla('curiosity-screen')">${character.name}</button>`
         });
+}
+
+function changeselectedPerson(character){
+    console.log(VolumenGeneral,VolumenCuriosidad)
+    selectedPerson = {name: character}
+    if(curiosidadesVideo.includes(character)) {
+        video = document.getElementById(character + '-curiosity');
+        video.volume = VolumenGeneral*VolumenCuriosidad;
+        video.pause();
+    }
 }
