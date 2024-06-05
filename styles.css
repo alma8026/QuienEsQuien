@@ -63,7 +63,20 @@ body::-webkit-scrollbar-thumb {
     cursor: pointer; /* Cambia el cursor al pasar sobre el botón */
     box-sizing: border-box;
     margin: 5px;
-    z-index: 1;
+    z-index: 2;
+}
+
+.Curiosidades-Icon {
+    position: fixed;
+    bottom: 5px;
+    left: 5px;
+}
+
+.Curiosidades-Icon::after, .Volumen-Icon-game::after {
+    background: url(minecraft-images/face.jpg) rgb(133,133,133);
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: 50%;
 }
 
 .Volumen-Icon {
@@ -156,6 +169,9 @@ h1 {
     text-transform: uppercase;
     font-size: 35px;
     text-align: center;
+    color: white;
+    text-shadow: 5px 5px rgb(36, 36, 36);
+
 }
 
 .titulo {
@@ -279,6 +295,15 @@ h1 {
     pointer-events: none;
     text-overflow: ellipsis;
     z-index: 2;
+}
+
+#menu-curiosidades{
+    display:flex;
+    flex-wrap: wrap;
+    width: 100%;
+    height: 95vh;
+    justify-content: space-around;
+    align-items: center;
 }
 
 #game-container{
@@ -615,6 +640,7 @@ h1 {
 
 #curiosidad-persona{
     margin-bottom: 15px;
+    pointer-events: none;
 }
 
 /* ------------------------------------- */
@@ -666,4 +692,81 @@ h1 {
 .img-curiosity {
     height: 400px;
     width: auto;
+}
+
+@keyframes slide-challenge {
+    0% {
+        top: -105px;
+    }
+    12.5% {
+        top: 20px;
+    }
+    87.5% {
+        top: 20px;
+    }
+    100% {
+        top: -105px;
+    }
+}
+
+.logro{
+    position:absolute;
+    top: -105px;
+    left:50%;
+    transform: translateX(-50%);
+    display: flex;
+    align-items: center;
+    background-color: transparent;
+    border-radius: 7px;
+    border: 2px solid black;
+    animation: slide-challenge 6.5s forwards;
+    z-index: 5;
+}
+
+.logro::after {
+    content:'';
+    position: absolute;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    right: 0;
+    background-color: rgb(41, 41, 41);
+    border-radius: 4px;
+    border:6px solid rgb(143, 143, 143);
+    z-index: -2;
+}
+
+.logro img{
+    height: 100%;
+}
+
+.imagen-logro{
+    display: flex;
+    height: 60px;
+    width: auto;
+    justify-content: center;
+    margin: 20px;
+}
+
+.texto-logro{
+    display: flex;
+    justify-content: space-around;
+    flex-direction: column;
+    height: 70px;
+    font-family: 'MinecraftRegular'; /* Fuente estilo Minecraft */
+    text-shadow: 2px 2px #000000;
+    font-size: 25px; /* Tamaño de la fuente */
+    text-align: left;
+    width: auto;
+    margin-right: 20px;
+}
+
+.titulo-logro{
+    text-wrap: nowrap;
+    color: yellow;
+}
+
+.contenido-logro{
+    text-wrap: nowrap;
+    color: white;
 }

@@ -28,7 +28,7 @@ const characters = [
     { name: 'Alejandro', img: 'QEQ_imgs/Alejandro-QuienEsQuien.jpeg', moreno: false, barba: false, gafas: false, mayor25: false, pelo_largo: false, hombre: true , pelo_ondulado: false, pelo_suelto: true, pelo_rubio: false, camiseta_clara: true, ojos_claros: true},
     { name: 'Cesar', img: 'QEQ_imgs/Cesar-QuienEsQuien.jpeg', moreno: true, barba: true, gafas: false, mayor25: true, pelo_largo: false, hombre: true , pelo_ondulado: false, pelo_suelto: true, pelo_rubio: false, camiseta_clara: false, ojos_claros: false},
     { name: 'Cristian', img: 'QEQ_imgs/Cristian-QuienEsQuien.jpeg', moreno: true, barba: false, gafas: false, mayor25: true, pelo_largo: false, hombre: true , pelo_ondulado: false, pelo_suelto: true, pelo_rubio: false, camiseta_clara: false, ojos_claros: false},
-    { name: 'Desiree', img: 'QEQ_imgs/Desiree-QuienEsQuien.jpeg', moreno: false, barba: false, gafas: true, mayor25: true, pelo_largo: true, hombre: false , pelo_ondulado: false, pelo_suelto: true, pelo_rubio: true, camiseta_clara: true, ojos_claros: true},
+    { name: 'Desirée', img: 'QEQ_imgs/Desirée-QuienEsQuien.jpeg', moreno: false, barba: false, gafas: true, mayor25: true, pelo_largo: true, hombre: false , pelo_ondulado: false, pelo_suelto: true, pelo_rubio: true, camiseta_clara: true, ojos_claros: true},
     { name: 'Erik', img: 'QEQ_imgs/Erik-QuienEsQuien.jpeg', moreno: false, barba: true, gafas: false, mayor25: true, pelo_largo: false, hombre: true , pelo_ondulado: false, pelo_suelto: true, pelo_rubio: false, camiseta_clara: true, ojos_claros: false},
     { name: 'Fran', img: 'QEQ_imgs/Fran-QuienEsQuien.jpeg', moreno: false, barba: true, gafas: false, mayor25: false, pelo_largo: false, hombre: true , pelo_ondulado: false, pelo_suelto: true, pelo_rubio: false, camiseta_clara: true, ojos_claros: false},
     { name: 'Gerard', img: 'QEQ_imgs/Gerard-QuienEsQuien.jpeg', moreno: false , barba: false , gafas: false , mayor25:false , pelo_largo: false , hombre: true , pelo_ondulado: true , pelo_suelto: true , pelo_rubio: false , camiseta_clara:true , ojos_claros:false  },
@@ -50,7 +50,7 @@ const curiosidades = {
     'Alejandro': '<video id="Alejandro-curiosity" class="img-curiosity" controls autoplay loop alt="Curiosidad de Alejandro"><source src="Curiosidades1/Alejandro-curiosidad.mp4" type="video/mp4"></video>',
     'Cesar': '<img id="Cesar-curiosity" class="img-curiosity" src="Curiosidades1/Cesar-curiosidad.jpg" alt="Curiosidad de Cesar">',
     'Cristian': '<img id="Cristian-curiosity" class="img-curiosity" src="Curiosidades1/Cristian-curiosidad.png" alt="Curiosidad de Cristian">',
-    'Desiree': '<img id="Desiree-curiosity" class="img-curiosity" src="Curiosidades1/Desirée-curiosidad.JPG" alt="Curiosidad de Desirée">',
+    'Desirée': '<img id="Desirée-curiosity" class="img-curiosity" src="Curiosidades1/Desirée-curiosidad.JPG" alt="Curiosidad de Desirée">',
     'Erik': '<video id="Erik-curiosity" class="img-curiosity" controls autoplay loop alt="Curiosidad de Erik"><source src="Curiosidades1/Erik-curiosidad.mp4" type="video/mp4"></video>',
     'Fran': '<img id="Fran-curiosity" class="img-curiosity" src="Curiosidades1/Fran-curiosidad.jpg" alt="Curiosidad de Fran">',
     'Gerard': '<img id="Gerard-curiosity" class="img-curiosity" src="Curiosidades1/Gerard-curiosidad.jpeg" alt="Curiosidad de Gerard">',
@@ -67,7 +67,17 @@ const curiosidades = {
     'Yago': '<img id="Yago-curiosity" class="img-curiosity" src="Curiosidades1/Yago-curiosidad.jpg" alt="Curiosidad de Yago">'
 };
 
+textoCuriosidades = {
+    'Ivan': 'Soy adulto pero no ejerzo',
+    'Josias': 'Sou eu de novo',
+    'Sergio': 'La vida me ha dado muchos palos, y más que me voy a llevar'
+}
 
+let curiosidadesVideo = ['Alejandro', 'Erik', 'Sergio'];
+let personasTextoCuriosidades = ['Ivan', 'Josias', 'Sergio']
+let video
+
+let cagon = true;
 
 let difficulty;
 let selectedPerson;
@@ -75,8 +85,9 @@ let choosenPerson;
 let secondsLeft;
 let rejects = 0;
 let UltimaPantalla = 'inicio';
+let AnteriorPantalla;
 let stopTime = false;
-let randomNumber
+let randomNumber;
 const musiquita = document.getElementById("musiquita");
 console.log('Inspeccioname esta.');
 /* ****** FUNCION AUXILIAR PARA MOVERSE ENTRE PANTALLAS ****** */
@@ -87,40 +98,50 @@ function MostrarPantalla(Pantalla){
         'game-container': 'flex',
         'win-lose-screen': 'flex',
         'curiosity-screen': 'flex',
-        'Volumen-Control': 'flex'
+        'Volumen-Control': 'flex',
+        'menu-curiosidades': 'flex',
     }
     Object.keys(pantallaModo).forEach(pantalla => {
         document.getElementById(pantalla).style.display = 'none';
       });
     document.getElementById(Pantalla).style.display = pantallaModo[Pantalla];
-    if (Pantalla != 'win-lose-screen' || UltimaPantalla == 'win-lose-screen') { document
-        mBoton();
-    }
     if (Pantalla != 'Volumen-Control'){
         musiquita.play();
+        if (Pantalla != UltimaPantalla){
+            AnteriorPantalla = UltimaPantalla;
+        }
         UltimaPantalla = Pantalla;
+    }
+    if (Pantalla != 'win-lose-screen' || (UltimaPantalla != 'game-content' && Pantalla == 'win-lose-screen')) {
+        mBoton();
     }
     if (Pantalla == 'win-lose-screen'){
         StopTime();
     }
-    if (Pantalla == 'curiosity-screen'){
-        const curiosidad = document.getElementById('curiosidad-persona');
-        characters.forEach((character, index) => {
-        if (character.name === selectedPerson.name) {
-            curiosidad.innerHTML = curiosidades[character.name];
+    if(curiosidadesVideo.includes(selectedPerson.name)) {
+        if (Pantalla == 'curiosity-screen' || (UltimaPantalla == 'curiosity-screen' && Pantalla == 'Volumen-Control')) {
+            musiquita.pause()
+            video.play();
         }
-    });
-        document.getElementById('Home-Icon').style.display = 'block';
-        document.getElementById('boton-curiosidad').style.display = 'none';
+        else{
+            video.pause()
+            video.currentTime = 0
+        }
     }
 }
 /* ****** SELECCIONAR PERSONA RANDOM ****** */
 function randomPerson() {
     randomNumber = Math.floor(Math.random() * 19);
     selectedPerson = characters[randomNumber];
+    //selectedPerson = {name: 'Erik'};
     console.log(selectedPerson.name);
     document.getElementById('imagen-persona').innerHTML = `<img src="QEQ_imgs/${selectedPerson.name}-QuienEsQuien.jpeg">`
     generateCuriosity();
+    if(curiosidadesVideo.includes(selectedPerson.name)) {
+        video = document.getElementById(selectedPerson.name + '-curiosity');
+        video.volume = VolumenGeneral*VolumenCuriosidad;
+        video.pause();
+    }
 }
 
 /* ****** EMPEZAR MUSICA ****** */
@@ -167,6 +188,7 @@ Title3D('dificultad', 25, 0.6);
 let VolumenGeneral = 1
 let VolumenMusica = 1
 let VolumenEfectosSonido = 1
+let VolumenCuriosidad = 1
 
 const EfectosVolumen=document.getElementById('Efectos-Sonido-Volumen');
 const EfectosText=document.getElementById('Efectos-Sonido-Texto');
@@ -200,12 +222,12 @@ const CuriosidadText=document.getElementById('Curiosidad-Texto');
 CuriosidadVolumen.addEventListener('input', function() {
     if (this.value < 0){
         CuriosidadText.innerText = 'Curiosidades: NO';
-        VolumenGeneral = 0;
+        VolumenCuriosidad = 0;
     }
     else{
         CuriosidadText.innerText = 'Curiosidades: '+this.value+'%';
         VolumenCuriosidad = this.value/100;
-        //musiquita.volume = VolumenGeneral*VolumenCuriosidad;
+        video.volume = VolumenGeneral*VolumenCuriosidad;
     }
 });
 
@@ -220,6 +242,7 @@ GeneralVolumen.addEventListener('input', function() {
         GeneralText.innerText = 'Volumen general: '+this.value+'%';
         VolumenGeneral = this.value/100;
         musiquita.volume = VolumenGeneral*VolumenMusica;
+        video.volume = VolumenGeneral*VolumenCuriosidad;
     }
 });
 
@@ -245,8 +268,26 @@ function mReject(){
     }, 1600)
 }
 
-function mWin(){
+function mChallenge(){
+    const Mchallenge = document.getElementById("m-challenge");
+    const mchallenge = Mchallenge.cloneNode(true);
+    mchallenge.volume = VolumenGeneral*VolumenEfectosSonido;
+    mchallenge.play();
+}
 
+function mWin(){
+    const mwin = document.getElementById("m-levelUp");
+    mwin.volume = VolumenGeneral*VolumenEfectosSonido
+    mwin.play();
+}
+
+function mLose(){
+    const mstrike = document.getElementById("m-strike");
+    mstrike.volume = VolumenGeneral*VolumenEfectosSonido;
+    mstrike.play();
+    const mdamage = document.getElementById("m-damage");
+    mdamage.volume = VolumenGeneral*VolumenEfectosSonido;
+    mdamage.play();
 }
 
 // Selección de dificultad (se guarda en la variable --> difficulty)
@@ -258,6 +299,7 @@ function selectDifficulty(selectedDifficulty) {
     StartTime();
     generateBoard();
     clearQuestions();
+    document.getElementById('confirmacion').style.display='none';
     MostrarPantalla('game-container');
 }
 
@@ -369,7 +411,7 @@ function askQuestion(attribute) {
 }
 
 function clearQuestions(){
-    const ID = [ 'moreno', 'barba', 'pelo_largo', 'gafas', 'mayor25', 'hombre', 'pelo_ondulado', 'pelo_suelto', 'pelo_rubio', 'camiseta_clara', 'ojos_claros']
+    const ID = ['moreno', 'barba', 'pelo_largo', 'gafas', 'mayor25', 'hombre', 'pelo_ondulado', 'pelo_suelto', 'pelo_rubio', 'camiseta_clara', 'ojos_claros']
     ID.forEach(element => {
         const pregunta = document.getElementById(`${element}`);
         pregunta.classList.remove('acertadas');
@@ -378,37 +420,30 @@ function clearQuestions(){
 }
 
 // Para cuando haces check a alguien
-function getConfirmation() {
-    return new Promise((resolve, reject) => {
-        document.getElementById('custom-alert').style.display = 'flex';
-
-        document.getElementById('yes-button').addEventListener('click', function onYes() {
-            document.getElementById('custom-alert').style.display = 'none';
-            resolve(true);
-            document.getElementById('yes-button').removeEventListener('click', onYes);
-        });
-
-        document.getElementById('no-button').addEventListener('click', function onNo() {
-            document.getElementById('custom-alert').style.display = 'none';
-            resolve(false);
-            document.getElementById('no-button').removeEventListener('click', onNo);
-        });
-    });
+function handleCheck(index) {
+    mBoton();
+    choosenPerson = characters[index]
+    document.getElementById('confirmacion').style.display = 'flex'
+    document.getElementById('texto-cartel').innerText = `¿Estás seguro de que es ${choosenPerson.name}?`
+    document.getElementById('imagen-persona-seleccionada').innerHTML = `<img src="${choosenPerson.img}">`
 }
-async function handleCheck(index) {
-    const userConfirmed = await getConfirmation();
-    
-    if (userConfirmed) {
-        //console.log(index);
-        mBoton();
-        if(index == randomNumber) {
-            win();
-        } else {
-            lose();
-        }
-        MostrarPantalla('win-lose-screen');
+
+function accept(){
+    if(choosenPerson.name == selectedPerson.name) {
+        win();
     } else {
-        alert('Cagón');
+        lose();
+    }
+    MostrarPantalla('win-lose-screen');
+}
+
+function continuePlay(){
+    mBoton();
+    document.getElementById('confirmacion').style.display = 'none';
+    if (cagon){
+        mChallenge()
+        document.getElementById('logro').style.display = 'flex';
+        cagon = false
     }
 }
 
@@ -456,6 +491,7 @@ function lose() {
     const textGP = document.getElementById('Ganado-Perdido');
     textGP.innerHTML = '<h1>Has perdido!</h1>';
     WLS.style.backgroundColor = 'rgba(100, 0, 0, 0.2)';
+    mLose();
 }
 
 // Generar los elementos adecuados para la situación de ganar
@@ -464,18 +500,51 @@ function win() {
     const textGP = document.getElementById('Ganado-Perdido');
     textGP.innerHTML = '<h1>Has ganado!</h1>';
     WLS.style.backgroundColor = 'rgba(255, 255, 255, 0)';
+    mWin();
 }
 
 /* ****** CURIOSIDAD ****** */
 
 // Para generar la curiosidad de la persona elegida
-function generateCuriosity() {
+function generateCuriosity(Persona=selectedPerson.name) {
     const nombrePersona = document.getElementById('nombre-persona');
-    nombrePersona.innerText = `${selectedPerson.name}`;
+    nombrePersona.innerText = Persona;
+    const textoCuriosidad = document.getElementById('texto-curiosidad');
+    if (personasTextoCuriosidades.includes(Persona)){
+        textoCuriosidad.innerText = textoCuriosidades[Persona];
+    }
+    else{
+        textoCuriosidad.innerText = '';
+    }
+    document.getElementById('curiosidad-persona').innerHTML = curiosidades[Persona];
     Title3D('nombre-persona', 15, 0.6);
 }
 
 function volverAJugarCuriosity(){
     document.getElementById('boton-curiosidad').style.display = 'block';
     document.getElementById('Home-Icon').style.display = 'none';
+}
+function goCuriosity(){
+    document.getElementById('boton-curiosidad').style.display = 'none';
+    document.getElementById('Home-Icon').style.display = 'block';
+}
+
+/* ****** MENÚ CURIOSIDADES ****** */
+
+function generateMenuCuriosidades(){
+    const menuCuriosidades = document.getElementById('menu-curiosidades');
+    menuCuriosidades.innerHTML = `<button class="icon Volumen-Icon" onclick="MostrarPantalla('Volumen-Control')"></button><button class="icon Back-Icon" onclick="MostrarPantalla('inicio')"></button>`;
+    characters.forEach((character) => {
+        menuCuriosidades.innerHTML += `<button onclick="generateCuriosity('${character.name}');changeselectedPerson('${character.name}');MostrarPantalla('curiosity-screen')">${character.name}</button>`
+        });
+}
+
+function changeselectedPerson(character){
+    console.log(VolumenGeneral,VolumenCuriosidad)
+    selectedPerson = {name: character}
+    if(curiosidadesVideo.includes(character)) {
+        video = document.getElementById(character + '-curiosity');
+        video.volume = VolumenGeneral*VolumenCuriosidad;
+        video.pause();
+    }
 }
