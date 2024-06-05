@@ -118,14 +118,16 @@ function MostrarPantalla(Pantalla){
     if (Pantalla == 'win-lose-screen'){
         StopTime();
     }
-    if(curiosidadesVideo.includes(selectedPerson.name)) {
-        if (Pantalla == 'curiosity-screen' || (UltimaPantalla == 'curiosity-screen' && Pantalla == 'Volumen-Control')) {
-            musiquita.pause()
-            video.play();
-        }
-        else{
-            video.pause()
-            video.currentTime = 0
+    if(selectedPerson && selectedPerson.name) {
+        if(curiosidadesVideo.includes(selectedPerson.name)) {
+            if (Pantalla == 'curiosity-screen' || (UltimaPantalla == 'curiosity-screen' && Pantalla == 'Volumen-Control')) {
+                musiquita.pause()
+                video.play();
+            }
+            else{
+                video.pause()
+                video.currentTime = 0
+            }
         }
     }
 }
