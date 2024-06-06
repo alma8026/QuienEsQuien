@@ -6,6 +6,9 @@ import * as MP from './MostrarPantalla.js';
 window.MostrarPantalla = MP.MostrarPantalla
 window.UltimaPantalla = MP.UltimaPantalla
 
+import * as S from './sonidos.js';
+window.mBoton = S.mBoton
+
 
 
 let video

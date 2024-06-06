@@ -1,7 +1,7 @@
-let VolumenGeneral = 1
-let VolumenMusica = 1
-let VolumenEfectosSonido = 1
-let VolumenCuriosidad = 1
+export let VolumenGeneral = 1
+export let VolumenMusica = 1
+export let VolumenEfectosSonido = 1
+export let VolumenCuriosidad = 1
 
 const EfectosVolumen=document.getElementById('Efectos-Sonido-Volumen');
 const EfectosText=document.getElementById('Efectos-Sonido-Texto');

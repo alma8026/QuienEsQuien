@@ -23,6 +23,8 @@
  */
 
 // scripts.js
+
+// Memoria de los personajes
 const characters = [
     { name: 'Adan', img: 'QEQ_imgs/Adan-QuienEsQuien.jpeg', moreno: false, barba: false, gafas: false, mayor25: false, pelo_largo: false, hombre: true , pelo_ondulado: false, pelo_suelto: true, pelo_rubio: false, camiseta_clara: false, ojos_claros: false},
     { name: 'Alejandro', img: 'QEQ_imgs/Alejandro-QuienEsQuien.jpeg', moreno: false, barba: false, gafas: false, mayor25: false, pelo_largo: false, hombre: true , pelo_ondulado: false, pelo_suelto: true, pelo_rubio: false, camiseta_clara: true, ojos_claros: true},
@@ -45,6 +47,7 @@ const characters = [
     { name: 'Yago', img: 'QEQ_imgs/Yago-QuienEsQuien.jpeg', moreno: false, barba: true , gafas: true, mayor25: false, pelo_largo: false, hombre: true , pelo_ondulado: false, pelo_suelto: true, pelo_rubio: false, camiseta_clara: true, ojos_claros: true },
 ];
 
+// Curiosidad guardada en forma de HTML (si es video, video y si es imagen, imagen)
 const curiosidades = {
     'Adan': '<img id="Adan-curiosity" class="img-curiosity" src="Curiosidades1/Adan-curiosidad.jpg" alt="Curiosidad de Adan">',
     'Alejandro': '<video id="Alejandro-curiosity" class="img-curiosity" controls autoplay loop alt="Curiosidad de Alejandro"><source src="Curiosidades1/Alejandro-curiosidad.mp4" type="video/mp4"></video>',
@@ -67,18 +70,14 @@ const curiosidades = {
     'Yago': '<img id="Yago-curiosity" class="img-curiosity" src="Curiosidades1/Yago-curiosidad.jpg" alt="Curiosidad de Yago">'
 };
 
-textoCuriosidades = {
-    'Ivan': 'Soy adulto pero no ejerzo',
-    'Josias': 'Sou eu de novo',
-    'Sergio': 'La vida me ha dado muchos palos, y más que me voy a llevar'
-}
 
+
+// Personajes con curiosidad tipo video
 let curiosidadesVideo = ['Alejandro', 'Erik', 'Sergio'];
-let personasTextoCuriosidades = ['Ivan', 'Josias', 'Sergio']
+
+
 let video
-
 let cagon = true;
-
 let difficulty;
 let selectedPerson;
 let choosenPerson;
@@ -88,6 +87,7 @@ let UltimaPantalla = 'inicio';
 let AnteriorPantalla;
 let stopTime = false;
 let randomNumber;
+
 const musiquita = document.getElementById("musiquita");
 console.log('Inspeccioname esta.');
 /* ****** FUNCION AUXILIAR PARA MOVERSE ENTRE PANTALLAS ****** */
@@ -118,22 +118,20 @@ function MostrarPantalla(Pantalla){
     if (Pantalla == 'win-lose-screen'){
         StopTime();
     }
-    if(selectedPerson && selectedPerson.name) {
-        if(curiosidadesVideo.includes(selectedPerson.name)) {
-            if (Pantalla == 'curiosity-screen' || (UltimaPantalla == 'curiosity-screen' && Pantalla == 'Volumen-Control')) {
-                musiquita.pause()
-                video.play();
-            }
-            else{
-                video.pause()
-                video.currentTime = 0
-            }
+    if(curiosidadesVideo.includes(selectedPerson.name)) {
+        if (Pantalla == 'curiosity-screen' || (UltimaPantalla == 'curiosity-screen' && Pantalla == 'Volumen-Control')) {
+            musiquita.pause();
+            video.play();
+        }
+        else{
+            video.pause();
+            video.currentTime = 0;
         }
     }
 }
 /* ****** SELECCIONAR PERSONA RANDOM ****** */
 function randomPerson() {
-    randomNumber = Math.floor(Math.random() * 19);
+    randomNumber = Math.floor(Math.random() * characters.length);
     selectedPerson = characters[randomNumber];
     //selectedPerson = {name: 'Erik'};
     console.log(selectedPerson.name);
@@ -192,6 +190,7 @@ let VolumenMusica = 1
 let VolumenEfectosSonido = 1
 let VolumenCuriosidad = 1
 
+// Volumen de los efectos de sonido (Botón, lava, logro, perder o ganar...)
 const EfectosVolumen=document.getElementById('Efectos-Sonido-Volumen');
 const EfectosText=document.getElementById('Efectos-Sonido-Texto');
 EfectosVolumen.addEventListener('input', function() {
@@ -205,6 +204,7 @@ EfectosVolumen.addEventListener('input', function() {
     }
 });
 
+// Volumen música
 const MusicaVolumen=document.getElementById('Musica-Volumen');
 const MusicaText=document.getElementById('Musica-Texto');
 MusicaVolumen.addEventListener('input', function() {
@@ -219,6 +219,7 @@ MusicaVolumen.addEventListener('input', function() {
     }
 });
 
+//Volumen videos curiosidades
 const CuriosidadVolumen=document.getElementById('Curiosidad-Volumen');
 const CuriosidadText=document.getElementById('Curiosidad-Texto');
 CuriosidadVolumen.addEventListener('input', function() {
@@ -233,6 +234,7 @@ CuriosidadVolumen.addEventListener('input', function() {
     }
 });
 
+//Volumen de todo
 const GeneralVolumen=document.getElementById('General-Volumen');
 const GeneralText=document.getElementById('General-Texto');
 GeneralVolumen.addEventListener('input', function() {
@@ -248,6 +250,7 @@ GeneralVolumen.addEventListener('input', function() {
     }
 });
 
+// Sonido botón
 function mBoton(){
     const MBoton = document.getElementById("m-boton");
     const mboton = MBoton.cloneNode(true);
@@ -255,6 +258,7 @@ function mBoton(){
     mboton.play();
 }
 
+//Sonido al rechazar a alguien
 function mReject(){
     const Mlava = document.getElementById("m-lava");
     const mlava = Mlava.cloneNode(true);
@@ -270,6 +274,7 @@ function mReject(){
     }, 1600)
 }
 
+//Sonido logro
 function mChallenge(){
     const Mchallenge = document.getElementById("m-challenge");
     const mchallenge = Mchallenge.cloneNode(true);
@@ -277,12 +282,14 @@ function mChallenge(){
     mchallenge.play();
 }
 
+//Sonido al ganar
 function mWin(){
     const mwin = document.getElementById("m-levelUp");
     mwin.volume = VolumenGeneral*VolumenEfectosSonido
     mwin.play();
 }
 
+//Sonido al perder
 function mLose(){
     const mstrike = document.getElementById("m-strike");
     mstrike.volume = VolumenGeneral*VolumenEfectosSonido;
@@ -360,6 +367,7 @@ function ResetTime() {
     stopTime = false;
 }
 
+
 function StopTime(){
     stopTime = true
 }
@@ -405,15 +413,15 @@ function askQuestion(attribute) {
     }
     const pregunta = document.getElementById(`${attribute}`);
     if(selectedPerson[attribute]){
-        pregunta.classList.add('acertadas')
+        pregunta.classList.add('acertadas');
     } else {
-        pregunta.classList.add('falladas')
+        pregunta.classList.add('falladas');
     }
     //document.head.appendChild(estilo);
 }
 
 function clearQuestions(){
-    const ID = ['moreno', 'barba', 'pelo_largo', 'gafas', 'mayor25', 'hombre', 'pelo_ondulado', 'pelo_suelto', 'pelo_rubio', 'camiseta_clara', 'ojos_claros']
+    const ID = ['moreno', 'barba', 'pelo_largo', 'gafas', 'mayor25', 'hombre', 'pelo_ondulado', 'pelo_suelto', 'pelo_rubio', 'camiseta_clara', 'ojos_claros'];
     ID.forEach(element => {
         const pregunta = document.getElementById(`${element}`);
         pregunta.classList.remove('acertadas');
@@ -424,10 +432,10 @@ function clearQuestions(){
 // Para cuando haces check a alguien
 function handleCheck(index) {
     mBoton();
-    choosenPerson = characters[index]
-    document.getElementById('confirmacion').style.display = 'flex'
-    document.getElementById('texto-cartel').innerText = `¿Estás seguro de que es ${choosenPerson.name}?`
-    document.getElementById('imagen-persona-seleccionada').innerHTML = `<img src="${choosenPerson.img}">`
+    choosenPerson = characters[index];
+    document.getElementById('confirmacion').style.display = 'flex';
+    document.getElementById('texto-cartel').innerText = `¿Estás seguro de que es ${choosenPerson.name}?`;
+    document.getElementById('imagen-persona-seleccionada').innerHTML = `<img src="${choosenPerson.img}">`;
 }
 
 function accept(){
@@ -449,31 +457,12 @@ function continuePlay(){
     }
 }
 
-// Función para pausar el video al volver al menú
-function pausarVideoSiNecesario() {
-    if(selectedPerson.name == 'Alejandro' || selectedPerson.name == 'Erik' || selectedPerson.name == 'Sergio') {
-        const video = document.getElementById(selectedPerson.name + '-curiosity');
-        video.pause();
-        //console.log('paused ' + selectedPerson.name + '-curiosity');
-    }
-}
-
-// Event listener para el icono de inicio
-document.getElementById('Home-Icon').addEventListener('click', function() {
-    pausarVideoSiNecesario();
-});
-
-// Event listener para el botón de curiosidad
-document.getElementById('boton-curiosidad').addEventListener('click', function() {
-    pausarVideoSiNecesario();
-});
-
 // Para cuando descartas a alguien
 function handleReject(index) {
     mBoton();
+    mReject();
     rejects++;
     document.querySelector('#'+characters[index].name+"-lava").style.display = 'block';
-    mReject();
     setTimeout(() => {
         document.querySelector('#'+characters[index].name+"-roca").style.display = 'block';
     }, 1600);
@@ -509,6 +498,14 @@ function win() {
 
 // Para generar la curiosidad de la persona elegida
 function generateCuriosity(Persona=selectedPerson.name) {
+    // Personajes con texto abajo curiosidad
+    let personasTextoCuriosidades = ['Ivan', 'Josias', 'Sergio'];
+    // Texto abajo curiosidad
+    let textoCuriosidades = {
+        'Ivan': 'Soy adulto pero no ejerzo',
+        'Josias': 'Sou eu de novo',
+        'Sergio': 'La vida me ha dado muchos palos, y más que me voy a llevar'
+    }
     const nombrePersona = document.getElementById('nombre-persona');
     nombrePersona.innerText = Persona;
     const textoCuriosidad = document.getElementById('texto-curiosidad');
@@ -526,6 +523,7 @@ function volverAJugarCuriosity(){
     document.getElementById('boton-curiosidad').style.display = 'block';
     document.getElementById('Home-Icon').style.display = 'none';
 }
+
 function goCuriosity(){
     document.getElementById('boton-curiosidad').style.display = 'none';
     document.getElementById('Home-Icon').style.display = 'block';
@@ -542,7 +540,6 @@ function generateMenuCuriosidades(){
 }
 
 function changeselectedPerson(character){
-    console.log(VolumenGeneral,VolumenCuriosidad)
     selectedPerson = {name: character}
     if(curiosidadesVideo.includes(character)) {
         video = document.getElementById(character + '-curiosity');

@@ -1,5 +1,10 @@
-function randomPerson() {
-    randomNumber = Math.floor(Math.random() * 19);
+import { characters } from "./characters";
+import { VolumenCuriosidad, VolumenGeneral } from "./volumen";
+
+export let selectedPerson
+
+export function randomPerson() {
+    randomNumber = Math.floor(Math.random() * Object.keys(characters).length);
     selectedPerson = characters[randomNumber];
     //selectedPerson = {name: 'Erik'};
     console.log(selectedPerson.name);

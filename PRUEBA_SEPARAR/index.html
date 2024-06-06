@@ -57,7 +57,7 @@
     <div class="menu" id="inicio">
         <div class="titulo" id="principal">¿Quién es quién?</div>
         <button onclick="MostrarPantalla('dificultades')">Jugar</button>
-        <button onclick="window.open('https://www.infojobs.net/', '_blank');mBoton()">O no</button>
+        <button onclick="mBoton();window.open('https://www.infojobs.net/', '_blank')">O no</button>
         <button class="icon Volumen-Icon" onclick="MostrarPantalla('Volumen-Control')"></button>
         <button class="icon Curiosidades-Icon" onclick="generateMenuCuriosidades();MostrarPantalla('menu-curiosidades')"></button>
     </div>
@@ -119,7 +119,7 @@
         <button class="icon Volumen-Icon" onclick="MostrarPantalla('Volumen-Control')"></button>
     </div>
 
-    <div class="menu" id="curiosity-screen" style="display: none;">
+    <div class="menu" id="curiosity-screen" style="display: none;">Hola que tal
         <div class="titulo" id="nombre-persona"></div>
         <div id="curiosidad-persona"></div>
         <div id="texto-curiosidad"></div>

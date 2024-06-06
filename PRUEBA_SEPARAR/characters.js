@@ -1,4 +1,4 @@
-const characters = [
+export const characters = [
     { name: 'Adan', img: 'QEQ_imgs/Adan-QuienEsQuien.jpeg', moreno: false, barba: false, gafas: false, mayor25: false, pelo_largo: false, hombre: true , pelo_ondulado: false, pelo_suelto: true, pelo_rubio: false, camiseta_clara: false, ojos_claros: false},
     { name: 'Alejandro', img: 'QEQ_imgs/Alejandro-QuienEsQuien.jpeg', moreno: false, barba: false, gafas: false, mayor25: false, pelo_largo: false, hombre: true , pelo_ondulado: false, pelo_suelto: true, pelo_rubio: false, camiseta_clara: true, ojos_claros: true},
     { name: 'Cesar', img: 'QEQ_imgs/Cesar-QuienEsQuien.jpeg', moreno: true, barba: true, gafas: false, mayor25: true, pelo_largo: false, hombre: true , pelo_ondulado: false, pelo_suelto: true, pelo_rubio: false, camiseta_clara: false, ojos_claros: false},
@@ -20,7 +20,7 @@ const characters = [
     { name: 'Yago', img: 'QEQ_imgs/Yago-QuienEsQuien.jpeg', moreno: false, barba: true , gafas: true, mayor25: false, pelo_largo: false, hombre: true , pelo_ondulado: false, pelo_suelto: true, pelo_rubio: false, camiseta_clara: true, ojos_claros: true },
 ];
 
-const curiosidades = {
+export const curiosidades = {
     'Adan': '<img id="Adan-curiosity" class="img-curiosity" src="Curiosidades1/Adan-curiosidad.jpg" alt="Curiosidad de Adan">',
     'Alejandro': '<video id="Alejandro-curiosity" class="img-curiosity" controls autoplay loop alt="Curiosidad de Alejandro"><source src="Curiosidades1/Alejandro-curiosidad.mp4" type="video/mp4"></video>',
     'Cesar': '<img id="Cesar-curiosity" class="img-curiosity" src="Curiosidades1/Cesar-curiosidad.jpg" alt="Curiosidad de Cesar">',

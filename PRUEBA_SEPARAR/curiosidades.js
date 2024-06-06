@@ -1,13 +1,16 @@
-let textoCuriosidades = {
+import { characters } from "./characters";
+import { VolumenCuriosidad, VolumenGeneral } from "./volumen";
+
+const textoCuriosidades = {
     'Ivan': 'Soy adulto pero no ejerzo',
     'Josias': 'Sou eu de novo',
     'Sergio': 'La vida me ha dado muchos palos, y más que me voy a llevar'
 }
 
-let curiosidadesVideo = ['Alejandro', 'Erik', 'Sergio'];
-let personasTextoCuriosidades = ['Ivan', 'Josias', 'Sergio']
+export const curiosidadesVideo = ['Alejandro', 'Erik', 'Sergio'];
+const personasTextoCuriosidades = ['Ivan', 'Josias', 'Sergio']
 
-function generateCuriosity(Persona=selectedPerson.name) {
+export function generateCuriosity(Persona=selectedPerson.name) {
     const nombrePersona = document.getElementById('nombre-persona');
     nombrePersona.innerText = Persona;
     const textoCuriosidad = document.getElementById('texto-curiosidad');
@@ -21,18 +24,18 @@ function generateCuriosity(Persona=selectedPerson.name) {
     Title3D('nombre-persona', 15, 0.6);
 }
 
-function volverAJugarCuriosity(){
+export function volverAJugarCuriosity(){
     document.getElementById('boton-curiosidad').style.display = 'block';
     document.getElementById('Home-Icon').style.display = 'none';
 }
-function goCuriosity(){
+export function goCuriosity(){
     document.getElementById('boton-curiosidad').style.display = 'none';
     document.getElementById('Home-Icon').style.display = 'block';
 }
 
 /* ****** MENÚ CURIOSIDADES ****** */
 
-function generateMenuCuriosidades(){
+export function generateMenuCuriosidades(){
     const menuCuriosidades = document.getElementById('menu-curiosidades');
     menuCuriosidades.innerHTML = `<button class="icon Volumen-Icon" onclick="MostrarPantalla('Volumen-Control')"></button><button class="icon Back-Icon" onclick="MostrarPantalla('inicio')"></button>`;
     characters.forEach((character) => {
@@ -40,7 +43,7 @@ function generateMenuCuriosidades(){
         });
 }
 
-function changeselectedPerson(character){
+export function changeselectedPerson(character){
     console.log(VolumenGeneral,VolumenCuriosidad)
     selectedPerson = {name: character}
     if(curiosidadesVideo.includes(character)) {
